@@ -1,0 +1,1 @@
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_gazebo/ament_cmake_environment_hooks/local_setup.sh

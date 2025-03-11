@@ -1,0 +1,81 @@
+[0.120s] Invoking command in '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/robotica/turtlebot3_ws/install/testeo1:/home/robotica/turtlebot3_ws/install/show_msg:/home/robotica/turtlebot3_ws/install/my_first_subscriber:/home/robotica/turtlebot3_ws/install/my_first_service:/home/robotica/turtlebot3_ws/install/my_first_publisher:/opt/ros/galactic /usr/bin/cmake /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_fake_node -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node
+[0.753s] -- The C compiler identification is GNU 9.4.0
+[1.121s] -- The CXX compiler identification is GNU 9.4.0
+[1.160s] -- Check for working C compiler: /usr/bin/cc
+[1.419s] -- Check for working C compiler: /usr/bin/cc -- works
+[1.422s] -- Detecting C compiler ABI info
+[1.647s] -- Detecting C compiler ABI info - done
+[1.706s] -- Detecting C compile features
+[1.708s] -- Detecting C compile features - done
+[1.721s] -- Check for working CXX compiler: /usr/bin/c++
+[1.989s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[1.993s] -- Detecting CXX compiler ABI info
+[2.287s] -- Detecting CXX compiler ABI info - done
+[2.332s] -- Detecting CXX compile features
+[2.334s] -- Detecting CXX compile features - done
+[2.372s] -- Found ament_cmake: 1.1.6 (/opt/ros/galactic/share/ament_cmake/cmake)
+[2.480s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[2.481s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[2.717s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.894s] -- Found geometry_msgs: 2.2.4 (/opt/ros/galactic/share/geometry_msgs/cmake)
+[3.127s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[3.188s] -- Found rosidl_adapter: 2.2.3 (/opt/ros/galactic/share/rosidl_adapter/cmake)
+[3.597s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[3.718s] -- Found FastRTPS: /opt/ros/galactic/include  
+[4.121s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.616s] -- Found nav_msgs: 2.2.4 (/opt/ros/galactic/share/nav_msgs/cmake)
+[4.930s] -- Found rclcpp: 9.2.2 (/opt/ros/galactic/share/rclcpp/cmake)
+[5.304s] -- Found rmw_implementation_cmake: 3.3.1 (/opt/ros/galactic/share/rmw_implementation_cmake/cmake)
+[5.331s] -- Found rmw_cyclonedds_cpp: 0.22.6 (/opt/ros/galactic/share/rmw_cyclonedds_cpp/cmake)
+[5.437s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[5.442s] -- Looking for pthread.h
+[5.698s] -- Looking for pthread.h - found
+[5.700s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[5.948s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[5.949s] -- Looking for pthread_create in pthreads
+[6.141s] -- Looking for pthread_create in pthreads - not found
+[6.142s] -- Looking for pthread_create in pthread
+[6.355s] -- Looking for pthread_create in pthread - found
+[6.359s] -- Found Threads: TRUE  
+[7.035s] -- Found sensor_msgs: 2.2.4 (/opt/ros/galactic/share/sensor_msgs/cmake)
+[7.344s] -- Found tf2: 0.17.5 (/opt/ros/galactic/share/tf2/cmake)
+[7.406s] -- Found tf2_msgs: 0.17.5 (/opt/ros/galactic/share/tf2_msgs/cmake)
+[8.259s] -- Found turtlebot3_msgs: 2.2.2 (/opt/ros/galactic/share/turtlebot3_msgs/cmake)
+[8.909s] -- Configuring done
+[8.964s] -- Generating done
+[8.997s] -- Build files have been written to: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node
+[9.029s] Invoked command in '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/robotica/turtlebot3_ws/install/testeo1:/home/robotica/turtlebot3_ws/install/show_msg:/home/robotica/turtlebot3_ws/install/my_first_subscriber:/home/robotica/turtlebot3_ws/install/my_first_service:/home/robotica/turtlebot3_ws/install/my_first_publisher:/opt/ros/galactic /usr/bin/cmake /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_fake_node -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node
+[9.031s] Invoking command in '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/robotica/turtlebot3_ws/install/testeo1:/home/robotica/turtlebot3_ws/install/show_msg:/home/robotica/turtlebot3_ws/install/my_first_subscriber:/home/robotica/turtlebot3_ws/install/my_first_service:/home/robotica/turtlebot3_ws/install/my_first_publisher:/opt/ros/galactic /usr/bin/cmake --build /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node -- -j2 -l2
+[9.174s] [35m[1mScanning dependencies of target turtlebot3_fake_node[0m
+[9.711s] [ 50%] [32mBuilding CXX object CMakeFiles/turtlebot3_fake_node.dir/src/turtlebot3_fake_node.cpp.o[0m
+[50.758s] [100%] [32m[1mLinking CXX executable turtlebot3_fake_node[0m
+[53.991s] [100%] Built target turtlebot3_fake_node
+[54.075s] Invoked command in '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/robotica/turtlebot3_ws/install/testeo1:/home/robotica/turtlebot3_ws/install/show_msg:/home/robotica/turtlebot3_ws/install/my_first_subscriber:/home/robotica/turtlebot3_ws/install/my_first_service:/home/robotica/turtlebot3_ws/install/my_first_publisher:/opt/ros/galactic /usr/bin/cmake --build /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node -- -j2 -l2
+[54.122s] Invoking command in '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/robotica/turtlebot3_ws/install/testeo1:/home/robotica/turtlebot3_ws/install/show_msg:/home/robotica/turtlebot3_ws/install/my_first_subscriber:/home/robotica/turtlebot3_ws/install/my_first_service:/home/robotica/turtlebot3_ws/install/my_first_publisher:/opt/ros/galactic /usr/bin/cmake --install /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node
+[54.197s] -- Install configuration: ""
+[54.199s] -- Execute custom install script
+[54.202s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/lib/turtlebot3_fake_node/turtlebot3_fake_node
+[54.269s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/launch/rviz2.launch.py
+[54.308s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/launch/turtlebot3_fake_node.launch.py
+[54.340s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/param/burger.yaml
+[54.397s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/param/waffle.yaml
+[54.461s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/param/waffle_pi.yaml
+[54.573s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/include//turtlebot3_fake_node/turtlebot3_fake_node.hpp
+[54.609s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/ament_index/resource_index/package_run_dependencies/turtlebot3_fake_node
+[54.655s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/ament_index/resource_index/parent_prefix_path/turtlebot3_fake_node
+[54.685s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/environment/ament_prefix_path.sh
+[54.716s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/environment/ament_prefix_path.dsv
+[54.745s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/environment/path.sh
+[54.774s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/environment/path.dsv
+[54.806s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash
+[54.834s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.sh
+[54.865s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.zsh
+[54.897s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.dsv
+[54.931s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/package.dsv
+[54.965s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/ament_index/resource_index/packages/turtlebot3_fake_node
+[55.002s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/cmake/ament_cmake_export_include_directories-extras.cmake
+[55.054s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/cmake/ament_cmake_export_dependencies-extras.cmake
+[55.083s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/cmake/turtlebot3_fake_nodeConfig.cmake
+[55.114s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/cmake/turtlebot3_fake_nodeConfig-version.cmake
+[55.142s] -- Symlinking: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/turtlebot3_fake_node/share/turtlebot3_fake_node/package.xml
+[55.179s] Invoked command in '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/robotica/turtlebot3_ws/install/testeo1:/home/robotica/turtlebot3_ws/install/show_msg:/home/robotica/turtlebot3_ws/install/my_first_subscriber:/home/robotica/turtlebot3_ws/install/my_first_service:/home/robotica/turtlebot3_ws/install/my_first_publisher:/opt/ros/galactic /usr/bin/cmake --install /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node
