@@ -1,0 +1,6 @@
+Invoking command in '/home/asun/turtlebot3_ws/src/build/my_world': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic /usr/bin/cmake /home/asun/turtlebot3_ws/src/my_world -DCMAKE_INSTALL_PREFIX=/home/asun/turtlebot3_ws/src/install/my_world
+Invoked command in '/home/asun/turtlebot3_ws/src/build/my_world' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic /usr/bin/cmake /home/asun/turtlebot3_ws/src/my_world -DCMAKE_INSTALL_PREFIX=/home/asun/turtlebot3_ws/src/install/my_world
+Invoking command in '/home/asun/turtlebot3_ws/src/build/my_world': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic /usr/bin/cmake --build /home/asun/turtlebot3_ws/src/build/my_world -- -j6 -l6
+Invoked command in '/home/asun/turtlebot3_ws/src/build/my_world' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic /usr/bin/cmake --build /home/asun/turtlebot3_ws/src/build/my_world -- -j6 -l6
+Invoking command in '/home/asun/turtlebot3_ws/src/build/my_world': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic /usr/bin/cmake --install /home/asun/turtlebot3_ws/src/build/my_world
+Invoked command in '/home/asun/turtlebot3_ws/src/build/my_world' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic /usr/bin/cmake --install /home/asun/turtlebot3_ws/src/build/my_world
