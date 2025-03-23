@@ -6,5 +6,5 @@ CXX_FLAGS =   -Wall -Wextra -Wpedantic -std=gnu++17
 
 CXX_DEFINES = -DDEFAULT_RMW_IMPLEMENTATION=rmw_cyclonedds_cpp -DRCUTILS_ENABLE_FAULT_INJECTION
 
-CXX_INCLUDES = -I/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_fake_node/include -isystem /opt/ros/galactic/include 
+CXX_INCLUDES = -I/home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_fake_node/include -isystem /opt/ros/galactic/include 
 

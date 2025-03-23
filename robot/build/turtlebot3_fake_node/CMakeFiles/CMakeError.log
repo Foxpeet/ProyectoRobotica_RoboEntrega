@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
-Change Dir: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp
+Change Dir: /home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_f9535/fast && /usr/bin/make -f CMakeFiles/cmTC_f9535.dir/build.make CMakeFiles/cmTC_f9535.dir/build
-make[1]: se entra en el directorio '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f9535.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_f9535.dir/src.c.o   -c /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_f9535
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f9535.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_f9535.dir/src.c.o  -o cmTC_f9535 
-/usr/bin/ld: CMakeFiles/cmTC_f9535.dir/src.c.o: en la función `main':
+Run Build Command(s):/usr/bin/make cmTC_54de6/fast && /usr/bin/make -f CMakeFiles/cmTC_54de6.dir/build.make CMakeFiles/cmTC_54de6.dir/build
+make[1]: se entra en el directorio '/home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_54de6.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_54de6.dir/src.c.o   -c /home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_54de6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_54de6.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_54de6.dir/src.c.o  -o cmTC_54de6 
+/usr/bin/ld: CMakeFiles/cmTC_54de6.dir/src.c.o: en la función `main':
 src.c:(.text+0x46): referencia a `pthread_create' sin definir
 /usr/bin/ld: src.c:(.text+0x52): referencia a `pthread_detach' sin definir
 /usr/bin/ld: src.c:(.text+0x63): referencia a `pthread_join' sin definir
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_f9535.dir/build.make:87: cmTC_f9535] Error 1
-make[1]: se sale del directorio '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_f9535/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_54de6.dir/build.make:87: cmTC_54de6] Error 1
+make[1]: se sale del directorio '/home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_54de6/fast] Error 2
 
 
 Source file was:
@@ -39,20 +39,20 @@ int main(void)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp
+Change Dir: /home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_8397f/fast && /usr/bin/make -f CMakeFiles/cmTC_8397f.dir/build.make CMakeFiles/cmTC_8397f.dir/build
-make[1]: se entra en el directorio '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8397f.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_8397f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_8397f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8397f.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_8397f.dir/CheckFunctionExists.c.o  -o cmTC_8397f  -lpthreads 
+Run Build Command(s):/usr/bin/make cmTC_40934/fast && /usr/bin/make -f CMakeFiles/cmTC_40934.dir/build.make CMakeFiles/cmTC_40934.dir/build
+make[1]: se entra en el directorio '/home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_40934.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_40934.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_40934
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_40934.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_40934.dir/CheckFunctionExists.c.o  -o cmTC_40934  -lpthreads 
 /usr/bin/ld: no se puede encontrar -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_8397f.dir/build.make:87: cmTC_8397f] Error 1
-make[1]: se sale del directorio '/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_8397f/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_40934.dir/build.make:87: cmTC_40934] Error 1
+make[1]: se sale del directorio '/home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_40934/fast] Error 2
 
 
 

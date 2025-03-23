@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_fake_node/src/turtlebot3_fake_node.cpp" "/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/CMakeFiles/turtlebot3_fake_node.dir/src/turtlebot3_fake_node.cpp.o"
+  "/home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_fake_node/src/turtlebot3_fake_node.cpp" "/home/asun/turtlebot3_ws/build/turtlebot3_fake_node/CMakeFiles/turtlebot3_fake_node.dir/src/turtlebot3_fake_node.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,7 +16,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_fake_node/include"
+  "/home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_fake_node/include"
   "/opt/ros/galactic/include"
   )
 

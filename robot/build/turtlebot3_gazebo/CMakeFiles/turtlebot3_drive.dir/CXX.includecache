@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_gazebo/include/turtlebot3_gazebo/turtlebot3_drive.hpp
+/home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/include/turtlebot3_gazebo/turtlebot3_drive.hpp
 geometry_msgs/msg/twist.hpp
 -
 nav_msgs/msg/odometry.hpp
@@ -20,9 +20,9 @@ tf2/LinearMath/Matrix3x3.h
 tf2/LinearMath/Quaternion.h
 -
 
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_gazebo/src/turtlebot3_drive.cpp
+/home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/src/turtlebot3_drive.cpp
 turtlebot3_gazebo/turtlebot3_drive.hpp
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_gazebo/src/turtlebot3_gazebo/turtlebot3_drive.hpp
+/home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/src/turtlebot3_gazebo/turtlebot3_drive.hpp
 memory
 -
 

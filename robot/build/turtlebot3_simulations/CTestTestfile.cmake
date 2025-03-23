@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_simulations
-# Build directory: /home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_simulations
+# Source directory: /home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_simulations
+# Build directory: /home/asun/turtlebot3_ws/build/turtlebot3_simulations
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

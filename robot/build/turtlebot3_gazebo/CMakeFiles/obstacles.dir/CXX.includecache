@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/turtlebot3_simulations/turtlebot3_gazebo/models/turtlebot3_dqn_world/obstacle_plugin/obstacles.cc
+/home/asun/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models/turtlebot3_dqn_world/obstacle_plugin/obstacles.cc
 ignition/math.hh
 -
 stdio.h
