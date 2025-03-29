@@ -1,0 +1,7 @@
+[0.000000] (-) TimerEvent: {}
+[0.000513] (-) JobUnselected: {'identifier': 'my_world'}
+[0.000570] (-) JobUnselected: {'identifier': 'slam'}
+[0.000581] (-) JobUnselected: {'identifier': 'turtlebot3_fake_node'}
+[0.000588] (-) JobUnselected: {'identifier': 'turtlebot3_gazebo'}
+[0.000595] (-) JobUnselected: {'identifier': 'turtlebot3_simulations'}
+[0.000920] (-) EventReactorShutdown: {}

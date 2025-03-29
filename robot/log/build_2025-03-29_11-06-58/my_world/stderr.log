@@ -1,0 +1,6 @@
+CMake Error at cmake_install.cmake:70 (file):
+  file INSTALL cannot find
+  "/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/my_world/include":
+  No such file or directory.
+
+
