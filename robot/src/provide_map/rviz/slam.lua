@@ -4,42 +4,85 @@ include "trajectory_builder.lua"
 options = {
   map_builder = MAP_BUILDER,
   trajectory_builder = TRAJECTORY_BUILDER,
+  
+  -- Frames específicos para Turtlebot
   map_frame = "map",
-  tracking_frame ="imu_link",
-  published_frame = "odom",
+  tracking_frame = "base_footprint",  -- Mejor para Turtlebot
+  published_frame = "base_footprint",
   odom_frame = "odom",
   provide_odom_frame = false,
   publish_frame_projected_to_2d = true,
-  use_odometry = true,
-  use_nav_sat = false,
-  use_landmarks = false,
-  num_laser_scans = 1,
-  num_multi_echo_laser_scans = 0,
-  num_subdivisions_per_laser_scan = 1,
-  num_point_clouds = 0,
-  lookup_transform_timeout_sec = 0.2,
-  submap_publish_period_sec = 0.3,
-  pose_publish_period_sec = 5e-3,
-  trajectory_publish_period_sec = 30e-3,
-  rangefinder_sampling_ratio = 1.,
-  odometry_sampling_ratio = 1.,
-  fixed_frame_pose_sampling_ratio = 1.,
-  imu_sampling_ratio = 1.,
-  landmarks_sampling_ratio = 1.,
+  
+  -- Ajustes para mapas grandes
+  map_builder.num_background_threads = 6,  -- Usa más CPU para mapas grandes
+  pose_graph.optimize_every_n_nodes = 90,  -- Reduce frecuencia de optimización
+  pose_graph.global_sampling_ratio = 0.003, -- Menos restricciones globales
+  pose_graph.constraint_builder.sampling_ratio = 0.3,
+  
+  -- Temporización extendida para mapas grandes
+  submap_publish_period_sec = 0.5,
+  trajectory_publish_period_sec = 0.5,
+  lookup_transform_timeout_sec = 1.0,  -- Mayor tiempo de espera
 }
 
-MAP_BUILDER.use_trajectory_builder_2d = true
+-- Configuración específica para LIDAR de Turtlebot (RPLIDAR A1/A2)
+TRAJECTORY_BUILDER_2D = {
+  min_range = 0.15,  -- Distancia mínima del LIDAR
+  max_range = 12.0,  -- Extendido para mapa grande
+  missing_data_ray_length = 5.0,
+  
+  -- Ajustes de resolución para grandes áreas
+  submaps = {
+    resolution = 0.075,  -- Resolución más gruesa para ahorrar memoria
+    num_range_data = 120,  -- Más scans por submapa
+  },
+  
+  -- Filtrado de movimiento más permisivo
+  motion_filter = {
+    max_distance_meters = 0.2,
+    max_angle_radians = math.rad(1.0),
+    max_time_seconds = 10.0
+  },
+  
+  use_imu_data = false,  -- Turtlebot Burger no tiene IMU fiable
+  use_online_correlative_scan_matching = true,
+  ceres_scan_matcher = {
+    occupied_space_weight = 20.0,
+    translation_weight = 10.0,
+    rotation_weight = 1.0,
+    ceres_solver_options = {
+      use_nonmonotonic_steps = true,
+      max_num_iterations = 20,
+      num_threads = 4,
+    }
+  }
+}
 
-TRAJECTORY_BUILDER_2D.min_range = 0.12
-TRAJECTORY_BUILDER_2D.max_range = 3.5
-TRAJECTORY_BUILDER_2D.missing_data_ray_length = 3.
-TRAJECTORY_BUILDER_2D.use_imu_data = false
-TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
-TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(0.1)
-
-POSE_GRAPH.constraint_builder.min_score = 0.65
-POSE_GRAPH.constraint_builder.global_localization_min_score = 0.7
-
--- POSE_GRAPH.optimize_every_n_nodes = 0
+-- Configuración del grafo de poses para grandes mapas
+POSE_GRAPH = {
+  constraint_builder = {
+    min_score = 0.55,  -- Umbral más bajo para grandes distancias
+    global_localization_min_score = 0.6,
+    loop_closure_rotation_weight = 1e5,
+    max_constraint_distance = 15.0,  -- Búsqueda más amplia
+  },
+  optimization_problem = {
+    acceleration_weight = 1.1e3,
+    rotation_weight = 1.6e5,
+    local_slam_pose_translation_weight = 1.5e5,
+    odometry_translation_weight = 1e5,
+    log_solver_summary = false,
+    ceres_solver_options = {
+      use_nonmonotonic_steps = false,
+      max_num_iterations = 50,
+      num_threads = 6,
+    }
+  },
+  max_num_final_iterations = 200,  -- Más iteraciones para convergencia
+  global_sampling_ratio = 0.003,
+  log_residual_histograms = true,
+  matcher_translation_weight = 5e2,
+  matcher_rotation_weight = 1.6e3
+}
 
 return options
