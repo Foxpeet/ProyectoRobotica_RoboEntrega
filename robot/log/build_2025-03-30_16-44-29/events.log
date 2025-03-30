@@ -1,9 +1,0 @@
-[0.000000] (-) TimerEvent: {}
-[0.000707] (-) JobUnselected: {'identifier': 'my_world'}
-[0.000757] (-) JobUnselected: {'identifier': 'nav2_system'}
-[0.000769] (-) JobUnselected: {'identifier': 'provide_map'}
-[0.000777] (-) JobUnselected: {'identifier': 'slam'}
-[0.000784] (-) JobUnselected: {'identifier': 'turtlebot3_fake_node'}
-[0.000790] (-) JobUnselected: {'identifier': 'turtlebot3_gazebo'}
-[0.000797] (-) JobUnselected: {'identifier': 'turtlebot3_simulations'}
-[0.000804] (-) EventReactorShutdown: {}
