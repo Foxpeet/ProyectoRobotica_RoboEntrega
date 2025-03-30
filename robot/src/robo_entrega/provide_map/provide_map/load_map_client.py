@@ -1,6 +1,8 @@
+import os
 import rclpy
 from rclpy.node import Node
 from nav2_msgs.srv import LoadMap
+from ament_index_python.packages import get_package_share_directory
 
 class LoadMapClient(Node):
     def __init__(self):
@@ -14,7 +16,12 @@ class LoadMapClient(Node):
 
     def send_request(self):
         req = LoadMap.Request()
-        req.map_url = '/home/tu_usuario/Git/ProyectoRobotica_RoboEntrega/robot/src/provide_map/map/my_map.yaml'
+        
+        # Obtiene la ruta del paquete "provide_map"
+        package_share_dir = get_package_share_directory("provide_map")
+        
+        # Construye la ruta al mapa (relativa al paquete)
+        req.map_url = os.path.join(package_share_dir, "map", "my_map.yaml")  # Ajusta "map" si es otra carpeta
 
         self.get_logger().info(f'Solicitando carga del mapa: {req.map_url}')
         future = self.client.call_async(req)
@@ -23,7 +30,7 @@ class LoadMapClient(Node):
     def callback_response(self, future):
         try:
             response = future.result()
-            if response.result == 1:
+            if response.result == LoadMap.Response().RESULT_SUCCESS:  # Usa la constante del mensaje
                 self.get_logger().info('✅ Mapa cargado correctamente.')
             else:
                 self.get_logger().error('❌ Error al cargar el mapa.')

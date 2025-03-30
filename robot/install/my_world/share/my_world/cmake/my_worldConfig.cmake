@@ -1,0 +1,1 @@
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world/ament_cmake_core/my_worldConfig.cmake

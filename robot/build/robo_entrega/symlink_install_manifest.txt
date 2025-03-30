@@ -1,0 +1,16 @@
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/ament_index/resource_index/package_run_dependencies/robo_entrega
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/ament_index/resource_index/parent_prefix_path/robo_entrega
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/ament_prefix_path.sh
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/ament_prefix_path.dsv
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/path.sh
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/path.dsv
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.bash
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.sh
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.zsh
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.dsv
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.dsv
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/ament_index/resource_index/packages/robo_entrega
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/cmake/robo_entregaConfig.cmake
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/cmake/robo_entregaConfig-version.cmake
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.xml
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib/robo_entrega/load_map_client.py

@@ -1,0 +1,16 @@
+running develop
+running egg_info
+writing nav2_system.egg-info/PKG-INFO
+writing dependency_links to nav2_system.egg-info/dependency_links.txt
+writing entry points to nav2_system.egg-info/entry_points.txt
+writing requirements to nav2_system.egg-info/requires.txt
+writing top-level names to nav2_system.egg-info/top_level.txt
+reading manifest file 'nav2_system.egg-info/SOURCES.txt'
+writing manifest file 'nav2_system.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages/nav2-system.egg-link (link to .)
+Installing initial_pose_pub script to /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/nav2_system
+Installing load_map_client script to /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/nav2_system
+
+Installed /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system
+running symlink_data

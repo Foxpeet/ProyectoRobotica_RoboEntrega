@@ -1,0 +1,396 @@
+[0.122s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.122s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f44f2b948b0>>, merge_install=False, metas=['./colcon.meta'], mixin=None, mixin_files=None, mixin_verb=('build',), packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=10, paths=None, symlink_install=True, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f44f2b948b0>, verb_name='build', verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f44f2b0a250>)
+[0.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.215s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extensions ['ignore', 'ignore_ament_install']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'ignore'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'ignore_ament_install'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extensions ['colcon_pkg']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'colcon_pkg'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extensions ['colcon_meta']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'colcon_meta'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extensions ['ros']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'ros'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extensions ['cmake', 'python']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'cmake'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'python'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extensions ['python_setup_py']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega) by extension 'python_setup_py'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extensions ['ignore', 'ignore_ament_install']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extension 'ignore'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extension 'ignore_ament_install'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extensions ['colcon_pkg']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extension 'colcon_pkg'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extensions ['colcon_meta']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extension 'colcon_meta'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extensions ['ros']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/my_world) by extension 'ros'
+[0.227s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robo_entrega/my_world' with type 'ros.ament_cmake' and name 'my_world'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extensions ['ignore', 'ignore_ament_install']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extension 'ignore'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extension 'ignore_ament_install'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extensions ['colcon_pkg']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extension 'colcon_pkg'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extensions ['colcon_meta']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extension 'colcon_meta'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extensions ['ros']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/nav2_system) by extension 'ros'
+[0.228s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robo_entrega/nav2_system' with type 'ros.ament_python' and name 'nav2_system'
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extensions ['ignore', 'ignore_ament_install']
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extension 'ignore'
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extension 'ignore_ament_install'
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extensions ['colcon_pkg']
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extension 'colcon_pkg'
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extensions ['colcon_meta']
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extension 'colcon_meta'
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extensions ['ros']
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/provide_map) by extension 'ros'
+[0.229s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robo_entrega/provide_map' with type 'ros.ament_python' and name 'provide_map'
+[0.229s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extensions ['ignore', 'ignore_ament_install']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extension 'ignore'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extension 'ignore_ament_install'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extensions ['colcon_pkg']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extension 'colcon_pkg'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extensions ['colcon_meta']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extension 'colcon_meta'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extensions ['ros']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/robo_entrega) by extension 'ros'
+[0.230s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robo_entrega/robo_entrega' with type 'ros.ament_cmake' and name 'robo_entrega'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extensions ['ignore', 'ignore_ament_install']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extension 'ignore'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extension 'ignore_ament_install'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extensions ['colcon_pkg']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extension 'colcon_pkg'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extensions ['colcon_meta']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extension 'colcon_meta'
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extensions ['ros']
+[0.230s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_entrega/slam) by extension 'ros'
+[0.231s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robo_entrega/slam' with type 'ros.ament_python' and name 'slam'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extensions ['ignore', 'ignore_ament_install']
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'ignore'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'ignore_ament_install'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extensions ['colcon_pkg']
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'colcon_pkg'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extensions ['colcon_meta']
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'colcon_meta'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extensions ['ros']
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'ros'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extensions ['cmake', 'python']
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'cmake'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'python'
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extensions ['python_setup_py']
+[0.231s] Level 1:colcon.colcon_core.package_identification:_identify(src/turtlebot3_simulations) by extension 'python_setup_py'
+[0.231s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.249s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.249s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.250s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 5 installed packages in /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install
+[0.251s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/haoxu/turtlebot3_ws/install
+[0.252s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 336 installed packages in /opt/ros/galactic
+[0.253s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'cmake_args' from command line to 'None'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'cmake_target' from command line to 'None'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'cmake_clean_cache' from command line to 'False'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'cmake_clean_first' from command line to 'False'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'cmake_force_configure' from command line to 'False'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'ament_cmake_args' from command line to 'None'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'catkin_cmake_args' from command line to 'None'
+[0.290s] Level 5:colcon.colcon_core.verb:set package 'my_world' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.290s] DEBUG:colcon.colcon_core.verb:Building package 'my_world' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world', 'merge_install': False, 'path': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/my_world', 'symlink_install': True, 'test_result_base': None}
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'cmake_args' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'cmake_target' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'cmake_clean_cache' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'cmake_clean_first' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'cmake_force_configure' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'ament_cmake_args' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'catkin_cmake_args' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'nav2_system' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.291s] DEBUG:colcon.colcon_core.verb:Building package 'nav2_system' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system', 'merge_install': False, 'path': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/nav2_system', 'symlink_install': True, 'test_result_base': None}
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'cmake_args' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'cmake_target' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'cmake_clean_cache' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'cmake_clean_first' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'cmake_force_configure' from command line to 'False'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'ament_cmake_args' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'catkin_cmake_args' from command line to 'None'
+[0.291s] Level 5:colcon.colcon_core.verb:set package 'provide_map' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.291s] DEBUG:colcon.colcon_core.verb:Building package 'provide_map' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map', 'merge_install': False, 'path': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/provide_map', 'symlink_install': True, 'test_result_base': None}
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'cmake_target' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'cmake_clean_cache' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'cmake_clean_first' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'cmake_force_configure' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'ament_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'catkin_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'slam' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.292s] DEBUG:colcon.colcon_core.verb:Building package 'slam' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam', 'merge_install': False, 'path': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/slam', 'symlink_install': True, 'test_result_base': None}
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'cmake_target' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'cmake_clean_cache' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'cmake_clean_first' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'cmake_force_configure' from command line to 'False'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'ament_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'catkin_cmake_args' from command line to 'None'
+[0.292s] Level 5:colcon.colcon_core.verb:set package 'robo_entrega' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.292s] DEBUG:colcon.colcon_core.verb:Building package 'robo_entrega' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega', 'merge_install': False, 'path': '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega', 'symlink_install': True, 'test_result_base': None}
+[0.292s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.293s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.293s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/my_world' with build type 'ament_cmake'
+[0.294s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/my_world'
+[0.296s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.296s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.296s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.300s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/nav2_system' with build type 'ament_python'
+[0.301s] Level 1:colcon.colcon_core.shell:create_environment_hook('nav2_system', 'ament_prefix_path')
+[0.301s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/hook/ament_prefix_path.ps1'
+[0.303s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/hook/ament_prefix_path.dsv'
+[0.304s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/hook/ament_prefix_path.sh'
+[0.304s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.304s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.309s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/provide_map' with build type 'ament_python'
+[0.309s] Level 1:colcon.colcon_core.shell:create_environment_hook('provide_map', 'ament_prefix_path')
+[0.310s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/hook/ament_prefix_path.ps1'
+[0.312s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/hook/ament_prefix_path.dsv'
+[0.312s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/hook/ament_prefix_path.sh'
+[0.313s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.313s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.318s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/slam' with build type 'ament_python'
+[0.318s] Level 1:colcon.colcon_core.shell:create_environment_hook('slam', 'ament_prefix_path')
+[0.318s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/hook/ament_prefix_path.ps1'
+[0.322s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/hook/ament_prefix_path.dsv'
+[0.323s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/hook/ament_prefix_path.sh'
+[0.323s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.323s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.331s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic /usr/bin/cmake --build /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world -- -j10 -l10
+[0.472s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/nav2_system'
+[0.473s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.473s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.610s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/provide_map'
+[0.611s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.611s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.619s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic /usr/bin/cmake --build /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world -- -j10 -l10
+[0.630s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic /usr/bin/cmake --install /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world
+[0.763s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/slam'
+[0.764s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.764s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.856s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_world)
+[0.857s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic /usr/bin/cmake --install /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/my_world
+[0.859s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world' for CMake module files
+[0.859s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world' for CMake config files
+[0.862s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_world', 'cmake_prefix_path')
+[0.862s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/hook/cmake_prefix_path.ps1'
+[0.863s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/hook/cmake_prefix_path.dsv'
+[0.864s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/hook/cmake_prefix_path.sh'
+[0.865s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/lib'
+[0.865s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/bin'
+[0.865s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/lib/pkgconfig/my_world.pc'
+[0.865s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/lib/python3.8/site-packages'
+[0.866s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/bin'
+[0.866s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.ps1'
+[0.866s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.dsv'
+[0.867s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.sh'
+[0.868s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.bash'
+[0.869s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.zsh'
+[0.869s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/colcon-core/packages/my_world)
+[0.870s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_world)
+[0.870s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world' for CMake module files
+[0.871s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world' for CMake config files
+[0.874s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_world', 'cmake_prefix_path')
+[0.874s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/hook/cmake_prefix_path.ps1'
+[0.875s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/hook/cmake_prefix_path.dsv'
+[0.875s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/hook/cmake_prefix_path.sh'
+[0.876s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/lib'
+[0.876s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/bin'
+[0.876s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/lib/pkgconfig/my_world.pc'
+[0.876s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/lib/python3.8/site-packages'
+[0.876s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/bin'
+[0.876s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.ps1'
+[0.877s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.dsv'
+[0.878s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.sh'
+[0.878s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.bash'
+[0.879s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/my_world/package.zsh'
+[0.879s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world/share/colcon-core/packages/my_world)
+[1.018s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system': PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/build --no-deps symlink_data
+[1.036s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map': PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map/build --no-deps symlink_data
+[1.063s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam': PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam/build --no-deps symlink_data
+[1.305s] Level 1:colcon.colcon_core.shell:create_environment_hook('nav2_system', 'pythonpath_develop')
+[1.306s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system' returned '0': PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/build --no-deps symlink_data
+[1.306s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/share/nav2_system/hook/pythonpath_develop.ps1'
+[1.307s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/share/nav2_system/hook/pythonpath_develop.dsv'
+[1.307s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/share/nav2_system/hook/pythonpath_develop.sh'
+[1.308s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system' for CMake module files
+[1.308s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system' for CMake config files
+[1.309s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib'
+[1.309s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/bin'
+[1.309s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/pkgconfig/nav2_system.pc'
+[1.309s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages'
+[1.309s] Level 1:colcon.colcon_core.shell:create_environment_hook('nav2_system', 'pythonpath')
+[1.309s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/hook/pythonpath.ps1'
+[1.310s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/hook/pythonpath.dsv'
+[1.310s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/hook/pythonpath.sh'
+[1.311s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/bin'
+[1.311s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(nav2_system)
+[1.311s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/package.ps1'
+[1.312s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/package.dsv'
+[1.312s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/package.sh'
+[1.313s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/package.bash'
+[1.313s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/nav2_system/package.zsh'
+[1.314s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/share/colcon-core/packages/nav2_system)
+[1.319s] Level 1:colcon.colcon_core.shell:create_environment_hook('provide_map', 'pythonpath_develop')
+[1.320s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map/share/provide_map/hook/pythonpath_develop.ps1'
+[1.320s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map' returned '0': PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map/build --no-deps symlink_data
+[1.321s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map/share/provide_map/hook/pythonpath_develop.dsv'
+[1.322s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map/share/provide_map/hook/pythonpath_develop.sh'
+[1.322s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map' for CMake module files
+[1.323s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map' for CMake config files
+[1.323s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib'
+[1.324s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/bin'
+[1.324s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/pkgconfig/provide_map.pc'
+[1.324s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages'
+[1.324s] Level 1:colcon.colcon_core.shell:create_environment_hook('provide_map', 'pythonpath')
+[1.324s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/hook/pythonpath.ps1'
+[1.324s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/hook/pythonpath.dsv'
+[1.325s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/hook/pythonpath.sh'
+[1.326s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/bin'
+[1.326s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(provide_map)
+[1.326s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/package.ps1'
+[1.326s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/package.dsv'
+[1.327s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/package.sh'
+[1.328s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/package.bash'
+[1.328s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/package.zsh'
+[1.329s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/colcon-core/packages/provide_map)
+[1.340s] Level 1:colcon.colcon_core.shell:create_environment_hook('slam', 'pythonpath_develop')
+[1.341s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam' returned '0': PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam/build --no-deps symlink_data
+[1.341s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam/share/slam/hook/pythonpath_develop.ps1'
+[1.342s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam/share/slam/hook/pythonpath_develop.dsv'
+[1.343s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam/share/slam/hook/pythonpath_develop.sh'
+[1.343s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam' for CMake module files
+[1.344s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam' for CMake config files
+[1.344s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib'
+[1.344s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/bin'
+[1.344s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/pkgconfig/slam.pc'
+[1.344s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/python3.8/site-packages'
+[1.344s] Level 1:colcon.colcon_core.shell:create_environment_hook('slam', 'pythonpath')
+[1.344s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/hook/pythonpath.ps1'
+[1.345s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/hook/pythonpath.dsv'
+[1.346s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/hook/pythonpath.sh'
+[1.346s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/bin'
+[1.346s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(slam)
+[1.347s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/package.ps1'
+[1.347s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/package.dsv'
+[1.348s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/package.sh'
+[1.348s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/package.bash'
+[1.349s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/slam/package.zsh'
+[1.349s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/share/colcon-core/packages/slam)
+[1.350s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega' with build type 'ament_cmake'
+[1.350s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega'
+[1.350s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.350s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.369s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega': AMENT_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/opt/ros/galactic CMAKE_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages:/opt/ros/galactic/lib/python3.8/site-packages /usr/bin/cmake --build /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega -- -j10 -l10
+[1.398s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega' returned '0': AMENT_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/opt/ros/galactic CMAKE_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages:/opt/ros/galactic/lib/python3.8/site-packages /usr/bin/cmake --build /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega -- -j10 -l10
+[1.401s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega': AMENT_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/opt/ros/galactic CMAKE_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages:/opt/ros/galactic/lib/python3.8/site-packages /usr/bin/cmake --install /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega
+[1.417s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(robo_entrega)
+[1.417s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega' for CMake module files
+[1.418s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega' for CMake config files
+[1.418s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega' returned '0': AMENT_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/opt/ros/galactic CMAKE_PREFIX_PATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/my_world:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega:/home/haoxu/turtlebot3_ws/install/turtlebot3_simulations:/home/haoxu/turtlebot3_ws/install/turtlebot3_gazebo:/home/haoxu/turtlebot3_ws/install/turtlebot3_fake_node:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system:/opt/ros/galactic PYTHONPATH=/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/slam:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/slam/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/provide_map:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system:/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/nav2_system/lib/python3.8/site-packages:/opt/ros/galactic/lib/python3.8/site-packages /usr/bin/cmake --install /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega
+[1.418s] Level 1:colcon.colcon_core.shell:create_environment_hook('robo_entrega', 'cmake_prefix_path')
+[1.419s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/hook/cmake_prefix_path.ps1'
+[1.420s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/hook/cmake_prefix_path.dsv'
+[1.420s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/hook/cmake_prefix_path.sh'
+[1.421s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib'
+[1.421s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/bin'
+[1.421s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib/pkgconfig/robo_entrega.pc'
+[1.421s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib/python3.8/site-packages'
+[1.421s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/bin'
+[1.421s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.ps1'
+[1.422s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.dsv'
+[1.422s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.sh'
+[1.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.bash'
+[1.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.zsh'
+[1.424s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/colcon-core/packages/robo_entrega)
+[1.424s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(robo_entrega)
+[1.425s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega' for CMake module files
+[1.425s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega' for CMake config files
+[1.425s] Level 1:colcon.colcon_core.shell:create_environment_hook('robo_entrega', 'cmake_prefix_path')
+[1.425s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/hook/cmake_prefix_path.ps1'
+[1.425s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/hook/cmake_prefix_path.dsv'
+[1.426s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/hook/cmake_prefix_path.sh'
+[1.427s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib'
+[1.427s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/bin'
+[1.427s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib/pkgconfig/robo_entrega.pc'
+[1.427s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib/python3.8/site-packages'
+[1.427s] Level 1:colcon.colcon_core.environment:checking '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/bin'
+[1.427s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.ps1'
+[1.428s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.dsv'
+[1.429s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.sh'
+[1.429s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.bash'
+[1.429s] INFO:colcon.colcon_core.shell:Creating package script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.zsh'
+[1.430s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/colcon-core/packages/robo_entrega)
+[1.431s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.431s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.431s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.431s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.440s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.440s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.440s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.455s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.456s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/local_setup.ps1'
+[1.457s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/_local_setup_util_ps1.py'
+[1.458s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/setup.ps1'
+[1.459s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/local_setup.sh'
+[1.460s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/_local_setup_util_sh.py'
+[1.460s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/setup.sh'
+[1.461s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/local_setup.bash'
+[1.462s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/setup.bash'
+[1.463s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/local_setup.zsh'
+[1.463s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/setup.zsh'
