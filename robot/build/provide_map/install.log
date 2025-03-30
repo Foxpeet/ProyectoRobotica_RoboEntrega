@@ -3,8 +3,10 @@
 /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/ament_index/resource_index/packages/provide_map
 /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/package.xml
 /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/map/my_map.pgm
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/map/mapa_test.pgm
 /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/map/my_map.yaml
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/rviz
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/rviz/slam.rviz
+/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/rviz/map.rviz
 /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/share/provide_map/launch/provide_map.launch.py
 /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages/provide_map-0.0.0-py3.8.egg-info/entry_points.txt
 /home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/install/provide_map/lib/python3.8/site-packages/provide_map-0.0.0-py3.8.egg-info/dependency_links.txt

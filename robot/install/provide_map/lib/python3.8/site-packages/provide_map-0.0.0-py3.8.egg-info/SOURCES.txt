@@ -9,10 +9,13 @@ setup.py
 ../../build/provide_map/provide_map.egg-info/top_level.txt
 ../../build/provide_map/provide_map.egg-info/zip-safe
 launch/provide_map.launch.py
+map/mapa_test.pgm
 map/my_map.pgm
 map/my_map.yaml
 provide_map/__init__.py
 resource/provide_map
+rviz/map.rviz
+rviz/slam.rviz
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
