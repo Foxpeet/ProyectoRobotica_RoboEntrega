@@ -1,9 +1,0 @@
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/install/local.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/install.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/list_install_components.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/rebuild_cache.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/edit_cache.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/test.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/install/strip.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/robo_entrega_uninstall.dir
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/CMakeFiles/uninstall.dir

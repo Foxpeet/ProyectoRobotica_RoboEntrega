@@ -1,1 +1,0 @@
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/nav2_system/launch/tb3_sim_nav2.launch.py

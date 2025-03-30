@@ -1,1 +1,0 @@
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/my_world/launch/turtlebot3_my_world.launch.py

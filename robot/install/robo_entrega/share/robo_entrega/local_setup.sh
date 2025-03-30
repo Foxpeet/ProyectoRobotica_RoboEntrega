@@ -1,1 +1,0 @@
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega/ament_cmake_environment_hooks/local_setup.sh

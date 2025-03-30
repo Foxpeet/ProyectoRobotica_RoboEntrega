@@ -1,1 +1,0 @@
-/home/haoxu/Git/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/nav2_system/launch/nav2_system.launch.py
