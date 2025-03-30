@@ -26,6 +26,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'initial_pose_pub = nav2_system.initial_pose_pub:main' #añadir
         ],
     },
 )
