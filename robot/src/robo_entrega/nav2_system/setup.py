@@ -30,7 +30,6 @@ setup(
     entry_points={
         'console_scripts': [
             'initial_pose_pub = nav2_system.initial_pose_pub:main',
-            'load_map_client = nav2_system.load_map_client:main'
         ],
     },
 )
