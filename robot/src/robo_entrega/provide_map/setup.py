@@ -26,6 +26,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'load_map_client = provide_map.load_map_client:main'
         ],
     },
 )
