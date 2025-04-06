@@ -1,0 +1,1 @@
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega_slam/config/slam.lua

@@ -1,0 +1,14 @@
+package.xml
+setup.cfg
+setup.py
+launch/nav_to_pose_subscriber.launch.py
+resource/robo_entrega_nav_to_pose
+robo_entrega_nav_to_pose/__init__.py
+robo_entrega_nav_to_pose/nav_to_pose_subscriber.py
+robo_entrega_nav_to_pose.egg-info/PKG-INFO
+robo_entrega_nav_to_pose.egg-info/SOURCES.txt
+robo_entrega_nav_to_pose.egg-info/dependency_links.txt
+robo_entrega_nav_to_pose.egg-info/entry_points.txt
+robo_entrega_nav_to_pose.egg-info/requires.txt
+robo_entrega_nav_to_pose.egg-info/top_level.txt
+robo_entrega_nav_to_pose.egg-info/zip-safe

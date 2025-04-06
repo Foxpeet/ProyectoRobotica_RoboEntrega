@@ -1,0 +1,9 @@
+source;share/robo_entrega_nav_to_pose/hook/pythonpath.ps1
+source;share/robo_entrega_nav_to_pose/hook/pythonpath.dsv
+source;share/robo_entrega_nav_to_pose/hook/pythonpath.sh
+source;share/robo_entrega_nav_to_pose/hook/ament_prefix_path.ps1
+source;share/robo_entrega_nav_to_pose/hook/ament_prefix_path.dsv
+source;share/robo_entrega_nav_to_pose/hook/ament_prefix_path.sh
+source;../../build/robo_entrega_nav_to_pose/share/robo_entrega_nav_to_pose/hook/pythonpath_develop.ps1
+source;../../build/robo_entrega_nav_to_pose/share/robo_entrega_nav_to_pose/hook/pythonpath_develop.dsv
+source;../../build/robo_entrega_nav_to_pose/share/robo_entrega_nav_to_pose/hook/pythonpath_develop.sh

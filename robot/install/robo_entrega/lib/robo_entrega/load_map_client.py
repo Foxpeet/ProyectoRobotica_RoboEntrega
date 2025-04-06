@@ -1,0 +1,1 @@
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega/../robo_entrega_provide_map/robo_entrega_provide_map/load_map_client.py

@@ -1,0 +1,16 @@
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/ament_index/resource_index/package_run_dependencies/robo_entrega
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/ament_index/resource_index/parent_prefix_path/robo_entrega
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/ament_prefix_path.sh
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/ament_prefix_path.dsv
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/path.sh
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/environment/path.dsv
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.bash
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.sh
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.zsh
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/local_setup.dsv
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.dsv
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/ament_index/resource_index/packages/robo_entrega
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/cmake/robo_entregaConfig.cmake
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/cmake/robo_entregaConfig-version.cmake
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/share/robo_entrega/package.xml
+/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/install/robo_entrega/lib/robo_entrega/load_map_client.py
