@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="../css/Usuarios.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Logo de RoboEntrega" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="contacto.html">Contáctanos</a></li>
+                <li><a href="index.html">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <button class="back-button" onclick="history.back()">Volver</button>
+        <h1>USUARIOS</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDOS</th>
+                    <th>CORREO</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Endika</td>
+                    <td>Matute</td>
+                    <td>Matute</td>
+                    <td>
+                        <button class="edit-button"><img src="edit-icon.png" alt="Edit"></button>
+                        <button class="delete-button"><img src="delete-icon.png" alt="Delete"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="add-user-button">Añadir usuarios</button>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="footer-logo.png" alt="Footer Logo">
+        </div>
+        <p>© Copyright RoboEntrega</p>
+        <div class="social-media">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        </div>
+    </footer>
+</body>
+</html>
