@@ -2,7 +2,7 @@ from setuptools import setup
 import os #incluir
 from glob import glob #incluir
 
-package_name = 'slam'
+package_name = 'robo_entrega_provide_map'
 
 setup(
     name=package_name,
@@ -16,7 +16,6 @@ setup(
         (os.path.join('share', package_name, 'map'), glob('map/*.yaml')),#incluir
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),#incluir
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),#incluir
-        (os.path.join('share', package_name, 'config'), glob('config/*.lua')),#incluir
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -27,6 +26,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'load_map_client = robo_entrega_provide_map.load_map_client:main'
         ],
     },
 )

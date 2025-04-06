@@ -24,7 +24,7 @@ def generate_launch_description():
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
             arguments=[
-                '-configuration_directory', get_package_share_directory('slam') + '/config',
+                '-configuration_directory', get_package_share_directory('robo_entrega_slam') + '/config',
                 '-configuration_basename','slam.lua'
             ],
         ),

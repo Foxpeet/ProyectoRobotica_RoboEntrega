@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'nav2_system'
+package_name = 'robo_entrega_nav2_system'
 
 setup(
     name=package_name,
@@ -29,7 +29,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'initial_pose_pub = nav2_system.initial_pose_pub:main',
+            'initial_pose_pub = robo_entrega_nav2_system.initial_pose_pub:main',
         ],
     },
 )

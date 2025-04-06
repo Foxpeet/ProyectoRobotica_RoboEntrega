@@ -13,10 +13,10 @@
 <author email="yaekitsune2207@gmail.com">haoxu</author>
 
 <buildtool_depend>ament_cmake</buildtool_depend>
-<exec_depend>office_world</exec_depend>
-<exec_depend>nav2_system</exec_depend>
-<exec_depend>provide_map</exec_depend>
-<exec_depend>slam</exec_depend>
+<exec_depend>robo_entrega_office_world</exec_depend>
+<exec_depend>robo_entrega_nav2_system</exec_depend>
+<exec_depend>robo_entrega_provide_map</exec_depend>
+<exec_depend>robo_entrega_slam</exec_depend>
 <export>
 <build_type>ament_cmake</build_type>
 </export>

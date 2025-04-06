@@ -18,7 +18,7 @@ class LoadMapClient(Node):
         req = LoadMap.Request()
         
         # Obtiene la ruta del paquete "provide_map"
-        package_share_dir = get_package_share_directory("provide_map")
+        package_share_dir = get_package_share_directory("robo_entrega_provide_map")
         
         # Construye la ruta al mapa (relativa al paquete)
         req.map_url = os.path.join(package_share_dir, "map", "my_map.yaml")  # Ajusta "map" si es otra carpeta
