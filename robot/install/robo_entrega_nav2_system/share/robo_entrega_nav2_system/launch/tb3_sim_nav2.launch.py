@@ -1,1 +1,0 @@
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega_nav2_system/launch/tb3_sim_nav2.launch.py

@@ -1,1 +1,0 @@
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega_office_world/ament_cmake_environment_hooks/local_setup.sh

@@ -1,1 +1,0 @@
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega_nav2_system/setup.py

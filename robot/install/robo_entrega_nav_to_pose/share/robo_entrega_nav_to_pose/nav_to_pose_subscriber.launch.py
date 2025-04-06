@@ -1,1 +1,0 @@
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/robo_entrega_nav_to_pose/launch/nav_to_pose_subscriber.launch.py

@@ -1,1 +1,0 @@
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_gazebo/ament_cmake_core/turtlebot3_gazeboConfig-version.cmake

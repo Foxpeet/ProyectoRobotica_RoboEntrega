@@ -1,3 +1,0 @@
-[console_scripts]
-load_map_client = robo_entrega_provide_map.load_map_client:main
-

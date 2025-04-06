@@ -1,1 +1,0 @@
-/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/build/turtlebot3_fake_node/ament_cmake_core/turtlebot3_fake_nodeConfig.cmake
