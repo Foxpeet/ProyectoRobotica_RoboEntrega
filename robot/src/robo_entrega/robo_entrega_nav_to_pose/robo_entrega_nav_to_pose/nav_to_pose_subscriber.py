@@ -40,9 +40,7 @@ class NavToPoseClient(Node):
         self.get_logger().info('Nodo listo y escuchando en /navigate_goal')
 
     def goal_callback(self, msg):
-        if len(msg.data) != 3:
-            self.get_logger().error('El mensaje debe tener exactamente 3 valores: x, y, w')
-            return
+        self.check_topic_values(msg)
         x, y, w_deg = msg.data
         self.send_goal(x, y, w_deg)
 
@@ -83,6 +81,14 @@ class NavToPoseClient(Node):
 
     def feedback_callback(self, feedback_msg):
         feedback = feedback_msg.feedback
+
+    # --- Checkeo de excepciones ---
+    def check_topic_values(self, msg):
+        x, y, w_deg = msg.data
+        if len(msg.data) != 3:
+            raise ValueError('El mensaje debe tener exactamente 3 valores: x, y, w')
+        if (type(x) is not float) or (type(y) is not float) or (type(w) is not float):
+            raise ValueError('Todos los componentes del mensaje deben ser tipo float')
 
 
 def main(args=None):
