@@ -4,13 +4,13 @@
 <name>robo_entrega</name>
 <version>0.0.0</version>
 <description>Projecto de robotica: RoboEntrega</description>
-<maintainer email="yaekitsune2207@gmail.com">haoxu</maintainer>
+<maintainer email="equipo1@gmail.com">equipo1</maintainer>
 <license>TODO: License declaration</license>
 
 <url type="website">http://XXXXXXX</url>
 <url type="repository">https://github.com/XXXXXXX</url>
 <url type="bugtracker">https://github.com/XXXXXX</url>
-<author email="yaekitsune2207@gmail.com">haoxu</author>
+<author email="equipo1@gmail.com">equipo1</author>
 
 <buildtool_depend>ament_cmake</buildtool_depend>
 <exec_depend>robo_entrega_office_world</exec_depend>

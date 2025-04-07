@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)  # ✅ Espacio después de VERSION
+cmake_minimum_required(VERSION 3.5)
 project(robo_entrega)
 
 find_package(ament_cmake REQUIRED)

@@ -4,7 +4,7 @@
   <name>robo_entrega_nav2_system</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="yaekitsune2207@gmail.com">haoxu</maintainer>
+  <maintainer email="equipo1@gmail.com">equipo1</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
