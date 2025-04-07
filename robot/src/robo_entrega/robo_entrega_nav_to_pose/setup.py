@@ -1,6 +1,6 @@
 from setuptools import setup
-import os #incluir
-from glob import glob #incluir
+import os
+from glob import glob
 
 package_name = 'robo_entrega_nav_to_pose'
 
@@ -12,7 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name), glob('launch/*.launch.py')) #incluir
+        (os.path.join('share', package_name), glob('launch/*.launch.py'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'nav_to_pose_subscriber = robo_entrega_nav_to_pose.nav_to_pose_subscriber:main' #incluir
+            'nav_to_pose_subscriber = robo_entrega_nav_to_pose.nav_to_pose_subscriber:main'
         ],
     },
 )

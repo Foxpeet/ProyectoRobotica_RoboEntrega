@@ -1,6 +1,6 @@
 from setuptools import setup
-import os #incluir
-from glob import glob #incluir
+import os
+from glob import glob 
 
 package_name = 'robo_entrega_slam'
 
@@ -12,11 +12,11 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name, 'map'), glob('map/*.pgm')),#incluir
-        (os.path.join('share', package_name, 'map'), glob('map/*.yaml')),#incluir
-        (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),#incluir
-        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),#incluir
-        (os.path.join('share', package_name, 'config'), glob('config/*.lua')),#incluir
+        (os.path.join('share', package_name, 'map'), glob('map/*.pgm')),
+        (os.path.join('share', package_name, 'map'), glob('map/*.yaml')),
+        (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.lua')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
