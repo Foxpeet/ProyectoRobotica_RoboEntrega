@@ -16,12 +16,8 @@ class LoadMapClient(Node):
 
     def send_request(self):
         req = LoadMap.Request()
-        
-        # Obtiene la ruta del paquete "provide_map"
         package_share_dir = get_package_share_directory("robo_entrega_provide_map")
-        
-        # Construye la ruta al mapa (relativa al paquete)
-        req.map_url = os.path.join(package_share_dir, "map", "my_map.yaml")  # Ajusta "map" si es otra carpeta
+        req.map_url = os.path.join(package_share_dir, "map", "my_map.yaml")
 
         self.get_logger().info(f'Solicitando carga del mapa: {req.map_url}')
         future = self.client.call_async(req)
@@ -30,10 +26,10 @@ class LoadMapClient(Node):
     def callback_response(self, future):
         try:
             response = future.result()
-            if response.result == LoadMap.Response().RESULT_SUCCESS:  # Usa la constante del mensaje
-                self.get_logger().info('✅ Mapa cargado correctamente.')
+            if response.result == LoadMap.Response().RESULT_SUCCESS:
+                self.get_logger().info('Mapa cargado correctamente.')
             else:
-                self.get_logger().error('❌ Error al cargar el mapa.')
+                self.get_logger().error('Error al cargar el mapa.')
         except Exception as e:
             self.get_logger().error(f'Error en la llamada al servicio: {str(e)}')
 

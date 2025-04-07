@@ -30,9 +30,7 @@ class InitialPosePublisher(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = InitialPosePublisher()
-    
-    rclpy.spin(node)  # Mantiene el nodo activo hasta que se detenga manualmente
-    
+    rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
 

@@ -11,6 +11,10 @@ from launch_ros.actions import Node
 TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
 
 def generate_launch_description():
+    """
+    Este archivo lanza el mundo de la simulacion de gacebo usando nuestro mapa de una oficina y nuestro modelo del turtlebot3
+    """
+
     world_file_name = 'world/burger_office.world'
     urdf_file_name = 'urdf/turtlebot3_' + TURTLEBOT3_MODEL + '.urdf'
     pkg_share = FindPackageShare(package='robo_entrega_office_world').find('robo_entrega_office_world')

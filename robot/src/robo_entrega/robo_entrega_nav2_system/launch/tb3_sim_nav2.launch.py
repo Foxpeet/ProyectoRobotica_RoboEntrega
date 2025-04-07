@@ -5,6 +5,13 @@ from ament_index_python.packages import get_package_share_directory
 import os
 
 def generate_launch_description():
+    """
+    Lanza lo siguiente:
+        Lanza todos los servicios de movimiento nav2
+        Lanza el visualizador Rviz con la configuracion adecuada
+        Lanza los nodos nav2_system y provide_map para poder mostrar en el visualizador automaticamente el mapa y la posicion inicial del robot
+    """
+
     nav2_yaml = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'my_nav2_params.yaml')
     map_file = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'my_map.yaml')
     rviz_config_dir = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'map.rviz')
@@ -25,7 +32,7 @@ def generate_launch_description():
             parameters=[nav2_yaml]
         ),
         TimerAction(
-            period=10.0,  # Esperar 5 segundos antes de lanzar el nodo
+            period=10.0,  # Esperar 10 segundos
             actions=[Node(
                 package='robo_entrega_nav2_system',
                 executable='initial_pose_pub',
@@ -35,10 +42,10 @@ def generate_launch_description():
             )]
         ),
         TimerAction(
-            period=6.0,  # Esperar 5 segundos para asegurar que map_server está listo
+            period=6.0,  # Esperar 6 segundos
             actions=[Node(
                 package='robo_entrega_provide_map',
-                executable='load_map_client',  # Cliente que llama al servicio de carga de mapas
+                executable='load_map_client',
                 name='load_map_client',
                 output='screen'
             )]

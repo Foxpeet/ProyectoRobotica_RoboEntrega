@@ -6,15 +6,31 @@ from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Float32MultiArray
 from math import radians, sin, cos
 
-class NavigateClient(Node):
+"""
+Este es el cliente del nodo "nav_to_pose" que escuchara el topic 
+que venga de la web para decirle al robot a que coordenadas del mapa moverse
+
+Classes:
+    NavToPoseClient
+    
+"""
+
+class NavToPoseClient(Node):
+    """
+    Al llamarse a este nodo empezará a escuchar el topic /navigate_goal
+    que contiene un dato tipo std_msgs/msg/Float32MultiArray con 
+    las coordenadas en metros X e Y y la orientacion en grados W,
+    posteriormente pasa esos datos a un Goal y se lo envia a la acción
+    NavigateToPose ya creada con el propio nav2_msgs de ros2.
+
+    Methods:
+        goal_callback(): Se llama cuando escucha un mensaje por el topic /navigate_goal al que se ha suscrito en __init__()
+        send_goal(): Se llama una vez cuando se ha recibido los datos del topic y mete los datos en un Goal para amndarlos a la acción
+    """
 
     def __init__(self):
-        super().__init__('navigate_to_pose_client')
-
-        # Cliente de acción para NavigateToPose
+        super().__init__('nav_to_pose_client')
         self._action_client = ActionClient(self, NavigateToPose, 'navigate_to_pose')
-
-        # Suscriptor al tópico /navigate_goal (x, y, yaw)
         self.subscription = self.create_subscription(
             Float32MultiArray,
             '/navigate_goal',
@@ -25,12 +41,12 @@ class NavigateClient(Node):
 
     def goal_callback(self, msg):
         if len(msg.data) != 3:
-            self.get_logger().error('El mensaje debe tener exactamente 3 valores: x, y, yaw')
+            self.get_logger().error('El mensaje debe tener exactamente 3 valores: x, y, w')
             return
-        x, y, yaw_deg = msg.data
-        self.send_goal(x, y, yaw_deg)
+        x, y, w_deg = msg.data
+        self.send_goal(x, y, w_deg)
 
-    def send_goal(self, x, y, yaw_deg):
+    def send_goal(self, x, y, w_deg):
         self._action_client.wait_for_server()
 
         goal_msg = NavigateToPose.Goal()
@@ -40,12 +56,11 @@ class NavigateClient(Node):
         goal_msg.pose.pose.position.x = x
         goal_msg.pose.pose.position.y = y
 
-        # Convertir yaw de grados a orientación quaternion (solo Z y W)
-        yaw_rad = radians(yaw_deg)
-        goal_msg.pose.pose.orientation.z = sin(yaw_rad / 2.0)
-        goal_msg.pose.pose.orientation.w = cos(yaw_rad / 2.0)
+        w_rad = radians(w_deg)
+        goal_msg.pose.pose.orientation.z = sin(w_rad / 2.0)
+        goal_msg.pose.pose.orientation.w = cos(w_rad / 2.0)
 
-        self.get_logger().info(f'Enviando Goal: x={x}, y={y}, yaw={yaw_deg}°')
+        self.get_logger().info(f'Enviando Goal: x={x}, y={y}, w={w_deg}°')
         send_goal_future = self._action_client.send_goal_async(
             goal_msg,
             feedback_callback=self.feedback_callback
@@ -55,7 +70,7 @@ class NavigateClient(Node):
     def goal_response_callback(self, future):
         goal_handle = future.result()
         if not goal_handle.accepted:
-            self.get_logger().warn('Goal rechazado por el servidor')
+            self.get_logger().warn('Goal rechazado')
             return
 
         self.get_logger().info('Goal aceptado, esperando resultado...')
@@ -72,7 +87,7 @@ class NavigateClient(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    subscriber = NavigateClient()
+    subscriber = NavToPoseClient()
     try:
         rclpy.spin(subscriber)
     except KeyboardInterrupt:
