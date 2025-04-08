@@ -1,0 +1,40 @@
+function connect(){
+    console.log("Clic en connect")
+
+    data.ros = new ROSLIB.Ros({
+          url: data.rosbridge_address
+  })
+
+  // Define callbacks
+  data.ros.on("connection", () => {
+      data.connected = true
+      console.log("Conexion con ROSBridge correcta")
+  })
+  data.ros.on("error", (error) => {
+      console.log("Se ha producido algun error mientras se intentaba realizar la conexion")
+      console.log(error)
+  })
+  data.ros.on("close", () => {
+      data.connected = false
+      console.log("Conexion con ROSBridge cerrada")
+  })
+}
+
+function disconnect(){
+    data.ros.close()
+    data.connected = false
+  console.log('Clic en botón de desconexión')
+}
+
+document.addEventListener('DOMContentLoaded', event => {
+    data = {
+        ros: null,
+        rosbridge_address: 'ws://127.0.0.1:9090/',
+        connected: false,
+    }
+    connect()
+});
+
+window.addEventListener('beforeunload', event => {
+    disconnect()
+})
