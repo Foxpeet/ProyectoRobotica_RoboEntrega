@@ -87,7 +87,7 @@ class NavToPoseClient(Node):
         x, y, w_deg = msg.data
         if len(msg.data) != 3:
             raise ValueError('El mensaje debe tener exactamente 3 valores: x, y, w')
-        if (type(x) is not float) or (type(y) is not float) or (type(w) is not float):
+        if (type(x) is not float) or (type(y) is not float) or (type(w_deg) is not float):
             raise ValueError('Todos los componentes del mensaje deben ser tipo float')
 
 

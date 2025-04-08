@@ -36871,7 +36871,7 @@
     
     <include>
         <pose>0.0 20.0 0.0 0.0 0.0 -1.5</pose>
-        <uri>model://turtlebot3_burger</uri>
+        <uri>model://turtlebot3_burger_pi</uri>
     </include>
   </world>
   
