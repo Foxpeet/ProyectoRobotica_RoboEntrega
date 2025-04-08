@@ -8,41 +8,41 @@
 </head>
 <body>
 
-  <header>
-    <a href="index.html">
-      <img src="logo.png" alt="Logo de RoboEntrega" class="logo">
-  </a>
-    <nav>
-      <ul>
-        <li><a href="iniciarSesion.html">Iniciar Sesión</a></li>
-        <li><a href="contacto.html">Contáctanos</a></li>
+  <header id="register-header">
+    <a href="index.html" id="register-logo-link">
+      <img src="../img/logo.png" alt="Logo de RoboEntrega" class="logo" id="register-logo">
+    </a>
+    <nav id="register-nav">
+      <ul id="register-nav-list">
+        <li><a href="iniciarSesion.html" id="register-login-link">Iniciar Sesión</a></li>
+        <li><a href="contacto.html" id="register-contact-link">Contáctanos</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <button class="back-button" onclick="history.back()">Volver</button>
+  <main id="register-main">
+    <button class="back-button" id="register-back-button" onclick="history.back()">Volver</button>
 
-    <section class="formulario-login">
-      <form>
-        <h2>Registrate</h2>
-        <input type="text" placeholder="Nombre" required />
-        <input type="email" placeholder="Correo" required />
-        <input type="password" placeholder="Contraseña" required />
-        <input type="password" placeholder="Confirmar contraseña" required />
-        <button type="submit" class="acceder">Registrar</button>
-        <p><a href="#">¿Ya tienes cuenta? Inicia Sesión</a></p>
-        </form>
+    <section class="formulario-login" id="register-form-section">
+      <form id="register-form">
+        <h2 id="register-title">Registrate</h2>
+        <input type="text" id="register-name" placeholder="Nombre" required />
+        <input type="email" id="register-email" placeholder="Correo" required />
+        <input type="password" id="register-password" placeholder="Contraseña" required />
+        <input type="password" id="confirm-password" placeholder="Confirmar contraseña" required />
+        <button type="submit" class="acceder" id="register-button">Registrar</button>
+        <p id="login-prompt"><a href="#" id="login-link">¿Ya tienes cuenta? Inicia Sesión</a></p>
+      </form>
     </section>
   </main>
 
-  <footer>
-    <img src="logo.png" alt="Logo RoboEntrega" class="logo-footer" />
-    <p>© Copyright RoboEntrega</p>
-    <div class="redes">
-      <a href="#"><img src="facebook.png" alt="Facebook" /></a>
-      <a href="#"><img src="instagram.png" alt="Instagram" /></a>
-      <a href="#"><img src="twitter.png" alt="Twitter" /></a>
+  <footer id="register-footer">
+    <img src="../img/logo.png" alt="Logo RoboEntrega" class="logo-footer" id="register-footer-logo" />
+    <p id="register-copyright">© Copyright RoboEntrega</p>
+    <div class="redes" id="register-social">
+      <a href="#" id="users-facebook"><img src="../img/facebook-icon.png" alt="Facebook"></a>
+            <a href="#" id="users-instagram"><img src="../img/instagram-icon.png" alt="Instagram"></a>
+            <a href="#" id="users-twitter"><img src="../img/twitter-icon.png" alt="Twitter"></a>
     </div>
   </footer>
 

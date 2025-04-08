@@ -8,40 +8,40 @@
 </head>
 <body>
 
-  <header>
-    <a href="index.html">
-      <img src="logo.png" alt="Logo de RoboEntrega" class="logo">
-  </a>
-    <nav>
-      <ul>
-        <li><a href="iniciarSesion.html">Iniciar Sesión</a></li>
-        <li><a href="registro.html">Regístrate</a></li>
+  <header id="header">
+    <a href="index.html" id="logo-link">
+      <img src="../img/logo.png" alt="Logo de RoboEntrega" class="logo" id="main-logo">
+    </a>
+    <nav id="main-nav">
+      <ul id="nav-list">
+        <li><a href="iniciarSesion.html" id="login-link">Iniciar Sesión</a></li>
+        <li><a href="registro.html" id="register-link">Regístrate</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <button class="back-button" onclick="history.back()">Volver</button>
+  <main id="main-content">
+    <button class="back-button" id="back-button" onclick="history.back()">Volver</button>
 
-    <section class="formulario-contacto">
-      <form>
-        <h2>PONTE EN CONTACTO CON NOSOTROS</h2>
-        <input type="text" placeholder="Nombre" required>
-        <input type="email" placeholder="Correo" required>
-        <input type="tel" placeholder="Teléfono" required>
-        <textarea placeholder="Información adicional" rows="4"></textarea>
-        <button type="submit" class="enviar">Enviar</button>
+    <section class="formulario-contacto" id="contact-form">
+      <form id="contact-form-element">
+        <h2 id="contact-title">PONTE EN CONTACTO CON NOSOTROS</h2>
+        <input type="text" id="nombre-input" placeholder="Nombre" required>
+        <input type="email" id="email-input" placeholder="Correo" required>
+        <input type="tel" id="telefono-input" placeholder="Teléfono" required>
+        <textarea id="info-textarea" placeholder="Información adicional" rows="4"></textarea>
+        <button type="submit" class="enviar" id="submit-button">Enviar</button>
       </form>
     </section>
   </main>
 
-  <footer>
-    <img src="logo.png" alt="Logo RoboEntrega" class="logo-footer">
-    <p>© Copyright RoboEntrega</p>
-    <div class="redes">
-      <a href="#"><img src="facebook.png" alt="Facebook"></a>
-      <a href="#"><img src="instagram.png" alt="Instagram"></a>
-      <a href="#"><img src="twitter.png" alt="Twitter"></a>
+  <footer id="main-footer">
+    <img src="../img/logo.png" alt="Logo RoboEntrega" class="logo-footer" id="footer-logo">
+    <p id="copyright">© Copyright RoboEntrega</p>
+    <div class="redes" id="social-media">
+      <a href="#" id="users-facebook"><img src="../img/facebook-icon.png" alt="Facebook"></a>
+            <a href="#" id="users-instagram"><img src="../img/instagram-icon.png" alt="Instagram"></a>
+            <a href="#" id="users-twitter"><img src="../img/twitter-icon.png" alt="Twitter"></a>
     </div>
   </footer>
 

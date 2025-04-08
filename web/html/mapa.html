@@ -8,51 +8,51 @@
 </head>
 <body>
 
-    <header>
-        <a href="index.html">
-            <img src="logo.png" alt="Logo de RoboEntrega" class="logo">
+    <header id="map-header">
+        <a href="index.html" id="map-logo-link">
+            <img src="../img/logo.png" alt="Logo de RoboEntrega" class="logo" id="map-logo">
         </a>
-        <nav>
-            <ul>
-                <li><a href="miRobot.html">Datos Robot</a></li>
-                <li><a href="index.html">Cerrar Sesión</a></li>
-                <li><a href="contacto.html">Contáctanos</a></li>
-                </ul>
+        <nav id="map-nav">
+            <ul id="map-nav-list">
+                <li><a href="miRobot.html" id="robot-data-link">Datos Robot</a></li>
+                <li><a href="index.html" id="logout-link">Cerrar Sesión</a></li>
+                <li><a href="contacto.html" id="map-contact-link">Contáctanos</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-        <button class="back-button" onclick="history.back()">Volver</button>
+    <main id="map-main">
+        <button class="back-button" id="map-back-button" onclick="history.back()">Volver</button>
 
-        <section class="contenido">
-            <div class="tabla">
-                <table>
-                    <tr><th>Opciones de manejo del robot</th></tr>
-                    <tr><td> <!-- Espacio para contenido dinámico --> </td></tr>
+        <section class="contenido" id="map-content">
+            <div class="tabla" id="options-table">
+                <table id="robot-options">
+                    <tr><th id="options-title">Opciones de manejo del robot</th></tr>
+                    <tr><td id="dynamic-content"> <!-- Espacio para contenido dinámico --> </td></tr>
                 </table>
             </div>
 
-            <div class="control">
-                <img src="mapa.png" alt="Mapa de oficina" class="mapa">
-                <div class="controles">
-                    <button class="flecha arriba">▲</button>
-                    <div class="fila">
-                        <button class="flecha izquierda">◄</button>
-                        <button class="flecha derecha">►</button>
+            <div class="control" id="map-control">
+                <img src="mapa.png" alt="Mapa de oficina" class="mapa" id="office-map">
+                <div class="controles" id="direction-controls">
+                    <button class="flecha arriba" id="up-button">▲</button>
+                    <div class="fila" id="middle-row">
+                        <button class="flecha izquierda" id="left-button">◄</button>
+                        <button class="flecha derecha" id="right-button">►</button>
                     </div>
-                    <button class="flecha abajo">▼</button>
+                    <button class="flecha abajo" id="down-button">▼</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <img src="logo.png" alt="Logo RoboEntrega" class="logo-footer">
-        <p>© Copyright RoboEntrega</p>
-        <div class="redes">
-            <a href="#"><img src="facebook.png" alt="Facebook"></a>
-            <a href="#"><img src="instagram.png" alt="Instagram"></a>
-            <a href="#"><img src="twitter.png" alt="Twitter"></a>
+    <footer id="map-footer">
+        <img src="../img/logo.png" alt="Logo RoboEntrega" class="logo-footer" id="map-footer-logo">
+        <p id="map-copyright">© Copyright RoboEntrega</p>
+        <div class="redes" id="map-social">
+            <a href="#" id="users-facebook"><img src="../img/facebook-icon.png" alt="Facebook"></a>
+            <a href="#" id="users-instagram"><img src="../img/instagram-icon.png" alt="Instagram"></a>
+            <a href="#" id="users-twitter"><img src="../img/twitter-icon.png" alt="Twitter"></a>
         </div>
     </footer>
 

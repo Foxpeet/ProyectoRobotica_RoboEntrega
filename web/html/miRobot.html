@@ -7,57 +7,56 @@
     <link rel="stylesheet" href="../css/miRobot.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="logo.png" alt="Logo de RoboEntrega" class="logo">
+    <header id="robot-header">
+        <div class="logo" id="robot-logo-container">
+            <a href="index.html" id="robot-logo-link">
+                <img src="../img/logo.png" alt="Logo de RoboEntrega" class="logo" id="robot-logo">
             </a>
         </div>
-        <nav>
-            <ul>
-                <li><a href="mapa.html">Control Robot</a></li>
-                <li><a href="contacto.html">Contáctanos</a></li>
-                <li><a href="index.html">Cerrar Sesion</a></li>
+        <nav id="robot-nav">
+            <ul id="robot-nav-list">
+                <li><a href="mapa.html" id="control-link">Control Robot</a></li>
+                <li><a href="contacto.html" id="robot-contact-link">Contáctanos</a></li>
+                <li><a href="index.html" id="robot-logout-link">Cerrar Sesion</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        
-        <button class="back-button" onclick="history.back()">Volver</button>
-        <h1>Mi Robot</h1>
-        <table>
-            <thead>
+    <main id="robot-main">
+        <button class="back-button" id="robot-back-button" onclick="history.back()">Volver</button>
+        <h1 id="robot-title">Mi Robot</h1>
+        <table id="robot-table">
+            <thead id="robot-table-head">
                 <tr>
-                    <th>ID</th>
-                    <th>NOMBRE</th>
-                    <th>Número de serie</th>
-                    <th></th>
+                    <th id="id-header">ID</th>
+                    <th id="name-header">NOMBRE</th>
+                    <th id="serial-header">Número de serie</th>
+                    <th id="actions-header"></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Robot_1</td>
-                    <td>12345664</td>
-                    <td>
-                        <button class="access-button">Acceder al Robot</button>
-                        <button class="edit-button"><img src="edit-icon.png" alt="Edit"></button>
+            <tbody id="robot-table-body">
+                <tr id="robot-row-1">
+                    <td id="robot-id">1</td>
+                    <td id="robot-name">Robot_1</td>
+                    <td id="robot-serial">12345664</td>
+                    <td id="robot-actions">
+                        <button class="access-button" id="access-button">Acceder al Robot</button>
+                        <button class="edit-button" id="edit-button"><img src="edit-icon.png" alt="Edit"></button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </main>
 
-    <footer>
-        <div class="footer-logo">
-            <img src="footer-logo.png" alt="Footer Logo">
+    <footer id="robot-footer">
+        <div class="footer-logo" id="robot-footer-logo">
+            <img src="../img/logo.png" alt="Footer Logo" id="footer-logo-img">
         </div>
-        <p>© Copyright RoboEmpresa</p>
-        <div class="social-media">
-            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        <p id="robot-copyright">© Copyright RoboEmpresa</p>
+        <div class="social-media" id="robot-social">
+            <a href="#" id="users-facebook"><img src="../img/facebook-icon.png" alt="Facebook"></a>
+            <a href="#" id="users-instagram"><img src="../img/instagram-icon.png" alt="Instagram"></a>
+            <a href="#" id="users-twitter"><img src="../img/twitter-icon.png" alt="Twitter"></a>
         </div>
     </footer>
 </body>
