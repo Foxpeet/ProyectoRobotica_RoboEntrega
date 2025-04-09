@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa</title>
+    
     <link rel="stylesheet" href="../css/mapa.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+    <script src="../js/conectar_ros2.js"></script>
 </head>
 <body>
 
@@ -28,7 +32,13 @@
             <div class="tabla" id="options-table">
                 <table id="robot-options">
                     <tr><th id="options-title">Opciones de manejo del robot</th></tr>
-                    <tr><td id="dynamic-content"> <!-- Espacio para contenido dinámico --> </td></tr>
+                    <tr><td id="dynamic-content">
+                        <div id="contenedor-camara">
+                            <div id="imagen-camera">
+                                <img id="cameraFeed" src="http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw">
+                              </div>
+                        </div>
+                    </td></tr>
                 </table>
             </div>
 
