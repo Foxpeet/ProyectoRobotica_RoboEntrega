@@ -1,0 +1,90 @@
+
+
+
+
+/*Cabecera*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0c5786;
+    padding: 15px 20px;
+}
+
+.logo {
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 50;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    background-color: #5ba8df;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #6590bb;
+}
+
+/*footer*/
+
+/* footer */
+footer {
+    background-color: #d2dee6;
+    text-align: center;
+    padding: 15px;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+#footer-copyright {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px; /* Margen a la izquierda */
+}
+
+#footer-copyright img {
+    height: 50px;
+}
+
+#redessociales {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding-top: 10px;
+}
+
+#img-redsocial {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #ffffff;
+}

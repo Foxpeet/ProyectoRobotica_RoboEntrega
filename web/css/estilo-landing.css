@@ -1,0 +1,28 @@
+
+main {
+    flex: 1; /* Esto hace que ocupe el espacio disponible */
+    padding: 20px;
+}
+
+.intro, .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #5ba8df;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.intro p, .info p {
+    width: 50%;
+    font-size: 18px;
+    color: #333;
+}
+
+.intro img, .info img {
+    width: 40%;
+    border-radius: 10px;
+}
+
+
