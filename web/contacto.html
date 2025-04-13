@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto - RoboEntrega</title>
-  <link rel="stylesheet" href="../css/contacto.css">
+  <link href="css/estilo-comun.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/estilo-contacto.css">
 </head>
 <body>
 
   <header id="header">
     <a href="index.html" id="logo-link">
-      <img src="../img/logo.png" alt="Logo de RoboEntrega" class="logo" id="main-logo">
+      <img src="img/logo.png" alt="Logo de RoboEntrega" class="logo" id="main-logo">
     </a>
     <nav id="main-nav">
       <ul id="nav-list">
@@ -21,7 +22,7 @@
   </header>
 
   <main id="main-content">
-    <button class="back-button" id="back-button" onclick="history.back()">Volver</button>
+    <button class="volver" id="back-button" onclick="history.back()">Volver</button>
 
     <section class="formulario-contacto" id="contact-form">
       <form id="contact-form-element">
@@ -35,15 +36,19 @@
     </section>
   </main>
 
-  <footer id="main-footer">
-    <img src="../img/logo.png" alt="Logo RoboEntrega" class="logo-footer" id="footer-logo">
-    <p id="copyright">© Copyright RoboEntrega</p>
-    <div class="redes" id="social-media">
-      <a href="#" id="users-facebook"><img src="../img/facebook-icon.png" alt="Facebook"></a>
-            <a href="#" id="users-instagram"><img src="../img/instagram-icon.png" alt="Instagram"></a>
-            <a href="#" id="users-twitter"><img src="../img/twitter-icon.png" alt="Twitter"></a>
+  <footer id="home-footer">
+    <div id="footer-content">
+        <div id="footer-copyright">
+            <img src="img/logo.png" alt="Logo RoboEntrega">
+            <p>© Copyright RoboEntrega</p>
+        </div>
+        <article id="redessociales">
+            <a href="http://www.facebook.com/"><img src="img/facebook.png" alt="Facebook" id="img-redsocial"></a>
+            <a href="http://www.instagram.com/"><img src="img/instagram.png" alt="Instagram" id="img-redsocial"></a>
+            <a href="http://www.twitter.com/"><img src="img/twitter.png" alt="Twitter" id="img-redsocial"></a>
+        </article>
     </div>
-  </footer>
+</footer>
 
 </body>
 </html>
