@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Robot</title>
-    <link rel="stylesheet" href="../css/miRobot.css">
+    <link href="css/estilo-comun.css" rel="stylesheet" type="text/css">
+    <link href="css/estilo-miRobot.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header id="robot-header">
@@ -23,40 +24,46 @@
     </header>
 
     <main id="robot-main">
-        <button class="back-button" id="robot-back-button" onclick="history.back()">Volver</button>
+        <button class="volver" onclick="history.back()">Volver</button>
         <h1 id="robot-title">Mi Robot</h1>
-        <table id="robot-table">
-            <thead id="robot-table-head">
-                <tr>
-                    <th id="id-header">ID</th>
-                    <th id="name-header">NOMBRE</th>
-                    <th id="serial-header">Número de serie</th>
-                    <th id="actions-header"></th>
-                </tr>
-            </thead>
-            <tbody id="robot-table-body">
-                <tr id="robot-row-1">
-                    <td id="robot-id">1</td>
-                    <td id="robot-name">Robot_1</td>
-                    <td id="robot-serial">12345664</td>
-                    <td id="robot-actions">
-                        <button class="access-button" id="access-button">Acceder al Robot</button>
-                        <button class="edit-button" id="edit-button"><img src="edit-icon.png" alt="Edit"></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
+      
+        <section class="robot-cards">
+          <div class="robot-card">
+            <div class="robot-info">
+              <div class="info-group">
+                <label>ID</label>
+                <p>1</p>
+              </div>
+              <div class="info-group">
+                <label>Nombre</label>
+                <p>Robot_1</p>
+              </div>
+              <div class="info-group">
+                <label>Número de serie</label>
+                <p>12345664</p>
+              </div>
+            </div>
+            <div class="robot-actions">
+              <button class="access-button">Acceder al Robot</button>
+              <button class="edit-button"><img src="edit-icon.png" alt="Editar"></button>
+            </div>
+          </div>
+      
+        </section>
+      </main>
+      
 
-    <footer id="robot-footer">
-        <div class="footer-logo" id="robot-footer-logo">
-            <img src="../img/logo.png" alt="Footer Logo" id="footer-logo-img">
-        </div>
-        <p id="robot-copyright">© Copyright RoboEmpresa</p>
-        <div class="social-media" id="robot-social">
-            <a href="#" id="users-facebook"><img src="../img/facebook-icon.png" alt="Facebook"></a>
-            <a href="#" id="users-instagram"><img src="../img/instagram-icon.png" alt="Instagram"></a>
-            <a href="#" id="users-twitter"><img src="../img/twitter-icon.png" alt="Twitter"></a>
+      <footer id="home-footer">
+        <div id="footer-content">
+            <div id="footer-copyright">
+                <img src="img/logo.png" alt="Logo RoboEntrega">
+                <p>© Copyright RoboEntrega</p>
+            </div>
+            <article id="redessociales">
+                <a href="http://www.facebook.com/"><img src="img/facebook.png" alt="Facebook" id="img-redsocial"></a>
+                <a href="http://www.instagram.com/"><img src="img/instagram.png" alt="Instagram" id="img-redsocial"></a>
+                <a href="http://www.twitter.com/"><img src="img/twitter.png" alt="Twitter" id="img-redsocial"></a>
+            </article>
         </div>
     </footer>
 </body>

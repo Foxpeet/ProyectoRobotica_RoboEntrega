@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa</title>
+    <link href="css/estilo-comun.css" rel="stylesheet" type="text/css">
+    <link href="css/estilo-mapa.css" rel="stylesheet" type="text/css">
     
-    <link rel="stylesheet" href="../css/mapa.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
     <script src="../js/conectar_ros2.js"></script>
@@ -14,7 +15,7 @@
 
     <header id="map-header">
         <a href="index.html" id="map-logo-link">
-            <img src="../img/logo.png" alt="Logo de RoboEntrega" class="logo" id="map-logo">
+            <img src="img/logo.png" alt="Logo de RoboEntrega" class="logo" id="map-logo">
         </a>
         <nav id="map-nav">
             <ul id="map-nav-list">
@@ -26,45 +27,53 @@
     </header>
 
     <main id="map-main">
-        <button class="back-button" id="map-back-button" onclick="history.back()">Volver</button>
-        <canvas id="mapCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
-
-
-        <section class="contenido" id="map-content">
-            <div class="tabla" id="options-table">
-                <table id="robot-options">
-                    <tr><th id="options-title">Opciones de manejo del robot</th></tr>
-                    <tr><td id="dynamic-content">
-                        <div id="contenedor-camara">
-                            <div id="imagen-camera">
-                                <img id="cameraFeed" src="http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw">
-                              </div>
-                        </div>
-                    </td></tr>
-                </table>
+        <button class="volver" onclick="history.back()">Volver</button>
+      
+        <section class="contenido">
+          <div class="columna columna-tabla">
+            <table>
+              <thead>
+                <tr><th>Opciones de manejo del robot</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      
+          <div class="columna columna-camara">
+            <img id="cameraFeed" src="http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw" alt="Cámara del robot" />
+          </div>
+      
+          <div class="columna columna-control">
+            <canvas id="mapCanvas" class="mapa" width="800" height="600" style="border:1px solid #000000;"></canvas> 
+      
+            <div class="controles">
+              <button class="flecha arriba">▲</button>
+              <div class="fila">
+                <button class="flecha izquierda">◄</button>
+                <button class="flecha derecha">►</button>
+              </div>
+              <button class="flecha abajo">▼</button>
             </div>
-
-            <div class="control" id="map-control">
-                <img src="mapa.png" alt="Mapa de oficina" class="mapa" id="office-map">
-                <div class="controles" id="direction-controls">
-                    <button class="flecha arriba" id="up-button">▲</button>
-                    <div class="fila" id="middle-row">
-                        <button class="flecha izquierda" id="left-button">◄</button>
-                        <button class="flecha derecha" id="right-button">►</button>
-                    </div>
-                    <button class="flecha abajo" id="down-button">▼</button>
-                </div>
-            </div>
+          </div>
         </section>
-    </main>
+      </main>
+      
 
-    <footer id="map-footer">
-        <img src="../img/logo.png" alt="Logo RoboEntrega" class="logo-footer" id="map-footer-logo">
-        <p id="map-copyright">© Copyright RoboEntrega</p>
-        <div class="redes" id="map-social">
-            <a href="#" id="users-facebook"><img src="../img/facebook-icon.png" alt="Facebook"></a>
-            <a href="#" id="users-instagram"><img src="../img/instagram-icon.png" alt="Instagram"></a>
-            <a href="#" id="users-twitter"><img src="../img/twitter-icon.png" alt="Twitter"></a>
+    <footer id="home-footer">
+        <div id="footer-content">
+            <div id="footer-copyright">
+                <img src="img/logo.png" alt="Logo RoboEntrega">
+                <p>© Copyright RoboEntrega</p>
+            </div>
+            <article id="redessociales">
+                <a href="http://www.facebook.com/"><img src="img/facebook.png" alt="Facebook" id="img-redsocial"></a>
+                <a href="http://www.instagram.com/"><img src="img/instagram.png" alt="Instagram" id="img-redsocial"></a>
+                <a href="http://www.twitter.com/"><img src="img/twitter.png" alt="Twitter" id="img-redsocial"></a>
+            </article>
         </div>
     </footer>
 

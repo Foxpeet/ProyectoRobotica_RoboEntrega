@@ -40,7 +40,7 @@ function updateCameraFeed() {
 
 // función del mapa -----------------------------------------
 const mapaImagen = new Image();
-mapaImagen.src = "../img/my_map.png"; // Asegúrate de que este archivo exista en tu carpeta /img/
+mapaImagen.src = "../img/mapa.png"; // Asegúrate de que este archivo exista en tu carpeta /img/
 
 const MAP_RESOLUTION = 0.05; // metros por pixel
 const MAP_ORIGIN = { x: -5.43, y: -28.6 }; // origen del mundo real
