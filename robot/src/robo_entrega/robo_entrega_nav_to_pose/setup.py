@@ -18,7 +18,7 @@ setup(
     zip_safe=True,
     maintainer='equipo1',
     maintainer_email='equipo1@gmail.com',
-    description='TODO: Package description',
+    description='Suscriptor a /navigate_goal que controla la navegación del robot.',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
