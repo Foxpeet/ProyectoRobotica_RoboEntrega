@@ -37,7 +37,22 @@
               </thead>
               <tbody>
                 <tr>
-                 
+                  <div class="control" id="map-control">
+                    <div id="coordenadasRobot">
+                        <th id="options-title">Enviar Coordenadas para el robot
+                        <form id="coordinateForm">
+                            <label for="x">X:</label>
+                            <input type="number" id="x" name="x" step="0.01" required>
+                            <br>
+                            <label for="y">Y:</label>
+                            <input type="number" id="y" name="y" step="0.01" required>
+                            <br>
+                            <label for="w">W (Orientación):</label>
+                            <input type="number" id="w" name="w" step="0.01" value="1.0" required>
+                            <button type="submit" id="sendCoordinatesButton" disabled>Enviar</button>
+                        </form></th>
+                    </div>
+                </div>
                 </tr>
               </tbody>
             </table>
@@ -50,14 +65,14 @@
           <div class="columna columna-control">
             <canvas id="mapCanvas" class="mapa" width="800" height="600" style="border:1px solid #000000;"></canvas> 
       
-            <div class="controles">
+            <!-- <div class="controles">
               <button class="flecha arriba">▲</button>
               <div class="fila">
                 <button class="flecha izquierda">◄</button>
                 <button class="flecha derecha">►</button>
               </div>
               <button class="flecha abajo">▼</button>
-            </div>
+            </div> -->
           </div>
         </section>
       </main>
