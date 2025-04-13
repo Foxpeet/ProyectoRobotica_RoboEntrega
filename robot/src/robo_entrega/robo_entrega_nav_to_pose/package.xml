@@ -3,7 +3,7 @@
 <package format="3">
   <name>robo_entrega_nav_to_pose</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Paquete que suscribe a /navigate_goal y envía objetivos de navegación al robot usando NavigateToPose.</description>
   <maintainer email="equipo1@gmail.com">equipo1</maintainer>
   <license>TODO: License declaration</license>
 

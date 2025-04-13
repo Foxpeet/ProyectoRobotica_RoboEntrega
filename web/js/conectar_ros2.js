@@ -10,6 +10,8 @@ function connect(){
   data.ros.on("connection", () => {
       data.connected = true
       console.log("Conexion con ROSBridge correcta")
+      //Activar el boton de enviar coordenadas una vez se ha conectado ros2
+      document.getElementById('sendCoordinatesButton').disabled = false;
       //actualizamos una sola vez la cámara
       updateCameraFeed()
       iniciarSubscripcionMapa()
@@ -21,13 +23,15 @@ function connect(){
   data.ros.on("close", () => {
       data.connected = false
       console.log("Conexion con ROSBridge cerrada")
+      //Deshabilitar el boton de enviar una vez se desconecta de ros2
+      document.getElementById('sendCoordinatesButton').disabled = true;
   })
 }
 
 function disconnect(){
     data.ros.close()
     data.connected = false
-  console.log('Clic en botón de desconexión')
+    console.log('Clic en botón de desconexión')
 }
 
 // función de la cámara -----------------------------------------
@@ -114,6 +118,25 @@ function dibujarRobotEnMapa(x, y, theta) {
 
 // funciones de las flechas y el controlador -----------------------------------------
 
+function enviarCoordenadas(x, y, w) {
+    if (!data.connected) {
+        console.log("No hay conexión con ROSBridge");
+        return;
+    }
+
+    const publisher = new ROSLIB.Topic({
+        ros: data.ros,
+        name: '/navigate_goal',
+        messageType: 'std_msgs/Float32MultiArray'
+    });
+
+    const message = new ROSLIB.Message({
+        data: [x, y, w]
+    });
+
+    publisher.publish(message);
+    console.log(`Coordenadas enviadas: x=${x}, y=${y}, w=${w}`);
+}
 
 
 // asignación de escuchadores -----------------------------------------
@@ -122,10 +145,37 @@ document.addEventListener('DOMContentLoaded', event => {
         ros: null,
         rosbridge_address: 'ws://127.0.0.1:9090/',
         connected: false,
-    }
-    connect()
+    };
+
+    connect();
+
+    // Escuchador para el formulario de coordenadas
+    document.getElementById('coordinateForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+    
+        const x = parseFloat(document.getElementById('x').value);
+        const y = parseFloat(document.getElementById('y').value);
+        const w = parseFloat(document.getElementById('w').value);
+    
+        if (isNaN(x) || isNaN(y) || isNaN(w)) {
+            console.error("Valores inválidos ingresados.");
+            alert("Por favor, ingresa valores numéricos válidos para X, Y y W.");
+            return;
+        }
+    
+        enviarCoordenadas(x, y, w);
+    });
+
+    data.ros.on("close", () => {
+        data.connected = false;
+        console.log("Conexion con ROSBridge cerrada. Intentando reconectar en 5 segundos...");
+        document.getElementById('sendCoordinatesButton').disabled = true;
+    
+        setTimeout(() => {
+            connect();
+        }, 5000);
+    });
+
 });
 
-window.addEventListener('beforeunload', event => {
-    disconnect()
-})
+
