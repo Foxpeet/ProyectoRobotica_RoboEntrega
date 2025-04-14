@@ -9,20 +9,22 @@ main {
     justify-content: space-between;
     align-items: center;
     background-color: #5ba8df;
-    margin: 20px 0;
-    padding: 20px;
+    margin: 10px 0;
+    padding: 10px;
     border-radius: 10px;
+    height: 325px;
 }
 
 .intro p, .info p {
-    width: 50%;
+    width: 60%;
     font-size: 18px;
     color: #333;
 }
 
 .intro img, .info img {
-    width: 40%;
+    width: 30%;
     border-radius: 10px;
+    height: 325px;
 }
 
 
