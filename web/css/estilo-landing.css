@@ -1,9 +1,4 @@
 
-main {
-    flex: 1; /* Esto hace que ocupe el espacio disponible */
-    padding: 20px;
-}
-
 .intro, .info {
     display: flex;
     justify-content: space-between;
