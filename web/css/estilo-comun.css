@@ -16,6 +16,12 @@ main{
     background-color: #6590bb;
   }
 
+  body{
+    background-color: whitesmoke;
+    padding: 0;
+    margin: 0;
+  }
+
   
 /*Cabecera*/
 
@@ -55,8 +61,6 @@ nav ul li a:hover {
     background-color: #6590bb;
 }
 
-/*footer*/
-
 /* footer */
 footer {
     background-color: #d2dee6;
@@ -82,7 +86,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 20px; /* Margen a la izquierda */
+    margin-left: 20px;
 }
 
 #footer-copyright img {
@@ -100,6 +104,4 @@ footer {
 #img-redsocial {
     width: 50px;
     height: 50px;
-    border-radius: 100%;
-    background-color: #ffffff;
 }
