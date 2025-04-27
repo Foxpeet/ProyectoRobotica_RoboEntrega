@@ -1,19 +1,35 @@
 
 .intro, .info {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #5ba8df;
     margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
-    height: 325px;
+    height: 50vh;
+    transition:
+        background-image 0.75s linear,
+        background-position 6s linear;
+    background-size: 100%;
+    background-position: 50% 50%;
 }
 
 .intro p, .info p {
     width: 60%;
     font-size: 18px;
     color: #333;
+    align-items: end;
+}
+
+.intro p{
+    color: white;
+    backdrop-filter: blur(10px);
+    font-size: 40px;
+    width: fit-content;
+    background-color: #2e3d4e4f;
+    text-align: center;
+    border: #333;
 }
 
 .intro img, .info img {
