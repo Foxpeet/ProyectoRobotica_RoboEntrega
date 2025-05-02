@@ -54,11 +54,19 @@
     font-size: large;
 }
 
- a {
-     color: blue;
-     text-decoration: none;
+ #inicio-sesion-index-div a {
+    color: blue;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #AAD3F2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
  }
 
- a:hover {
-     text-decoration: underline;
+ #inicio-sesion-index-div a:hover {
+    text-decoration: underline;
+    background-color: #f2f9ff;
  }
+
