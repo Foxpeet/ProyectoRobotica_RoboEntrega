@@ -1,24 +1,10 @@
-main {
-    padding: 20px;
-    min-height: 70vh;
-  }
-  
-  .volver {
-    background-color: #AAD3F2;
-    border: 1px solid #000000;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-bottom: 30px;
-  }
-  .volver:hover{
-    background-color: #6590bb;
-  }
+
   
   .formulario-login {
     display: flex;
     justify-content: center;
     padding: 0 20px;
+    margin-top: 5vh;
   }
   
   form {
@@ -36,7 +22,6 @@ main {
   }
   
   form input {
-    width: 100%;
     padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -57,6 +42,11 @@ main {
   
   form p a:hover {
     text-decoration: underline;
+  }
+
+  .div-input-login{
+    display: flex;
+    flex-direction: column;
   }
   
   .acceder {
