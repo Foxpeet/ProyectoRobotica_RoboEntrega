@@ -47,7 +47,7 @@ const mapaImagen = new Image();
 mapaImagen.src = "../img/mapa.png"; // Asegúrate de que este archivo exista en tu carpeta /img/
 
 const MAP_RESOLUTION = 0.05; // metros por pixel
-const MAP_ORIGIN = { x: -5.43, y: -28.6 }; // origen del mundo real
+const MAP_ORIGIN = { x: -3.64, y: -28.5 }; // origen del mundo real
 
 mapaImagen.onload = () => {
     const canvas = document.getElementById("mapCanvas");
