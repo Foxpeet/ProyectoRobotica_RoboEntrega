@@ -112,4 +112,16 @@ def generate_launch_description():
             output='screen',
             parameters=[nav2_yaml, {'use_sim_time': True}]
         ),
+
+        # Agregar el my_waypoint_follower con un TimerAction de 10 segundos
+        TimerAction(
+            period=10.0,  # Esperar 10 segundos antes de iniciar el waypoint follower
+            actions=[Node(
+                package='robo_entrega_nav2_system',  # Asegúrate de que este es el nombre correcto del paquete
+                executable='my_waypoint_follower',
+                name='my_waypoint_follower',
+                output='screen',
+                parameters=[{'use_sim_time': True}]
+            )]
+        ),
     ])
