@@ -10,27 +10,23 @@ class MyWaypointFollower(Node):
     def __init__(self):
         super().__init__('my_waypoint_follower')
         
-        # Action client para enviar waypoints
         self._action_client = ActionClient(self, FollowWaypoints, 'follow_waypoints')
-        self._goal_handle = None  # Para guardar la referencia al goal actual
+        self._goal_handle = None
         
-        # Suscriptor para detectar tareas externas (ej. desde RViz)
         self._goal_sub = self.create_subscription(
             PoseStamped,
-            '/goal_pose',  # Topic usado por Nav2 para navegación manual
+            '/goal_pose', 
             self._goal_callback,
             10
         )
         
-        # Timer para enviar waypoints en bucle
         self._timer = self.create_timer(1.0, self._send_goal_if_ready)
         self._goal_sent = False
-        self._other_task_active = False  # Bandera para evitar conflictos
+        self._other_task_active = False
 
     def _goal_callback(self, msg):
         """Callback para detectar nuevas tareas externas (ej. clics en RViz)."""
         if self._goal_handle is not None:
-            # Cancelar la ruta actual si hay una activa
             self.get_logger().info('Tarea externa detectada, cancelando waypoints actuales...')
             future = self._goal_handle.cancel_goal_async()
             future.add_done_callback(self._cancel_done_callback)
@@ -38,11 +34,10 @@ class MyWaypointFollower(Node):
 
     def _cancel_done_callback(self, future):
         """Callback cuando se completa la cancelación."""
-        if future.result().return_code == 1:  # 1 = éxito
+        if future.result().return_code == 1:
             self.get_logger().info('Waypoints cancelados correctamente')
         self._goal_handle = None
         self._goal_sent = False
-        # No resetear _other_task_active aquí, se hará cuando termine la tarea externa
 
     def _send_goal_if_ready(self):
         if not self._action_client.wait_for_server(timeout_sec=1.0):
@@ -73,7 +68,7 @@ class MyWaypointFollower(Node):
         result = future.result().result
         self.get_logger().info('Waypoints completados. Reiniciando bucle...')
         self._goal_sent = False
-        self._other_task_active = False  # Permitir nuevo ciclo de waypoints
+        self._other_task_active = False
         self._goal_handle = None
 
     def _create_waypoints(self):
