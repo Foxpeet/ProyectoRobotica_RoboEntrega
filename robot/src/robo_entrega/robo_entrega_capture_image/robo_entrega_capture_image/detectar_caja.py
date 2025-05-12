@@ -23,15 +23,19 @@ class Ros2OpenCVImageConverter(Node):
         except CvBridgeError as e:
             print(e)
 
-        #------------------------------------
-
         hsv = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)
 
         lower_brown = np.array([10, 100, 20])
         upper_brown = np.array([20, 200, 200])
 
-        mask = cv2.inRange(hsv, lower_brown, upper_brown)
-        res = cv2.bitwise_and(cv_image, cv_image, mask=mask)
+        lower_dirty = np.array([0, 0, 0])
+        upper_dirty = np.array([180, 50, 50])
+
+        mask_brown = cv2.inRange(hsv, lower_brown, upper_brown)
+        mask_dirty = cv2.inRange(hsv, lower_dirty, upper_dirty)
+
+        mask_combined = cv2.bitwise_or(mask_brown, mask_dirty)
+        res = cv2.bitwise_and(cv_image, cv_image, mask=mask_combined)
 
         img_gray = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)
 
@@ -41,20 +45,22 @@ class Ros2OpenCVImageConverter(Node):
 
         for contorno in contornos:
             area = cv2.contourArea(contorno)
-
+            x, y, w, h = cv2.boundingRect(contorno)
+            relacionDeAspecto = float(w)/h
             if area > 700:
-                x, y, w, h = cv2.boundingRect(contorno)
-                relacionDeAspecto = float(w)/h
                 if relacionDeAspecto > 1.5:
-                    self.get_logger().info(f'Relacion de aspecto:\n X={relacionDeAspecto}')
+                    self.get_logger().info(f'Caja detectada - Area: {area}')
                     cv2.rectangle(cv_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                     cv2.putText(cv_image, "Caja", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-
-        # ------------------------------
+            elif 10 < area < 500:
+                if 0.9 < relacionDeAspecto < 1.1:
+                    self.get_logger().info(f'Mancha detectada - Área: {area}')
+                        cv2.rectangle(cv_image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                        cv2.putText(cv_image, "Mancha", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
 
 
         cv2.imshow("Imagen capturada por el robot", cv_image)
-        cv2.imshow("Imagen capturada", res)
+        #cv2.imshow("Imagen filtrada por color", res)
                 
         cv2.waitKey(1)    
 
