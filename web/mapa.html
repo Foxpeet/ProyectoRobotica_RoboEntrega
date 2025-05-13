@@ -6,6 +6,7 @@
     <title>Mapa</title>
     <link href="css/estilo-comun.css" rel="stylesheet" type="text/css">
     <link href="css/estilo-mapa.css" rel="stylesheet" type="text/css">
+    <script src="js/mapa.js"></script>
     
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
@@ -19,7 +20,6 @@
         </a>
         <nav id="map-nav">
             <ul id="map-nav-list">
-                <li><a href="miRobot.html" id="robot-data-link">Datos Robot</a></li>
                 <li><a href="index.html" id="logout-link">Cerrar Sesión</a></li>
                 <li><a href="contacto.html" id="map-contact-link">Contáctanos</a></li>
             </ul>
@@ -27,39 +27,26 @@
     </header>
 
     <main id="map-main">
-        <button class="volver" onclick="history.back()">Volver</button>
+      <h1 id="bienvenida_mapa">¡Bienvenido, persona!</h1>
       
         <section class="contenido">
           <div class="columna columna-tabla">
             <table>
-              <thead>
-                <tr><th>Opciones de manejo del robot</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <div class="control" id="map-control">
-                    <div id="coordenadasRobot">
-                        <th id="options-title">Enviar Coordenadas para el robot
-                        <form id="coordinateForm">
-                            <label for="x">X:</label>
-                            <input type="number" id="x" name="x" step="0.01" required>
-                            <br>
-                            <label for="y">Y:</label>
-                            <input type="number" id="y" name="y" step="0.01" required>
-                            <br>
-                            <label for="w">W (Orientación):</label>
-                            <input type="number" id="w" name="w" step="0.01" value="1.0" required>
-                            <button type="submit" id="sendCoordinatesButton" disabled>Enviar</button>
-                        </form></th>
-                    </div>
-                </div>
-                </tr>
-              </tbody>
+                <thead>
+                    <tr><th>Opciones de manejo del robot</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="trabajadores-lista"></div> <!-- Aquí se agregarán los botones -->
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-          </div>
+        </div>
       
           <div class="columna columna-camara">
-            <img id="cameraFeed" src="http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw" alt="Cámara del robot" />
+            <img id="cameraFeed" src="http://localhost:8080/stream?topic=/turtlebot3/deteccion/detecta_caja" alt="Cámara del robot" />
           </div>
       
           <div class="columna columna-control">
@@ -87,7 +74,7 @@
             <article id="redessociales">
                 <a href="http://www.facebook.com/"><img src="img/facebook.png" alt="Facebook" id="img-redsocial"></a>
                 <a href="http://www.instagram.com/"><img src="img/instagram.png" alt="Instagram" id="img-redsocial"></a>
-                <a href="http://www.twitter.com/"><img src="img/twitter.png" alt="Twitter" id="img-redsocial"></a>
+                <a href="http://www.x.com/"><img src="img/twitter_X.png" alt="Twitter_X" id="img-redsocial"></a>
             </article>
         </div>
     </footer>

@@ -1,30 +1,72 @@
 
-main {
-    flex: 1; /* Esto hace que ocupe el espacio disponible */
-    padding: 20px;
-}
-
 .intro, .info {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #5ba8df;
     margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
-    height: 325px;
+    height: 50vh;
+    transition:
+        background-image 0.75s linear,
+        background-position 6s linear;
+    background-size: 100%;
+    background-position: 50% 50%;
+}
+.info{
+    padding: 2vh 10vw 2vh 10vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .intro p, .info p {
     width: 60%;
     font-size: 18px;
     color: #333;
+    align-items: end;
 }
 
-.intro img, .info img {
-    width: 30%;
-    border-radius: 10px;
-    height: 325px;
+.intro p{
+    color: white;
+    backdrop-filter: blur(10px);
+    font-size: 40px;
+    width: fit-content;
+    background-color: #2e3d4e4f;
+    text-align: center;
+    border: #333;
 }
 
+.info p {
+    color: white;
+    font-size: 25px;
+    width: fit-content;
+    text-align: center;
+}
+
+#inicio-sesion-index-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vh;
+}
+#inicio-sesion-index-div p, a {
+    font-size: large;
+}
+
+ #inicio-sesion-index-div a {
+    color: blue;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #AAD3F2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+ }
+
+ #inicio-sesion-index-div a:hover {
+    text-decoration: underline;
+    background-color: #f2f9ff;
+ }
 

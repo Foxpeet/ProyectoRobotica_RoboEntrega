@@ -28,8 +28,10 @@ setup(
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
-        'console_scripts': [
-            'initial_pose_pub = robo_entrega_nav2_system.initial_pose_pub:main',
+    'console_scripts': [
+        'initial_pose_pub = robo_entrega_nav2_system.initial_pose_pub:main',
+        'my_waypoint_follower = robo_entrega_nav2_system.my_waypoint_follower:main',
         ],
     },
+
 )

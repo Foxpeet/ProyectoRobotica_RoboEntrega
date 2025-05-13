@@ -1,6 +1,5 @@
 // función de la conexión con ROS2 -----------------------------------------
 function connect(){
-    console.log("Clic en connect")
 
     data.ros = new ROSLIB.Ros({
           url: data.rosbridge_address
@@ -11,7 +10,7 @@ function connect(){
       data.connected = true
       console.log("Conexion con ROSBridge correcta")
       //Activar el boton de enviar coordenadas una vez se ha conectado ros2
-      document.getElementById('sendCoordinatesButton').disabled = false;
+      //document.getElementById('sendCoordinatesButton').disabled = false;
       //actualizamos una sola vez la cámara
       updateCameraFeed()
       iniciarSubscripcionMapa()
@@ -39,6 +38,7 @@ function updateCameraFeed() {
     const img = document.getElementById("cameraFeed");
     const timestamp = new Date().getTime(); // Evita caché agregando un timestamp
     img.src = `http://0.0.0.0:8080/stream?topic=/camera/image_raw`;
+    //img.src = `http://0.0.0.0:8080/stream?topic=/deteccion/detecta_caja`;
     //img.src = `http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw&console.log("Cactualizando: http://0.0.0.0:8080/stream?topic=/camera/image_raw)"`
 }
 
@@ -47,7 +47,7 @@ const mapaImagen = new Image();
 mapaImagen.src = "../img/mapa.png"; // Asegúrate de que este archivo exista en tu carpeta /img/
 
 const MAP_RESOLUTION = 0.05; // metros por pixel
-const MAP_ORIGIN = { x: -5.43, y: -28.6 }; // origen del mundo real
+const MAP_ORIGIN = { x: -3.64, y: -28.5 }; // origen del mundo real
 
 mapaImagen.onload = () => {
     const canvas = document.getElementById("mapCanvas");
@@ -116,7 +116,7 @@ function dibujarRobotEnMapa(x, y, theta) {
 }
 
 
-// funciones de las flechas y el controlador -----------------------------------------
+// funciones del controlador -----------------------------------------
 
 function enviarCoordenadas(x, y, w) {
     if (!data.connected) {
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', event => {
     connect();
 
     // Escuchador para el formulario de coordenadas
-    document.getElementById('coordinateForm').addEventListener('submit', (event) => {
+    /*document.getElementById('coordinateForm').addEventListener('submit', (event) => {
         event.preventDefault();
     
         const x = parseFloat(document.getElementById('x').value);
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', event => {
         }
     
         enviarCoordenadas(x, y, w);
-    });
+    });*/
 
     data.ros.on("close", () => {
         data.connected = false;

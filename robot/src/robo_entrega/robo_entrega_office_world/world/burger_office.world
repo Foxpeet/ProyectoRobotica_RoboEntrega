@@ -23291,7 +23291,198 @@
 </model>
 
     
-      
+<model name="PuertaCerradaBase">
+<static>true</static>
+
+  <pose>
+    -4.45
+    19.5
+    0
+    0
+    0
+    3.141592653589793
+  </pose>
+  
+  <link name="closed_door">
+      <pose>-0.75 0.1 0 0 0 3.141592653589793</pose>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+</model>
+<model name="PuertaCerradaBase1">
+<static>true</static>
+
+  <pose>
+    -7.5
+    19.5
+    0
+    0
+    0
+    3.141592653589793
+  </pose>
+  
+  <link name="closed_door">
+      <pose>-0.75 0.1 0 0 0 3.141592653589793</pose>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+</model>
+<model name="PuertaCerradaBase2">
+<static>true</static>
+
+  <pose>
+    -21
+    19.5
+    0
+    0
+    0
+    3.141592653589793
+  </pose>
+  
+  <link name="closed_door">
+      <pose>-0.75 0.1 0 0 0 3.141592653589793</pose>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+</model>
+<model name="PuertaCerradaBase3">
+<static>true</static>
+
+  <pose>
+    -6.11
+    4.5
+    0
+    0
+    0
+    3.141592653589793
+  </pose>
+  
+  <link name="closed_door">
+      <pose>-0.75 0.1 0 0 0 3.141592653589793</pose>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+</model>
+<model name="PuertaCerradaBase4">
+<static>true</static>
+
+  <pose>
+    7.5
+    3
+    0
+    0
+    0
+    3.141592653589793
+  </pose>
+  
+  <link name="closed_door">
+      <pose>-0.75 0.1 0 0 0 3.141592653589793</pose>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+</model>
+<model name="PuertaCerradaBase5">
+<static>true</static>
+
+  <pose>
+    10.7
+    3
+    0
+    0
+    0
+    3.141592653589793
+  </pose>
+  
+  <link name="closed_door">
+      <pose>-0.75 0.1 0 0 0 3.141592653589793</pose>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://door/meshes/door.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+</model>
 
 <model name="PublicMeetingRoomD">
 
@@ -23711,15 +23902,112 @@
   </pose>
   <uri>model://office_box</uri>
 </include>
-
-
-  
-
-
-
 </model>
 
     
+<model name="PaqueteBase">
+  <static>true</static>
+
+  <pose>
+    -8
+    19
+    0
+    0
+    0
+    0
+  </pose>
+
+<include>
+  <pose>
+    0
+    0
+    0
+    0
+    0
+    0
+  </pose>
+  <uri>model://office_box</uri>
+</include>
+
+</model>
+
+<model name="PaqueteBase2">
+  <static>true</static>
+
+  <pose>
+    -12.34
+    15.5
+    0
+    0
+    0
+    0
+  </pose>
+
+<include>
+  <pose>
+    0
+    0
+    0
+    0
+    0
+    0
+  </pose>
+  <uri>model://office_box</uri>
+</include>
+
+</model>
+
+<model name="PaqueteBase3">
+  <static>true</static>
+
+  <pose>
+    -8
+    10.39
+    0
+    0
+    0
+    0
+  </pose>
+
+<include>
+  <pose>
+    0
+    0
+    0
+    0
+    0
+    0
+  </pose>
+  <uri>model://office_box</uri>
+</include>
+
+</model>
+
+<model name="PaqueteBase4">
+  <static>true</static>
+
+  <pose>
+    -23
+    4.9
+    0
+    0
+    0
+    0
+  </pose>
+
+<include>
+  <pose>
+    0
+    0
+    0
+    0
+    0
+    0
+  </pose>
+  <uri>model://office_box</uri>
+</include>
+
+</model>
       
 
 <model name="PublicMeetingRoomE">
@@ -28543,7 +28831,7 @@
     <collision name="collision">
 
       <pose>
-        3.5999999999999996
+        0
         0.0
         0.75
         0.0
@@ -28554,7 +28842,7 @@
       <geometry>
         <box>
           <size>
-            7.249999999999999
+            0.1
             2.4999999999999996
             1.5
           </size>
@@ -28562,7 +28850,307 @@
       </geometry>
     </collision>
 
+    <collision name="collision_2">
+
+      <pose>
+        1.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_3">
+
+      <pose>
+        3.6
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_4">
+
+      <pose>
+        5.4
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_5">
+
+      <pose>
+        2.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            5.4
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_6">
+
+      <pose>
+        1.2
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_7">
+
+      <pose>
+        3
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_8">
+
+      <pose>
+        4.75
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_9">
+
+      <pose>
+        0.6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_10">
+
+      <pose>
+        2.4
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_11">
+
+      <pose>
+        4.2
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_12">
+
+      <pose>
+        7.2
+        0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.5
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_13">
+
+      <pose>
+        6.3
+        0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.75
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_14">
+
+      <pose>
+        6.6
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_15">
+
+      <pose>
+        6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
   </link>
+
 
 
   <!-- furniture -->
@@ -29388,7 +29976,7 @@
     <collision name="collision">
 
       <pose>
-        3.5999999999999996
+        0
         0.0
         0.75
         0.0
@@ -29399,8 +29987,307 @@
       <geometry>
         <box>
           <size>
-            7.249999999999999
+            0.1
             2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_2">
+
+      <pose>
+        1.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_3">
+
+      <pose>
+        3.6
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_4">
+
+      <pose>
+        5.4
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_5">
+
+      <pose>
+        2.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            5.4
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_6">
+
+      <pose>
+        1.2
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_7">
+
+      <pose>
+        3
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_8">
+
+      <pose>
+        4.75
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_9">
+
+      <pose>
+        0.6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_10">
+
+      <pose>
+        2.4
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_11">
+
+      <pose>
+        4.2
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_12">
+
+      <pose>
+        7.2
+        0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.5
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_13">
+
+      <pose>
+        6.3
+        0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.75
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_14">
+
+      <pose>
+        6.6
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_15">
+
+      <pose>
+        6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
             1.5
           </size>
         </box>
@@ -30227,7 +31114,7 @@
     <collision name="collision">
 
       <pose>
-        3.5999999999999996
+        0
         0.0
         0.75
         0.0
@@ -30238,8 +31125,307 @@
       <geometry>
         <box>
           <size>
-            7.249999999999999
+            0.1
             2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_2">
+
+      <pose>
+        1.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_3">
+
+      <pose>
+        3.6
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_4">
+
+      <pose>
+        5.4
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_5">
+
+      <pose>
+        2.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            5.4
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_6">
+
+      <pose>
+        1.2
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_7">
+
+      <pose>
+        3
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_8">
+
+      <pose>
+        4.75
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_9">
+
+      <pose>
+        0.6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_10">
+
+      <pose>
+        2.4
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_11">
+
+      <pose>
+        4.2
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_12">
+
+      <pose>
+        7.2
+        0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.5
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_13">
+
+      <pose>
+        6.3
+        0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.75
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_14">
+
+      <pose>
+        6.6
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_15">
+
+      <pose>
+        6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
             1.5
           </size>
         </box>
@@ -30932,7 +32118,7 @@
     <collision name="collision">
 
       <pose>
-        2.6999999999999997
+        0
         0.0
         0.75
         0.0
@@ -30943,8 +32129,223 @@
       <geometry>
         <box>
           <size>
-            5.449999999999999
+            0.1
             2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_2">
+
+      <pose>
+        1.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_3">
+
+      <pose>
+        3.6
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_4">
+
+      <pose>
+        5.4
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_5">
+
+      <pose>
+        2.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            5.4
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_6">
+
+      <pose>
+        1.2
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_7">
+
+      <pose>
+        3
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_8">
+
+      <pose>
+        4.75
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_9">
+
+      <pose>
+        0.6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_10">
+
+      <pose>
+        2.4
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_11">
+
+      <pose>
+        4.2
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
             1.5
           </size>
         </box>
@@ -31587,7 +32988,7 @@
     <collision name="collision">
 
       <pose>
-        2.6999999999999997
+        0
         0.0
         0.75
         0.0
@@ -31598,8 +32999,223 @@
       <geometry>
         <box>
           <size>
-            5.449999999999999
+            0.1
             2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_2">
+
+      <pose>
+        1.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_3">
+
+      <pose>
+        3.6
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_4">
+
+      <pose>
+        5.4
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_5">
+
+      <pose>
+        2.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            5.4
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_6">
+
+      <pose>
+        1.2
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_7">
+
+      <pose>
+        3
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_8">
+
+      <pose>
+        4.75
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_9">
+
+      <pose>
+        0.6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_10">
+
+      <pose>
+        2.4
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_11">
+
+      <pose>
+        4.2
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
             1.5
           </size>
         </box>
@@ -32240,7 +33856,7 @@
     <collision name="collision">
 
       <pose>
-        2.6999999999999997
+        0
         0.0
         0.75
         0.0
@@ -32251,8 +33867,223 @@
       <geometry>
         <box>
           <size>
-            5.449999999999999
+            0.1
             2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_2">
+
+      <pose>
+        1.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_3">
+
+      <pose>
+        3.6
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_4">
+
+      <pose>
+        5.4
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            0.1
+            2.4999999999999996
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_5">
+
+      <pose>
+        2.75
+        0.0
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            5.4
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_6">
+
+      <pose>
+        1.2
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+
+    <collision name="collision_7">
+
+      <pose>
+        3
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_8">
+
+      <pose>
+        4.75
+        1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_9">
+
+      <pose>
+        0.6
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_10">
+
+      <pose>
+        2.4
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
+            1.5
+          </size>
+        </box>
+      </geometry>
+    </collision>
+    <collision name="collision_11">
+
+      <pose>
+        4.2
+        -1.2
+        0.75
+        0.0
+        0.0
+        0.0
+      </pose>
+
+      <geometry>
+        <box>
+          <size>
+            1.2
+            0.1
             1.5
           </size>
         </box>
