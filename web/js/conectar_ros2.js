@@ -10,7 +10,7 @@ function connect(){
       data.connected = true
       console.log("Conexion con ROSBridge correcta")
       //Activar el boton de enviar coordenadas una vez se ha conectado ros2
-      document.getElementById('sendCoordinatesButton').disabled = false;
+      //document.getElementById('sendCoordinatesButton').disabled = false;
       //actualizamos una sola vez la cámara
       updateCameraFeed()
       iniciarSubscripcionMapa()
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', event => {
     connect();
 
     // Escuchador para el formulario de coordenadas
-    document.getElementById('coordinateForm').addEventListener('submit', (event) => {
+    /*document.getElementById('coordinateForm').addEventListener('submit', (event) => {
         event.preventDefault();
     
         const x = parseFloat(document.getElementById('x').value);
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', event => {
         }
     
         enviarCoordenadas(x, y, w);
-    });
+    });*/
 
     data.ros.on("close", () => {
         data.connected = false;

@@ -1,3 +1,4 @@
+from extensions import db  # Importamos db para manejar la sesión
 from flask import Blueprint, request, jsonify
 from models.trabajador import Trabajador
 import hashlib
@@ -26,7 +27,7 @@ def login():
 
     # Actualizar el estado "presente" a True
     trabajador.presente = True
-    trabajador.save()
+    db.session.commit()
 
     # Retornar los datos del trabajador si la autenticación es correcta
     return jsonify({
@@ -51,7 +52,7 @@ def logout():
 
     # Solo actualizar el estado "presente" a False
     trabajador.presente = False
-    trabajador.save()
+    db.session.commit()
 
     # Respuesta mínima de confirmación
     return jsonify({'message': 'Sesión cerrada'}), 200
