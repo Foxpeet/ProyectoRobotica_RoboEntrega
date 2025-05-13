@@ -1,6 +1,5 @@
 // función de la conexión con ROS2 -----------------------------------------
 function connect(){
-    console.log("Clic en connect")
 
     data.ros = new ROSLIB.Ros({
           url: data.rosbridge_address
@@ -117,7 +116,7 @@ function dibujarRobotEnMapa(x, y, theta) {
 }
 
 
-// funciones de las flechas y el controlador -----------------------------------------
+// funciones del controlador -----------------------------------------
 
 function enviarCoordenadas(x, y, w) {
     if (!data.connected) {
