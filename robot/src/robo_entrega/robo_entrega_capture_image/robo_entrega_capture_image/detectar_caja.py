@@ -17,6 +17,11 @@ class Ros2OpenCVImageConverter(Node):
         self.bridge_object = CvBridge()
         self.image_sub = self.create_subscription(Image,'/camera/image_raw',self.camera_callback,QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT))
         
+        self.box_count = 0  
+        self.last_box_time = 0 
+        self.box_detected_last_frame = False  
+        self.detection_timeout = 2 
+
     def camera_callback(self,data):
 
         try:
