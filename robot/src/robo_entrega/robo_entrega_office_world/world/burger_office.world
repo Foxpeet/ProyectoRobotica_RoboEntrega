@@ -24008,32 +24008,6 @@
 </include>
 
 </model>
-
-<model name="PaqueteBase5">
-  <static>true</static>
-
-  <pose>
-    -22.57
-    14.5
-    0
-    0
-    0
-    0
-  </pose>
-
-<include>
-  <pose>
-    0
-    0
-    0
-    0
-    0
-    0
-  </pose>
-  <uri>model://office_box</uri>
-</include>
-
-</model>
       
 
 <model name="PublicMeetingRoomE">

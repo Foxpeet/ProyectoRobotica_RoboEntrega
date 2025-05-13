@@ -16,11 +16,15 @@ class Ros2OpenCVImageConverter(Node):
         
         self.bridge_object = CvBridge()
         self.image_sub = self.create_subscription(Image,'/camera/image_raw',self.camera_callback,QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT))
-        
+        self.publisher_ = self.create_publisher(Image, '/deteccion/detecta_caja', 10)
+
         self.box_count = 0  
         self.last_box_time = 0 
         self.box_detected_last_frame = False  
-        self.detection_timeout = 2 
+        self.detection_timeout = 10
+
+        self.cajas_previas = []
+        self.distancia_umbral = 250
 
     def camera_callback(self,data):
 
@@ -57,17 +61,26 @@ class Ros2OpenCVImageConverter(Node):
             if area > 700 and relacionDeAspecto > 1.5:
                 current_time = time()
 
-                if not self.box_detected_last_frame or (current_time - self.last_box_time > self.detection_timeout):
+                caja_es_nueva = True
+                for (x_prev, y_prev, w_prev, h_prev) in self.cajas_previas:
+                        distancia = ((x - x_prev)**2 + (y - y_prev)**2)**0.5
+                        if distancia < self.distancia_umbral:
+                            caja_es_nueva = False
+                            break
+
+                if (not self.box_detected_last_frame or (current_time - self.last_box_time > self.detection_timeout)) and caja_es_nueva:
                     self.box_count += 1
                     self.get_logger().info(f'Nueva caja detectada. Total: {self.box_count}')
 
+                self.cajas_previas = []
+                self.cajas_previas.append((x, y, w, h))
                 self.last_box_time = current_time
                 self.box_detected_last_frame = True
 
                 cv2.rectangle(cv_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 cv2.putText(cv_image, f"Caja {self.box_count}", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
                     
-            elif 10 < area < 500:
+            elif 10 < area < 10.2:
                 if 0.9 < relacionDeAspecto < 1.1:
                     self.get_logger().info(f'Mancha detectada - Área: {area}')
                     cv2.rectangle(cv_image, (x, y), (x + w, y + h), (255, 0, 0), 2)
@@ -80,7 +93,13 @@ class Ros2OpenCVImageConverter(Node):
         cv2.imshow("Imagen capturada por el robot", cv_image)
         #cv2.imshow("Imagen filtrada por color", res)
                 
-        cv2.waitKey(1)    
+        cv2.waitKey(1)
+
+        if time() - self.last_box_time > self.detection_timeout:
+            self.cajas_previas = []
+
+        img = self.bridge_object.cv2_to_imgmsg(cv_image, encoding="bgr8")
+        self.publisher_.publish(img)
 
 def main(args=None):
 
