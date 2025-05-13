@@ -26,29 +26,56 @@ Despues abrimos al rviz sonde ya se inicia el mapa, el modelo del robot y permit
 ros2 launch robo_entrega_nav2_system tb3_sim_nav2.launch.py
 ```
 Puede tardar varios segundos en abrirlo todo y poder empezar a usar la navegación.
-\
-#### WEB
-Primero lanzamos el puente entre web y ros
+A continuacion  ejecutaremos el script que nos detecta las cajas en el punto de vista del robot
 ```
 [Terminal4]
+ros2 run robo_entrega_capture_image detectar_caja
+```
+Y por último en este apartado haremos que el robot comience la ruta por la oficina
+```
+[Terminal5]
+ros2 run robo_entrega_nav2_system my_waypoint_follower
+```
+#### WEB
+> [!IMPORTANT]
+> Es necesario ejecutar estos comandos al menos una vez en un terminal para asegurar que puedas ejecutar el servidor
+> ```
+> [Terminal nuevo]
+> [~/web/backend]
+> pip install -r requirements.txt
+> ```
+\
+Primero lanzamos el puente entre web y ros
+```
+[Terminal6]
 [~/web]
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 ```
 Despues lanzaremos el servidor de video para la funcionalidad de la cámara
 ```
-[Terminal5]
+[Terminal7]
+[~/robot]
 ros2 run robo_entrega_web_video_server robo_entrega_video_server
 ```
-Por último creamos el servidor en el puerto 8000 para poder ver la web
+Ahora abrimos el servidor en el puerto 8000 para poder ver la web
 ```
-[Terminal6]
+[Terminal8]
+[~/web]
 python3 -m http.server 8000
 ```
-
+Y para finalizar ejecutamos el backend para poder usar sus funcionalidades con la base de datos
+```
+[Terminal9]
+[~/web/backend]
+python3 app.py
+```
+> [!CAUTION]
+> Sabemos que os hacemos abrir muchos terminales, en el proximo sprint minimizaremos el numero de comandos necesarios para ejecutar este proyecto de robotica
+\
 ### probar manualmente el nav_to_pose
 ```
 [Terminal nuevo]
-ros2 topic pub --once /navigate_goal std_msgs/msg/Float32MultiArray "{data: [2.0, 3.0, 90.0]}"
+ros2 topic pub --once /navigate_goal std_msgs/msg/Float32MultiArray "{data: [0.5, -5.5, 230.0]}"
 ```
 > [!TIP]
 > Asegurate de que tienes estos paquetes actualizados para poder ejecutar correctamente el apartado de WEB.
