@@ -24,6 +24,10 @@ def login():
     if hash_contraseña(contraseña) != trabajador.contraseña_hash:
         return jsonify({'error': 'Correo o contraseña incorrectos'}), 401
 
+    # Actualizar el estado "presente" a True
+    trabajador.presente = True
+    trabajador.save()
+
     # Retornar los datos del trabajador si la autenticación es correcta
     return jsonify({
         'dni_trabajador': trabajador.dni_trabajador,
@@ -34,3 +38,20 @@ def login():
         'rol_admin': trabajador.rol_admin,
         'mesa_id_mesa': trabajador.mesa_id_mesa
     }), 200
+
+@iniciarSesion_api.route('/logout', methods=['POST'])
+def logout():
+    data = request.get_json()
+    correo = data.get('correo')
+
+    trabajador = Trabajador.query.filter_by(correo=correo).first()
+
+    if not trabajador:
+        return jsonify({'error': 'Trabajador no encontrado'}), 404
+
+    # Solo actualizar el estado "presente" a False
+    trabajador.presente = False
+    trabajador.save()
+
+    # Respuesta mínima de confirmación
+    return jsonify({'message': 'Sesión cerrada'}), 200

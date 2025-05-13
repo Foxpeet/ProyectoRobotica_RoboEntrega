@@ -42,3 +42,21 @@ def create_trabajador():
     db.session.commit()
 
     return jsonify({'message': 'Trabajador añadido correctamente'}), 201
+
+@trabajador_api.route('/trabajadores/no_admin', methods=['GET'])
+def get_no_admin_trabajadores():
+    trabajadores_no_admin = Trabajador.query.filter_by(rol_admin=False).all()
+    
+    # Verificar si hay trabajadores
+    if not trabajadores_no_admin:
+        return jsonify({'message': 'No hay trabajadores no admins'}), 404
+    
+    return jsonify([
+        {
+            'dni_trabajador': t.dni_trabajador,
+            'nombre_trabajador': t.nombre_trabajador,
+            'apellido_trabajador': t.apellido_trabajador,
+            'presente': t.presente
+        }
+        for t in trabajadores_no_admin
+    ])

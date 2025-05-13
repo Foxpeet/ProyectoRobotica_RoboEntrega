@@ -32,31 +32,18 @@
         <section class="contenido">
           <div class="columna columna-tabla">
             <table>
-              <thead>
-                <tr><th>Opciones de manejo del robot</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <div class="control" id="map-control">
-                    <div id="coordenadasRobot">
-                        <th id="options-title">Enviar Coordenadas para el robot
-                        <form id="coordinateForm">
-                            <label for="x">X:</label>
-                            <input type="number" id="x" name="x" step="0.01" required>
-                            <br>
-                            <label for="y">Y:</label>
-                            <input type="number" id="y" name="y" step="0.01" required>
-                            <br>
-                            <label for="w">W (Orientación):</label>
-                            <input type="number" id="w" name="w" step="0.01" value="0.0" required>
-                            <button type="submit" id="sendCoordinatesButton" disabled>Enviar</button>
-                        </form></th>
-                    </div>
-                </div>
-                </tr>
-              </tbody>
+                <thead>
+                    <tr><th>Opciones de manejo del robot</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="trabajadores-lista"></div> <!-- Aquí se agregarán los botones -->
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-          </div>
+        </div>
       
           <div class="columna columna-camara">
             <img id="cameraFeed" src="http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw" alt="Cámara del robot" />

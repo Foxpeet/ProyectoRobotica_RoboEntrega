@@ -7,6 +7,8 @@ from api.api_robot import robot_api
 from api.api_trabajador import trabajador_api
 from api.api_mesa import mesa_api
 from api.api_iniciar_sesion import iniciarSesion_api
+from api.api_entrega import entrega_api
+
 
 app = Flask(__name__)
 
@@ -25,6 +27,8 @@ app.register_blueprint(robot_api, url_prefix='/api')
 app.register_blueprint(trabajador_api, url_prefix='/api')
 app.register_blueprint(mesa_api, url_prefix='/api')
 app.register_blueprint(iniciarSesion_api, url_prefix='/api')
+app.register_blueprint(entrega_api, url_prefix='/api')
+
 
 CORS(app)
 
