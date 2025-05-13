@@ -33,7 +33,7 @@ def create_trabajador():
         nombre_trabajador=data['nombre_trabajador'],
         apellido_trabajador=data['apellido_trabajador'],
         correo=data['correo'],
-        contraseña_hash=data['contraseña_hash'],
+        contraseña_hash=password_hash,
         presente=data.get('presente', False),
         rol_admin=data.get('rol_admin', False),
         mesa_id_mesa=data['mesa_id_mesa']
