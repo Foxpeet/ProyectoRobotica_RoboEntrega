@@ -1,3 +1,4 @@
+import hashlib
 from flask import Blueprint, request, jsonify
 from extensions import db
 from models.trabajador import Trabajador
@@ -24,6 +25,9 @@ def get_trabajadores():
 def create_trabajador():
     data = request.get_json()
 
+    # Hashear la contraseña con SHA-256
+    password_raw = data['contraseña_hash']
+    password_hash = hashlib.sha256(password_raw.encode('utf-8')).hexdigest()
     nuevo = Trabajador(
         dni_trabajador=data['dni_trabajador'],
         nombre_trabajador=data['nombre_trabajador'],

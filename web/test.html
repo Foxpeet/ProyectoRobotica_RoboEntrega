@@ -109,6 +109,42 @@
             </div>
         </div>
 
+        <!-- Sección Mesas -->
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h2>🪑 Mesas</h2>
+            </div>
+            <div class="card-body">
+                <form id="mesaForm" class="mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" id="mesaLongitud" placeholder="Longitud" step="0.000001" required>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" id="mesaLatitud" placeholder="Latitud" step="0.000001" required>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-success w-100">Añadir</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID Mesa</th>
+                                <th>Longitud</th>
+                                <th>Latitud</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mesaTable">
+                            <!-- Datos se cargarán con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <!-- Console Log -->
         <div class="card">
             <div class="card-header bg-dark text-white">
@@ -124,7 +160,7 @@
     <script>
         // URL base de tu API Flask
         const API_URL = 'http://127.0.0.1:5000/api';
-        
+
         // Función para loguear en la consola visual
         function log(message) {
             const consoleElem = document.getElementById('console');
@@ -146,7 +182,6 @@
                         <td>${robot.numero_serie_robot}</td>
                         <td>${robot.bateria ? '✅' : '🔋'}</td>
                         <td>
-                            <!-- Aquí puedes agregar acciones adicionales como "Editar" -->
                             <button class="btn btn-sm btn-danger" disabled>Eliminar</button>
                         </td>
                     </tr>
@@ -184,66 +219,115 @@
                 log(`Error añadiendo robot: ${error}`);
             }
         });
-// Cargar trabajadores
-async function loadTrabajadores() {
-    try {
-        const response = await fetch(`${API_URL}/trabajadores`);
-        const trabajadores = await response.json();
 
-        const table = document.getElementById('trabajadorTable');
-        table.innerHTML = trabajadores.map(t => `
-            <tr>
-                <td>${t.dni_trabajador}</td>
-                <td>${t.nombre_trabajador}</td>
-                <td>${t.apellido_trabajador}</td>
-                <td>${t.correo}</td>
-                <td>${t.mesa_id_mesa}</td>
-            </tr>
-        `).join('');
+    // Cargar trabajadores
+    async function loadTrabajadores() {
+        try {
+            const response = await fetch(`${API_URL}/trabajadores`);
+            const trabajadores = await response.json();
 
-        log(`Cargados ${trabajadores.length} trabajadores`);
-    } catch (error) {
-        log(`Error cargando trabajadores: ${error}`);
-    }
-}
+            const table = document.getElementById('trabajadorTable');
+            table.innerHTML = trabajadores.map(t => `
+                <tr>
+                    <td>${t.dni_trabajador}</td>
+                    <td>${t.nombre_trabajador}</td>
+                    <td>${t.apellido_trabajador}</td>
+                    <td>${t.correo}</td>
+                    <td>${t.mesa_id_mesa}</td>
+                </tr>
+            `).join('');
 
-// Añadir nuevo trabajador
-document.getElementById('trabajadorForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const nuevoTrabajador = {
-        dni_trabajador: document.getElementById('trabajadorDNI').value,
-        nombre_trabajador: document.getElementById('trabajadorNombre').value,
-        apellido_trabajador: document.getElementById('trabajadorApellido').value,
-        correo: document.getElementById('trabajadorCorreo').value,
-        contraseña_hash: document.getElementById('trabajadorContraseña').value,
-        mesa_id_mesa: parseInt(document.getElementById('trabajadorMesa').value)
-    };
-
-    try {
-        const response = await fetch(`${API_URL}/trabajadores`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(nuevoTrabajador)
-        });
-
-        if (response.ok) {
-            loadTrabajadores();
-            e.target.reset();
-            log('Trabajador añadido correctamente');
+            log(`Cargados ${trabajadores.length} trabajadores`);
+        } catch (error) {
+            log(`Error cargando trabajadores: ${error}`);
         }
-    } catch (error) {
-        log(`Error añadiendo trabajador: ${error}`);
     }
-});
+
+    // Añadir nuevo trabajador
+    document.getElementById('trabajadorForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const nuevoTrabajador = {
+            dni_trabajador: document.getElementById('trabajadorDNI').value,
+            nombre_trabajador: document.getElementById('trabajadorNombre').value,
+            apellido_trabajador: document.getElementById('trabajadorApellido').value,
+            correo: document.getElementById('trabajadorCorreo').value,
+            contraseña_hash: document.getElementById('trabajadorContraseña').value,
+            mesa_id_mesa: parseInt(document.getElementById('trabajadorMesa').value)
+        };
+
+        try {
+            const response = await fetch(`${API_URL}/trabajadores`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(nuevoTrabajador)
+            });
+
+            if (response.ok) {
+                loadTrabajadores();
+                e.target.reset();
+                log('Trabajador añadido correctamente');
+            }
+        } catch (error) {
+            log(`Error añadiendo trabajador: ${error}`);
+        }
+    });
+
+        // Cargar mesas
+        async function loadMesas() {
+            try {
+                const response = await fetch(`${API_URL}/mesas`);
+                const mesas = await response.json();
+
+                const table = document.getElementById('mesaTable');
+                table.innerHTML = mesas.map(mesa => `
+                    <tr>
+                        <td>${mesa.id_mesa}</td>
+                        <td>${mesa.longitud_x}</td>
+                        <td>${mesa.latitud_y}</td>
+                    </tr>
+                `).join('');
+
+                log(`Cargadas ${mesas.length} mesas`);
+            } catch (error) {
+                log(`Error cargando mesas: ${error}`);
+            }
+        }
+
+        // Añadir nueva mesa
+        document.getElementById('mesaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nuevaMesa = {
+                longitud_x: parseFloat(document.getElementById('mesaLongitud').value),
+                latitud_y: parseFloat(document.getElementById('mesaLatitud').value)
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/mesas`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(nuevaMesa)
+                });
+
+                if (response.ok) {
+                    loadMesas();
+                    e.target.reset();
+                    log('Mesa añadida correctamente');
+                }
+            } catch (error) {
+                log(`Error añadiendo mesa: ${error}`);
+            }
+        });
 
         // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
             log('Aplicación iniciada');
             loadRobots();
             loadTrabajadores();
+            loadMesas();
         });
-        
+
     </script>
 </body>
 </html>

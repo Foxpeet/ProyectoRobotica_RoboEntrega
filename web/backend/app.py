@@ -5,6 +5,7 @@ from flask_cors import CORS
 import os
 from api.api_robot import robot_api
 from api.api_trabajador import trabajador_api
+from api.api_mesa import mesa_api
 
 app = Flask(__name__)
 
@@ -21,6 +22,7 @@ migrate = Migrate(app, db)
 # Registrar el Blueprint
 app.register_blueprint(robot_api, url_prefix='/api')
 app.register_blueprint(trabajador_api, url_prefix='/api')
+app.register_blueprint(mesa_api, url_prefix='/api')
 
 CORS(app)
 
