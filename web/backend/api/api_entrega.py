@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
-from models import Entrega
+from models.entregas import Entrega
 
 entrega_api = Blueprint('entrega_api', __name__)
 
