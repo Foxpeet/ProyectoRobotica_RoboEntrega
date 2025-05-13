@@ -5,6 +5,8 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
 from rclpy.node import Node
 from rclpy.qos import ReliabilityPolicy, QoSProfile
+from time import time
+
 
 class Ros2OpenCVImageConverter(Node):   
 
@@ -47,17 +49,28 @@ class Ros2OpenCVImageConverter(Node):
             area = cv2.contourArea(contorno)
             x, y, w, h = cv2.boundingRect(contorno)
             relacionDeAspecto = float(w)/h
-            if area > 700:
-                if relacionDeAspecto > 1.5:
-                    self.get_logger().info(f'Caja detectada - Area: {area}')
-                    cv2.rectangle(cv_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                    cv2.putText(cv_image, "Caja", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+            if area > 700 and relacionDeAspecto > 1.5:
+                current_time = time()
+
+                if not self.box_detected_last_frame or (current_time - self.last_box_time > self.detection_timeout):
+                    self.box_count += 1
+                    self.get_logger().info(f'Nueva caja detectada. Total: {self.box_count}')
+
+                self.last_box_time = current_time
+                self.box_detected_last_frame = True
+
+                cv2.rectangle(cv_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                cv2.putText(cv_image, f"Caja {self.box_count}", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+                    
             elif 10 < area < 500:
                 if 0.9 < relacionDeAspecto < 1.1:
                     self.get_logger().info(f'Mancha detectada - Área: {area}')
-                        cv2.rectangle(cv_image, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                        cv2.putText(cv_image, "Mancha", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
+                    cv2.rectangle(cv_image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                    cv2.putText(cv_image, "Mancha", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
+                    
 
+        if not any(cv2.contourArea(c) > 700 and float(cv2.boundingRect(c)[2]) / cv2.boundingRect(c)[3] > 1.5 for c in contornos):
+            self.box_detected_last_frame = False
 
         cv2.imshow("Imagen capturada por el robot", cv_image)
         #cv2.imshow("Imagen filtrada por color", res)
