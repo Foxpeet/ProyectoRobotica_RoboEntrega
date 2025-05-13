@@ -92,7 +92,8 @@ def generate_launch_description():
                             'planner_server',
                             'controller_server',
                             'recoveries_server',
-                            'bt_navigator'
+                            'bt_navigator',
+                            'waypoint_follower'
                         ]}]
         ),
         Node(
@@ -102,5 +103,13 @@ def generate_launch_description():
             arguments=['-d', rviz_config_dir],
             parameters=[{'use_sim_time': True}],
             output='screen'
-        )
+        ),
+
+        Node(
+            package='nav2_waypoint_follower',
+            executable='waypoint_follower',
+            name='waypoint_follower',
+            output='screen',
+            parameters=[nav2_yaml, {'use_sim_time': True}]
+        ),
     ])
