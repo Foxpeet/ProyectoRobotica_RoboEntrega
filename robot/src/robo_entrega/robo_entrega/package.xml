@@ -18,6 +18,8 @@
 <exec_depend>robo_entrega_provide_map</exec_depend>
 <exec_depend>robo_entrega_slam</exec_depend>
 <exec_depend>robo_entrega_nav_to_pose</exec_depend>
+<exec_depend>robo_entrega_capture_image</exec_depend>
+<exec_depend>robo_entrega_nodes_launcher</exec_depend>
 <export>
 <build_type>ament_cmake</build_type>
 </export>
