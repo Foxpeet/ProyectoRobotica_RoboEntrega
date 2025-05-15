@@ -23,7 +23,7 @@ function connect(){
       data.connected = false
       console.log("Conexion con ROSBridge cerrada")
       //Deshabilitar el boton de enviar una vez se desconecta de ros2
-      document.getElementById('sendCoordinatesButton').disabled = true;
+      //document.getElementById('sendCoordinatesButton').disabled = true;
   })
 }
 
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', event => {
     data.ros.on("close", () => {
         data.connected = false;
         console.log("Conexion con ROSBridge cerrada. Intentando reconectar en 5 segundos...");
-        document.getElementById('sendCoordinatesButton').disabled = true;
+        //document.getElementById('sendCoordinatesButton').disabled = true;
     
         setTimeout(() => {
             connect();
