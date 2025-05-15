@@ -1,6 +1,7 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import TimerAction
+from launch.actions import (TimerAction, RegisterEventHandler, ExecuteProcess,)
+from launch.event_handlers import OnProcessStart
 from ament_index_python.packages import get_package_share_directory
 import os
 
@@ -15,6 +16,28 @@ def generate_launch_description():
     nav2_yaml = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'my_nav2_params.yaml')
     map_file = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'my_map.yaml')
     rviz_config_dir = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'map.rviz')
+
+
+    #initial_pose_launch = Node(
+    #    package='robo_entrega_nav2_system',
+    #    executable='initial_pose_pub',
+    #    name='initial_pose_publisher',
+    #    output='screen',
+    #    parameters=[{'use_sim_time': True}]
+    #)
+    initial_pose_launch = ExecuteProcess(
+        cmd=['ros2', 'run', 'robo_entrega_nav2_system', 'initial_pose_pub', '--ros-args', '-p', 'use_sim_time:=True']
+    )
+    #load_map_launch = Node(
+    #    package='robo_entrega_provide_map',
+    #    executable='load_map_client',
+    #    name='load_map_client',
+    #    output='screen'
+    #)
+    load_map_launch = ExecuteProcess(
+        cmd=['ros2', 'run', 'robo_entrega_provide_map', 'load_map_client']
+    )
+        
 
     return LaunchDescription([
         Node(
@@ -31,26 +54,6 @@ def generate_launch_description():
             output='screen',
             parameters=[nav2_yaml]
         ),
-        TimerAction(
-            period=10.0,  # Esperar 10 segundos
-            actions=[Node(
-                package='robo_entrega_nav2_system',
-                executable='initial_pose_pub',
-                name='initial_pose_publisher',
-                output='screen',
-                parameters=[{'use_sim_time': True}]
-            )]
-        ),
-        TimerAction(
-            period=6.0,  # Esperar 6 segundos
-            actions=[Node(
-                package='robo_entrega_provide_map',
-                executable='load_map_client',
-                name='load_map_client',
-                output='screen'
-            )]
-        ),
-
         Node(
             package='nav2_planner',
             executable='planner_server',
@@ -96,6 +99,7 @@ def generate_launch_description():
                             'waypoint_follower'
                         ]}]
         ),
+
         Node(
             package='rviz2',
             executable='rviz2',
@@ -112,4 +116,17 @@ def generate_launch_description():
             output='screen',
             parameters=[nav2_yaml, {'use_sim_time': True}]
         ),
+
+        TimerAction(
+            period=5.0,
+            actions=[load_map_launch]
+        ),
+
+        RegisterEventHandler(
+            OnProcessStart(
+                target_action=load_map_launch,
+                on_start=[initial_pose_launch]
+            )
+        )
+        
     ])
