@@ -17,23 +17,9 @@ def generate_launch_description():
     map_file = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'my_map.yaml')
     rviz_config_dir = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'map.rviz')
 
-
-    #initial_pose_launch = Node(
-    #    package='robo_entrega_nav2_system',
-    #    executable='initial_pose_pub',
-    #    name='initial_pose_publisher',
-    #    output='screen',
-    #    parameters=[{'use_sim_time': True}]
-    #)
     initial_pose_launch = ExecuteProcess(
         cmd=['ros2', 'run', 'robo_entrega_nav2_system', 'initial_pose_pub', '--ros-args', '-p', 'use_sim_time:=True']
     )
-    #load_map_launch = Node(
-    #    package='robo_entrega_provide_map',
-    #    executable='load_map_client',
-    #    name='load_map_client',
-    #    output='screen'
-    #)
     load_map_launch = ExecuteProcess(
         cmd=['ros2', 'run', 'robo_entrega_provide_map', 'load_map_client']
     )
