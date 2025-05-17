@@ -20,7 +20,7 @@ def generate_launch_description():
 
     #nodo nav_to_pose
     launch_nav_to_pose = ExecuteProcess(
-        cmd=['ros2', 'launch', 'robo_entrega_nav_to_pose', 'nav_to_pose_subscriber.launch.py']
+        cmd=['ros2', 'launch', 'robo_entrega_nav_to_pose', 'nav_to_pose_service.launch.py']
     )
 
     #nodo_nav2_system/tb3
@@ -157,10 +157,10 @@ def generate_launch_description():
         ),
 
         # --- waypoints ---
-        RegisterEventHandler(
-            OnProcessStart(
-                target_action=launch_capture_image,
-                on_start=[launch_waypoints]
-            )
-        ),
+        #RegisterEventHandler(
+        #    OnProcessStart(
+        #        target_action=launch_capture_image,
+        #        on_start=[launch_waypoints]
+        #    )
+        #),
     ])

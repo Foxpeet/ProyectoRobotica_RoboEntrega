@@ -18,12 +18,12 @@ setup(
     zip_safe=True,
     maintainer='equipo1',
     maintainer_email='equipo1@gmail.com',
-    description='Suscriptor a /navigate_goal que controla la navegación del robot.',
+    description='Servicio que se suscribe a /navigate_goal que insica al robot a donde ir en un determinado momento.',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'nav_to_pose_subscriber = robo_entrega_nav_to_pose.nav_to_pose_subscriber:main'
+            'nav_to_pose_service = robo_entrega_nav_to_pose.nav_to_pose_service:main'
         ],
     },
 )

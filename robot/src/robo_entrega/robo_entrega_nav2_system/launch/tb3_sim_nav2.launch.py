@@ -104,7 +104,7 @@ def generate_launch_description():
         ),
 
         TimerAction(
-            period=5.0,
+            period=10.0,
             actions=[load_map_launch]
         ),
 
