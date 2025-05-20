@@ -8,9 +8,10 @@ class Entrega(db.Model):
     tipo = db.Column(db.String(45), nullable=False)
     dni_origen = db.Column(db.String(45), nullable=True)
     dni_destino = db.Column(db.String(45), nullable=False)
+    completado = db.Column(db.Boolean, default=False, nullable=False)  # Nuevo campo
 
     robot_id_robot = db.Column(db.Integer, db.ForeignKey('robot.id_robot'), nullable=False)
-    trabajador_dni_trabajador = db.Column(db.String(9), db.ForeignKey('trabajador.dni_trabajador'), nullable=False)
 
+    # Relación con Paquete y Documento (se mantienen)
     paquetes = db.relationship("Paquete", backref="entrega")
     documentos = db.relationship("Documento", backref="entrega")
