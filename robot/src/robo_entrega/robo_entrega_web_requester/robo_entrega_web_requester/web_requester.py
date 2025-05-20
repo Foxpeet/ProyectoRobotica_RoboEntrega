@@ -9,7 +9,7 @@ class ApiClientNode(Node):
         self.timer = self.create_timer(10.0, self.call_api)
 
     def call_api(self):
-        url = 'http://127.0.0.1:5000/api/trabajadores/no_admin' 
+        url = 'http://127.0.0.1:5000/api/entregas/nocompletadas' 
         try:
             response = requests.get(url)
             response.raise_for_status()
