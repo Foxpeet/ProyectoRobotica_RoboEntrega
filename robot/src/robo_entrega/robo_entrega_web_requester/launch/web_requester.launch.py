@@ -8,6 +8,6 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='robo_entrega_web_requester',
-            executable='',
+            executable='web_requester',
             output='screen'),
     ])

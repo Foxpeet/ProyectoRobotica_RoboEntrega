@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            '--------- = robo_entrega_web_requester.------:main',
+            'web_requester = robo_entrega_web_requester.web_requester:main',
         ],
     },
 )
