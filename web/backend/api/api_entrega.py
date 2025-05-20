@@ -1,38 +1,42 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
 from models.entregas import Entrega
+from datetime import time
 
-entrega_api = Blueprint('entrega_api', __name__)
+entrega_api = Blueprint('api_entrega', __name__)
 
-@entrega_api.route('/api/entregas', methods=['POST'])
-def create_entrega():
-    data = request.get_json()
 
-    # Verificar que los campos necesarios estén presentes en la solicitud
-    if not all(key in data for key in ('hora', 'tipo', 'dni_destino', 'robot_id_robot', 'trabajador_dni_trabajador')):
-        return jsonify({'error': 'Faltan campos obligatorios'}), 400
-
+@entrega_api.route('/entregas/nocompletadas', methods=['GET'])
+def get_entregas_no_completadas():
     try:
-        # Crear una nueva entrega
-        nueva_entrega = Entrega(
-            hora=data['hora'],
-            tipo=data['tipo'],
-            dni_origen=data.get('dni_origen', None),  # dni_origen es opcional
-            dni_destino=data['dni_destino'],
-            robot_id_robot=data['robot_id_robot'],
-            trabajador_dni_trabajador=data['trabajador_dni_trabajador']
-        )
-
-        # Agregar la entrega a la sesión de la base de datos
-        db.session.add(nueva_entrega)
-        db.session.commit()
-
+        # Obtener entregas no completadas ordenadas de más antigua a más nueva
+        entregas = Entrega.query.filter_by(completado=False)\
+                              .order_by(Entrega.hora.asc())\
+                              .all()
+        
+        entregas_data = [{
+            'id_entrega': e.id_entrega,
+            'hora': e.hora.isoformat() if e.hora else None,
+            'tipo': e.tipo,
+            'dni_origen': e.dni_origen,
+            'dni_destino': e.dni_destino,  # Corregido: era 'destino' en tu modelo original
+            'completado': e.completado,
+            'robot_id_robot': e.robot_id_robot,
+            # Puedes añadir campos relacionados si lo necesitas
+            # 'paquetes': [p.id_paquete for p in e.paquetes],
+            # 'documentos': [d.id_documento for d in e.documentos]
+        } for e in entregas]
+        
         return jsonify({
-            'message': 'Entrega creada exitosamente',
-            'id_entrega': nueva_entrega.id_entrega
-        }), 201
-
-    except Exception as e:
-        # Manejar errores
-        db.session.rollback()
-        return jsonify({'error': str(e)}), 500
+            'success': True,
+            'data': entregas_data,
+            'count': len(entregas_data),
+            'message': 'Entregas no completadas ordenadas por hora (antiguas primero)'
+        }), 200
+        
+    except SQLAlchemyError as e:
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'message': 'Error de base de datos'
+        }), 500
