@@ -11,5 +11,3 @@ class Trabajador(db.Model):
     presente = db.Column(db.Boolean, default=False, nullable=False)
     rol_admin = db.Column(db.Boolean, default=False, nullable=False)
     mesa_id_mesa = db.Column(db.Integer, db.ForeignKey('mesa.id_mesa'), nullable=False)
-
-    entregas = db.relationship("Entrega", backref="trabajador")
