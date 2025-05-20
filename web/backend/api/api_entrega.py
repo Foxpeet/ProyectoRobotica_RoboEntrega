@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
 from models.entregas import Entrega
-from datetime import time
+from models.trabajador import Trabajador
+from models.mesa import Mesa
 
 entrega_api = Blueprint('api_entrega', __name__)
 
@@ -60,6 +61,33 @@ def get_entregas_ubicaciones():
             'success': True,
             'data': ubicaciones_data,
             'count': len(ubicaciones_data)
+        }), 200
+
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        return jsonify({
+            'success': False,
+            'error': 'Database error',
+            'message': str(e)
+        }), 500
+
+
+@entrega_api.route('/entregas/completar/<int:id_entrega>', methods=['PUT'])
+def completar_entrega(id_entrega):
+    try:
+        entrega = Entrega.query.get(id_entrega)
+        if not entrega:
+            return jsonify({
+                'success': False,
+                'error': 'Entrega no encontrada'
+            }), 404
+
+        entrega.completado = True
+        db.session.commit()
+
+        return jsonify({
+            'success': True,
+            'message': f'Entrega {id_entrega} marcada como completada.'
         }), 200
 
     except SQLAlchemyError as e:
