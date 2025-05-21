@@ -41,6 +41,8 @@ class NavToPoseService(Node):
         )
         self.srv = self.create_service(NavPoseSrv, 'nav_to_pose_srv', self.service_callback)
         self.get_logger().info('Nodo listo y escuchando en /navigate_goal')
+        self.waiting = False
+        self.service_done = False
 
     def goal_callback(self, msg):
         self.check_topic_values(msg)
@@ -49,6 +51,7 @@ class NavToPoseService(Node):
 
     def service_callback(self, request, response):
         try:
+            self.service_done = False
             self.check_topic_values(request)
             x, y, w_deg = request.data
 
@@ -64,21 +67,26 @@ class NavToPoseService(Node):
             w_rad = radians(w_deg)
             goal_msg.pose.pose.orientation.z = sin(w_rad / 2.0)
             goal_msg.pose.pose.orientation.w = cos(w_rad / 2.0)
-            self.get_logger().info(f"Mando goal")
 
-            goal_future = self._action_client.send_goal_async(goal_msg, feedback_callback=self.feedback_callback)
-            goal_future.add_done_callback(self.goal_response_callback)
-            while not goal_future.done():
-                rclpy.spin_once(self, timeout_sec=3)
-                self.get_logger().info(f'Goal1 {goal_future.result()}')
+            self.get_logger().info(f'Enviando Goal: x={x}, y={y}, w={w_deg}°')
+            send_goal_future = self._action_client.send_goal_async(
+                goal_msg,
+                feedback_callback=self.feedback_callback
+            )
+            self.get_logger().info('comprobacion 1')
+            send_goal_future.add_done_callback(self.goal_response_callback)
+            self.get_logger().info('comprobacion 2')
+            self.waiting = True
+            while self.waiting:
+                self.waiting
+            if self.service_done == True:
+                response.success = True
+            else:
+                response.success = False
+            
+            self.get_logger().info('comprobacion 8')
+            
 
-            goal_handle = goal_future.result()
-
-            self.get_logger().info('Goal aceptado, esperando resultado...')
-            get_result_future = goal_handle.get_result_async()
-            rclpy.spin_until_future_complete(self, get_result_future)
-            response.success = True
-            return response
         except Exception as e:
             self.get_logger().error(f'Error en el servicio: {e}')
             response.success = False
@@ -106,21 +114,27 @@ class NavToPoseService(Node):
         send_goal_future.add_done_callback(self.goal_response_callback)
 
     def goal_response_callback(self, future):
+        self.get_logger().info('comprobacion 3')
         goal_handle = future.result()
+        self.get_logger().info('comprobacion 4')
         if not goal_handle.accepted:
             self.get_logger().warn('Goal rechazado')
+            self.waiting = False
+            self.service_done = False
             return
 
+        self.get_logger().info('comprobacion 5')
         self.get_logger().info('Goal aceptado, esperando resultado...')
         get_result_future = goal_handle.get_result_async()
+        self.get_logger().info('comprobacion 6')
         get_result_future.add_done_callback(self.get_result_callback)
 
     def get_result_callback(self, future):
+        self.get_logger().info('comprobacion 7')
         result = future.result().result
         self.get_logger().info(f'Navegación completada con estado: {result}')
-        self._pending_response.success = True
-        self.get_logger().info(f'Navegación servicio: {self._pending_response.success}')
-        return self._pending_response
+        self.service_done = True
+        self.waiting = False
 
     def feedback_callback(self, feedback_msg):
         feedback = feedback_msg.feedback
