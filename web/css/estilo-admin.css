@@ -1,0 +1,130 @@
+.titulo-principal {
+    text-align: center;
+    font-size: 32px;
+    color: #0c5786;
+    margin-bottom: 40px;
+  }
+  
+  .admin-card {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-card h2 {
+    margin-bottom: 15px;
+    color: #0c5786;
+  }
+  
+  .admin-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .admin-form input,
+  .admin-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .btn-azul {
+    background-color: #5ba8df;
+    color: black;
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .btn-azul:hover {
+    background-color: #6590bb;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .admin-table th {
+    background-color: #aad3f2;
+  }
+  
+  #console {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    height: 200px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+  }
+
+  .edit-button, .delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .edit-button img,
+  .delete-button img {
+    width: 24px;
+    height: 24px;
+  }
+  /* Botones con iconos estilo página usuarios */
+.edit-button,
+.delete-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.edit-button img,
+.delete-button img {
+  width: 22px;
+  height: 22px;
+}
+
+/* Tabla ajustada */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.admin-table th, .admin-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.admin-table th {
+  background-color: #5ba8df;
+  color: white;
+}
+
+/* Formulario admin */
+.admin-form input, .admin-form select, .admin-form button {
+  margin: 5px 5px 10px 0;
+  padding: 8px;
+  font-size: 15px;
+}
+
+/* El modal ya lo tienes en el style del HTML */
+
+  
+  
