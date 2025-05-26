@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel Administración - RoboEntrega</title>
+  <link rel="stylesheet" href="css/estilo-comun.css" />
+  <link rel="stylesheet" href="css/estilo-landing.css" />
+  <link rel="stylesheet" href="css/estilo-admin.css" />
+  <style>
+    /* Modal base */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 320px;
+      max-width: 90%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn-azul {
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-azul:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header id="main-header">
+    <a href="index.html" id="home-link">
+      <img src="img/logo.png" alt="Logo de RoboEntrega" class="logo" id="header-logo" />
+    </a>
+    <nav id="header-nav">
+      <ul id="header-nav-list">
+        <li><a href="iniciarSesion.html" id="header-login-link">Iniciar Sesión</a></li>
+        <li><a href="contacto.html" id="header-contact-link">Contáctanos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <h1 class="titulo-principal">Panel de Administración</h1>
+
+    <!-- ROBOTS -->
+    <section class="admin-card">
+      <h2>🤖 Robots</h2>
+      <form id="robotForm" class="admin-form">
+        <input type="text" id="robotModel" placeholder="Modelo" required />
+        <input type="text" id="robotSerial" placeholder="Número de serie" required />
+        <button type="submit" class="btn-azul">Añadir Robot</button>
+      </form>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Modelo</th>
+            <th>N° Serie</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="robotTable"></tbody>
+      </table>
+    </section>
+
+    <!-- TRABAJADORES -->
+    <section class="admin-card">
+      <h2>👷 Trabajadores</h2>
+      <form id="workerForm" class="admin-form">
+        <input type="text" id="workerDNI" placeholder="DNI" required />
+        <input type="text" id="workerName" placeholder="Nombre" required />
+        <input type="text" id="workerLastName" placeholder="Apellido" required />
+        <input type="email" id="workerEmail" placeholder="Correo electrónico" required />
+        <input type="password" id="workerPassword" placeholder="Contraseña" required />
+        <button type="submit" class="btn-azul">Añadir Trabajador</button>
+      </form>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Contraseña</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="workerTable"></tbody>
+      </table>
+    </section>
+
+    <!-- CABINAS -->
+    <section class="admin-card">
+      <h2>🪑 Cabinas</h2>
+      <form id="deskForm" class="admin-form">
+        <input type="number" step="any" id="deskLongitude" placeholder="Longitud" required />
+        <input type="number" step="any" id="deskLatitude" placeholder="Latitud" required />
+        <button type="submit" class="btn-azul">Añadir Cabina</button>
+      </form>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Longitud</th>
+            <th>Latitud</th>
+          </tr>
+        </thead>
+        <tbody id="deskTable"></tbody>
+      </table>
+    </section>
+
+    <!-- CONSOLA -->
+    <section class="admin-card">
+      <h2>Actividad</h2>
+      <pre id="console"></pre>
+    </section>
+  </main>
+
+  <!-- MODAL EDITAR TRABAJADOR -->
+  <div id="editWorkerModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="closeEditWorkerModal" class="close">&times;</span>
+      <h3>Editar Trabajador</h3>
+      <form id="editWorkerForm">
+        <input type="hidden" id="editWorkerId" />
+        <input type="text" id="editWorkerDNI" placeholder="DNI" required />
+        <input type="text" id="editWorkerName" placeholder="Nombre" required />
+        <input type="text" id="editWorkerLastName" placeholder="Apellido" required />
+        <input type="email" id="editWorkerEmail" placeholder="Correo electrónico" required />
+        <input type="password" id="editWorkerPassword" placeholder="Contraseña" required />
+        <button type="submit" class="btn-azul">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL ASIGNAR CABINA -->
+  <div id="changeDeskModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="closeChangeDeskModal" class="close">&times;</span>
+      <h3>Asignar Cabina</h3>
+      <select id="deskSelect" style="width: 100%; padding: 6px; font-size: 14px;"></select>
+      <br /><br />
+      <button id="confirmChangeDeskBtn" class="btn-azul">Asignar</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="home-footer">
+    <div id="footer-content">
+      <div id="footer-copyright">
+        <img src="img/logo.png" alt="Logo RoboEntrega" />
+        <p>© Copyright RoboEntrega</p>
+      </div>
+      <article id="redessociales">
+        <a href="http://www.facebook.com/"><img src="img/facebook.png" alt="Facebook" id="img-redsocial" /></a>
+        <a href="http://www.instagram.com/"><img src="img/instagram.png" alt="Instagram" id="img-redsocial" /></a>
+        <a href="http://www.x.com/"><img src="img/twitter_X.png" alt="Twitter_X" id="img-redsocial" /></a>
+      </article>
+    </div>
+  </footer>
+
+  <script src="js/AdminPage.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
