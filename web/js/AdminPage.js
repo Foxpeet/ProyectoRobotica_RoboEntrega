@@ -28,6 +28,7 @@ const closeChangeDeskModal = document.getElementById("closeChangeDeskModal");
 const deskSelect = document.getElementById("deskSelect");
 const confirmChangeDeskBtn = document.getElementById("confirmChangeDeskBtn");
 
+const API_URL = 'http://127.0.0.1:5000/api';
 // --- FUNCIONES DE NOTIFICACIÓN ---
 function showNotification(message, isError = false) {
   // Crear el div si no existe
@@ -259,41 +260,91 @@ confirmChangeDeskBtn.addEventListener("click", () => {
   }
 });
 
-// --- FUNCIONES CABINAS ---
-function renderDesks() {
-  deskTable.innerHTML = "";
-  desks.forEach((desk) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${desk.id}</td>
-      <td>${desk.longitude}</td>
-      <td>${desk.latitude}</td>
-    `;
-    deskTable.appendChild(tr);
-  });
+// --- FUNCIONES CABINAS CON API ---
+async function renderDesks() {
+  try {
+    const response = await fetch(`${API_URL}/mesas`);
+    
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`);
+    }
+    
+    const desks = await response.json();
+        if (!Array.isArray(desks)) {
+      throw new Error("Formato de respuesta inválido: se esperaba un array");
+    }
+    
+    if (desks.length === 0) {
+      deskTable.innerHTML = `
+        <tr>
+          <td colspan="3" class="no-data">
+            No hay cabinas registradas
+          </td>
+        </tr>`;
+      log("Lista de cabinas vacía recibida de la API");
+      return;
+    }
+    
+    // 5. Generar el HTML de la tabla
+    deskTable.innerHTML = desks.map(desk => `
+      <tr>
+        <td>${desk.id_mesa}</td>
+        <td>${desk.longitud_x}</td>
+        <td>${desk.latitud_y}</td>
+      </tr>
+    `).join('');
+    
+    log(`✅ ${desks.length} cabinas cargadas desde API`);
+    
+  } catch (error) {
+    deskTable.innerHTML = `
+      <tr>
+        <td colspan="3" class="error-message">
+          Error al cargar cabinas: ${error.message}
+        </td>
+      </tr>`;
+    
+    log(`❌ Error al cargar cabinas: ${error}`);
+    console.error("Error en renderDesks:", error);
+  }
 }
 
-deskForm.addEventListener("submit", (e) => {
+  document.getElementById('deskForm').addEventListener('submit',(e) => {
   e.preventDefault();
-  const longitude = parseFloat(document.getElementById("deskLongitude").value);
-  const latitude = parseFloat(document.getElementById("deskLatitude").value);
-  if (isNaN(longitude) || isNaN(latitude)) {
+
+  const nuevaMesa = {
+    longitud_x: parseFloat(document.getElementById('deskLongitude').value),
+    latitud_y: parseFloat(document.getElementById('deskLatitude').value)
+  };
+
+  if (isNaN(nuevaMesa.longitud_x) || isNaN(nuevaMesa.latitud_y)) {
     alert("Por favor, introduce valores válidos para longitud y latitud.");
     return;
   }
-  desks.push({ id: nextDeskId++, longitude, latitude });
-  log(`Cabina añadida: Longitud ${longitude}, Latitud ${latitude}`);
-  deskForm.reset();
-  renderDesks();
-  showNotification(`Cabina añadida: Longitud ${longitude}, Latitud ${latitude}`);
+  
+  try {
+    const response = fetch(`${API_URL}/mesas`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nuevaMesa)
+    });
+
+    if (response.ok) {
+        loadMesas();
+        e.target.reset();
+        log('Mesa añadida correctamente');
+    }
+} catch (error) {
+    log(`Error añadiendo mesa: ${error}`);
+}
 });
 
-// --- Consola de actividad ---
-function log(text) {
-  const date = new Date().toLocaleTimeString();
-  consoleLog.textContent += `[${date}] ${text}\n`;
-  consoleLog.scrollTop = consoleLog.scrollHeight;
-}
+// Función para loguear en la consola visual
+        function log(message) {
+            const consoleElem = document.getElementById('console');
+            consoleElem.innerHTML += `${new Date().toLocaleTimeString()}: ${message}\n`;
+            consoleElem.scrollTop = consoleElem.scrollHeight;
+        }
 
 // Inicializamos las tablas vacías
 renderRobots();
