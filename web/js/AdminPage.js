@@ -204,7 +204,7 @@ editWorkerForm.addEventListener("submit", (e) => {
     workers[workerIndex].name = name;
     workers[workerIndex].lastName = lastName;
     workers[workerIndex].email = email;
-    workers[workerIndex].password = password;
+    workers[workerIndex].password = password;/*Aquí tienes dos modales simples en HTML y CSS (puedes añadir JavaScript si quieres que se cierren al hacer clic o automáticamente). Uno para éxito y otro para error:*/
     log(`Trabajador "${name} ${lastName}" modificado.`);
     renderWorkers();
     editWorkerModal.style.display = "none";
@@ -309,35 +309,83 @@ async function renderDesks() {
   }
 }
 
-  document.getElementById('deskForm').addEventListener('submit',(e) => {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('deskForm');
 
-  const nuevaMesa = {
-    longitud_x: parseFloat(document.getElementById('deskLongitude').value),
-    latitud_y: parseFloat(document.getElementById('deskLatitude').value)
-  };
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (isNaN(nuevaMesa.longitud_x) || isNaN(nuevaMesa.latitud_y)) {
-    alert("Por favor, introduce valores válidos para longitud y latitud.");
-    return;
-  }
-  
-  try {
-    const response = fetch(`${API_URL}/mesas`, {
+    const nuevaMesa = {
+      longitud_x: parseFloat(document.getElementById('deskLongitude').value),
+      latitud_y: parseFloat(document.getElementById('deskLatitude').value)
+    };
+
+    if (isNaN(nuevaMesa.longitud_x) || isNaN(nuevaMesa.latitud_y)) {
+      mostrarError("Por favor, introduce valores válidos para longitud y latitud.", "deskForm");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/mesas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevaMesa)
-    });
+      });
 
-    if (response.ok) {
-        loadMesas();
-        e.target.reset();
-        log('Mesa añadida correctamente');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error desconocido al añadir mesa");
+      }
+
+      mostrarExito("Mesa añadida correctamente", "deskForm");
+      if (typeof log === "function") {
+        log("Mesa añadida correctamente");
+      }
+
+    } catch (error) {
+      mostrarError(`Error añadiendo mesa: ${error.message}`, "deskForm");
+
+      if (typeof log === "function") {
+        log(`❌ Error añadiendo mesa: ${error}`);
+      }
     }
-} catch (error) {
-    log(`Error añadiendo mesa: ${error}`);
-}
+  });
 });
+
+
+//Funcion de modal exito o error
+function mostrarExito(mensaje, formId = null) {
+  console.log("mostrarExito llamada con mensaje:", mensaje);
+  const modal = document.getElementById("modal-exito");
+  modal.querySelector("p").innerText = mensaje;
+  modal.classList.add("mostrar");
+
+  if (formId) {
+    const form = document.getElementById(formId);
+    if (form) form.reset();
+  }
+}
+
+function mostrarError(mensaje, formId = null) {
+  console.log("mostrarError llamada con mensaje:", mensaje);
+  const modal = document.getElementById("modal-error");
+  modal.querySelector("p").innerText = mensaje;
+  modal.classList.add("mostrar");
+
+  if (formId) {
+    const form = document.getElementById(formId);
+    if (form) form.reset();
+  }
+}
+
+
+function cerrarModal(id) {
+  const modal = document.getElementById(id);
+  modal.classList.remove("mostrar");
+  location.reload(); // Recarga la página al cerrar el modal
+}
+
+
 
 // Función para loguear en la consola visual
         function log(message) {

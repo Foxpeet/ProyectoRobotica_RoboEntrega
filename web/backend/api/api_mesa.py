@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from sqlalchemy.exc import IntegrityError
 from extensions import db
 from models.mesa import Mesa
 
@@ -10,8 +11,8 @@ def get_mesas():
     return jsonify([
         {
             'id_mesa': m.id_mesa,
-            'longitud_x': str(m.longitud_x),  
-            'latitud_y': str(m.latitud_y)    
+            'longitud_x': str(m.longitud_x),
+            'latitud_y': str(m.latitud_y)
         }
         for m in mesas
     ])
@@ -24,7 +25,18 @@ def create_mesa():
         longitud_x=data['longitud_x'],
         latitud_y=data['latitud_y']
     )
+    
     db.session.add(nueva_mesa)
-    db.session.commit()
+
+    try:
+        db.session.commit()
+    except IntegrityError as e:
+        db.session.rollback()
+
+        # Versión robusta para SQLite
+        if 'UNIQUE constraint failed: mesa.longitud_x, mesa.latitud_y' in str(e.orig):
+            return jsonify({'message': 'Este lugar ya tiene una cabina.'}), 400
+        else:
+            return jsonify({'message': 'Error al guardar la mesa.'}), 500
 
     return jsonify({'message': 'Mesa añadida correctamente'}), 201
