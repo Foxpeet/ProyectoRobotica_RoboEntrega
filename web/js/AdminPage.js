@@ -186,7 +186,6 @@ async function renderWorkers() {
   }
 }
 
-// Función para eliminar trabajador (separada para mejor organización)
 async function deleteWorker(dni) {
   try {
     const response = await fetch(`${API_URL}/trabajadores/${dni}`, {
@@ -208,31 +207,71 @@ async function deleteWorker(dni) {
 }
 
 
-workerForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const dni = document.getElementById("workerDNI").value.trim();
-  const name = document.getElementById("workerName").value.trim();
-  const lastName = document.getElementById("workerLastName").value.trim();
-  const email = document.getElementById("workerEmail").value.trim();
-  const password = document.getElementById("workerPassword").value;
-  if (!dni || !name || !lastName || !email || !password) {
-    alert("Por favor, rellena todos los campos.");
-    return;
+
+// Event Listener for the form submission
+workerForm.addEventListener("submit", async (e) => {
+  e.preventDefault();  // Prevent default form submission
+
+  const nuevoTrabajador = {
+    dni_trabajador: document.getElementById('workerDNI').value,
+    nombre_trabajador: document.getElementById('workerName').value,
+    apellido_trabajador: document.getElementById('workerLastName').value,
+    correo: document.getElementById('workerEmail').value,
+    contraseña: document.getElementById('workerPassword').value,
+};
+
+  // Basic validation for empty fields
+  if (!nuevoTrabajador.dni_trabajador || 
+      !nuevoTrabajador.nombre_trabajador || 
+      !nuevoTrabajador.apellido_trabajador || 
+      !nuevoTrabajador.correo || 
+      !nuevoTrabajador.contraseña) {
+      mostrarError("Por favor, rellena todos los campos obligatorios");
+      return;
   }
-  workers.push({
-    id: nextWorkerId++,
-    dni,
-    name,
-    lastName,
-    email,
-    password,
-    assignedDeskId: null,
-  });
-  log(`Trabajador "${name} ${lastName}" añadido.`);
-  workerForm.reset();
-  renderWorkers();
-  showNotification(`Trabajador "${name} ${lastName}" añadido correctamente.`);
+
+  // Validate DNI format (8 digits + 1 letter)
+  if (!/^[0-9]{8}[A-Za-z]$/.test(nuevoTrabajador.dni_trabajador)) {
+      mostrarError("El DNI debe tener 8 números y 1 letra");
+      return;
+  }
+
+  // Validate email format
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nuevoTrabajador.correo)) {
+      mostrarError("Por favor, introduce un email válido");
+      return;
+  }
+
+  // Send the data to the backend API
+  try {
+      const response = await fetch(`${API_URL}/trabajadores`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(nuevoTrabajador)
+      });
+
+      if (response.ok) {
+          // Assuming renderWorkers is a function that refreshes the list of workers
+          renderWorkers();
+          e.target.reset();  // Reset the form fields
+          mostrarExito('Trabajador añadido correctamente');
+      } else {
+          const responseData = await response.json();
+          // Custom error handling for specific error messages
+          if (responseData.message.includes('DNI')) {
+              mostrarError("El DNI ya está registrado.");
+          } else if (responseData.message.includes('correo')) {
+              mostrarError("El correo electrónico ya está registrado.");
+          } else {
+              mostrarError(`Error: ${responseData.message || 'Error desconocido'}`);
+          }
+      }
+  } catch (error) {
+      mostrarError(`Error añadiendo trabajador: ${error}`);
+  }
 });
+
+
 
 // --- MODAL EDITAR TRABAJADOR ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -290,24 +329,52 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- MODAL ASIGNAR CABINA ---
 let currentWorkerForDesk = null;
 
-function openChangeDeskModal(worker) {
+async function openChangeDeskModal(worker) {
   currentWorkerForDesk = worker;
   changeDeskModal.style.display = "flex";
-  deskSelect.innerHTML = "";
-  if (desks.length === 0) {
-    const option = document.createElement("option");
-    option.textContent = "No hay cabinas disponibles";
-    option.disabled = true;
-    deskSelect.appendChild(option);
-    confirmChangeDeskBtn.disabled = true;
-  } else {
-    desks.forEach((desk) => {
+  deskSelect.innerHTML = ""; // Limpiar el select
+  
+  try {
+    // Llamar a la API para obtener las mesas y su estado
+    const response = await fetch('/mesas_con_trabajadores');
+    if (!response.ok) {
+      throw new Error("Error al obtener las mesas.");
+    }
+
+    const desks = await response.json(); // Obtener los datos de las mesas
+
+    // Si no hay mesas, mostrar un mensaje
+    if (desks.length === 0) {
       const option = document.createElement("option");
-      option.value = desk.id;
-      option.textContent = `ID ${desk.id} - Lon: ${desk.longitude}, Lat: ${desk.latitude}`;
+      option.textContent = "No hay cabinas disponibles";
+      option.disabled = true;
       deskSelect.appendChild(option);
-    });
-    confirmChangeDeskBtn.disabled = false;
+      confirmChangeDeskBtn.disabled = true;
+    } else {
+      // Recorrer todas las mesas y crear las opciones
+      desks.forEach((desk) => {
+        const option = document.createElement("option");
+        option.value = desk.id_mesa; // Usamos 'id_mesa' como valor
+        
+        // Crear el texto de la opción
+        option.textContent = `ID ${desk.id_mesa} - Lon: ${desk.longitud_x}, Lat: ${desk.latitud_y}`;
+        
+        // Si la mesa está ocupada, deshabilitar la opción
+        if (desk.ocupada) {
+          option.disabled = true;
+          option.textContent += " (Ocupada)";
+        }
+
+        // Añadir la opción al select
+        deskSelect.appendChild(option);
+      });
+
+      // Habilitar o deshabilitar el botón de confirmación según disponibilidad
+      confirmChangeDeskBtn.disabled = !desks.some(desk => !desk.ocupada); // Habilitar solo si hay mesas libres
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un problema al cargar las mesas.");
   }
 }
 
@@ -318,22 +385,17 @@ closeChangeDeskModal.addEventListener("click", () => {
 
 confirmChangeDeskBtn.addEventListener("click", () => {
   if (!currentWorkerForDesk) return;
+
   const selectedDeskId = parseInt(deskSelect.value);
   if (isNaN(selectedDeskId)) {
     alert("Selecciona una cabina válida.");
     return;
   }
-  // Asignar cabina
-  const workerIndex = workers.findIndex((w) => w.id === currentWorkerForDesk.id);
-  if (workerIndex >= 0) {
-    workers[workerIndex].assignedDeskId = selectedDeskId;
-    log(`Trabajador "${workers[workerIndex].name}" asignado a cabina ID ${selectedDeskId}.`);
-    changeDeskModal.style.display = "none";
-    currentWorkerForDesk = null;
-    renderWorkers();
-    showNotification(`Trabajador "${workers[workerIndex].name}" asignado a cabina ID ${selectedDeskId}.`);
-  }
+
+  // Aquí puedes agregar el código para realizar la asignación del trabajador a la mesa
+  // Por ejemplo, puedes hacer una llamada API para asignar el trabajador a la mesa seleccionada
 });
+
 
 // --- FUNCIONES CABINAS CON API ---
 async function renderDesks() {

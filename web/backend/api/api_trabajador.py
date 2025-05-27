@@ -22,13 +22,26 @@ def get_trabajadores():
         for t in trabajadores
     ])
 
+
 @trabajador_api.route('/trabajadores', methods=['POST'])
 def create_trabajador():
     data = request.get_json()
 
-    # Hashear la contraseña con SHA-256
-    password_raw = data['contraseña_hash']
+    # Verificar si el trabajador con el mismo DNI ya existe
+    trabajador_existente = Trabajador.query.filter_by(dni_trabajador=data['dni_trabajador']).first()
+    if trabajador_existente:
+        return jsonify({'message': f'El DNI {data["dni_trabajador"]} ya está registrado como {trabajador_existente.nombre_trabajador} {trabajador_existente.apellido_trabajador}.'}), 400
+    
+    # Verificar si el trabajador con el mismo correo electrónico ya existe
+    trabajador_correo_existente = Trabajador.query.filter_by(correo=data['correo']).first()
+    if trabajador_correo_existente:
+        return jsonify({'message': f'El correo electrónico {data["correo"]} ya está registrado por {trabajador_correo_existente.nombre_trabajador} {trabajador_correo_existente.apellido_trabajador}.'}), 400
+
+    # Encriptar la contraseña
+    password_raw = data['contraseña']
     password_hash = hashlib.sha256(password_raw.encode('utf-8')).hexdigest()
+
+    # Crear el nuevo trabajador
     nuevo = Trabajador(
         dni_trabajador=data['dni_trabajador'],
         nombre_trabajador=data['nombre_trabajador'],
@@ -37,18 +50,22 @@ def create_trabajador():
         contraseña_hash=password_hash,
         presente=data.get('presente', False),
         rol_admin=data.get('rol_admin', False),
-        mesa_id_mesa=data['mesa_id_mesa']
+        mesa_id_mesa = 0
     )
+
     db.session.add(nuevo)
     try:
         db.session.commit()
         return jsonify({'message': 'Trabajador añadido correctamente'}), 201
     except IntegrityError as e:
         db.session.rollback()  # Deshacer cualquier cambio si ocurre un error
-        return jsonify({'message': 'Error de integridad, el trabajador ya puede existir o tiene un conflicto de datos.'}), 400
+        if "duplicate key value violates unique constraint" in str(e.orig):
+            # Si la excepción es de clave duplicada, dar más detalles
+            return jsonify({'message': 'Error de integridad: ya existe un trabajador con ese DNI o correo electrónico.'}), 400
+        return jsonify({'message': 'Error de integridad, posible conflicto de datos.'}), 400
     except Exception as e:
         db.session.rollback()
-        return jsonify({'message': f'Error inesperado: {str(e)}'}), 500
+        return jsonify({'message': f'Error inesperado: {str(e)}. Por favor, intente nuevamente.'}), 500
 
 @trabajador_api.route('/trabajadores/no_admin', methods=['GET'])
 def get_no_admin_trabajadores():
@@ -91,6 +108,7 @@ def delete_trabajador(dni_trabajador):
         db.session.remove()  # Liberamos la sesión para evitar bloqueos futuros
 
 
+
 @trabajador_api.route('/trabajadores/<string:dni_trabajador>', methods=['PUT'])
 def update_trabajador(dni_trabajador):
     trabajador = Trabajador.query.filter_by(dni_trabajador=dni_trabajador).first()
@@ -108,7 +126,7 @@ def update_trabajador(dni_trabajador):
         if 'contraseña' in data and data['contraseña']:
             # Hashear la nueva contraseña
             trabajador.contraseña_hash = hashlib.sha256(data['contraseña'].encode('utf-8')).hexdigest()
-
+            
         db.session.commit()
         return jsonify({
             'message': 'Trabajador actualizado correctamente',

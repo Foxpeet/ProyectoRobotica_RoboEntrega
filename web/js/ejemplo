@@ -248,12 +248,11 @@
         e.preventDefault();
 
         const nuevoTrabajador = {
-            dni_trabajador: document.getElementById('trabajadorDNI').value,
-            nombre_trabajador: document.getElementById('trabajadorNombre').value,
-            apellido_trabajador: document.getElementById('trabajadorApellido').value,
-            correo: document.getElementById('trabajadorCorreo').value,
-            contraseña_hash: document.getElementById('trabajadorContraseña').value,
-            mesa_id_mesa: parseInt(document.getElementById('trabajadorMesa').value)
+            dni_trabajador: document.getElementById('workerDNI').value,
+            nombre_trabajador: document.getElementById('workerName').value,
+            apellido_trabajador: document.getElementById('workerLastName').value,
+            correo: document.getElementById('workerEmail').value,
+            contraseña  : document.getElementById('workerPassword').value,
         };
 
         try {

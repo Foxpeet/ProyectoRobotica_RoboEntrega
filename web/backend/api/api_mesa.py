@@ -40,3 +40,22 @@ def create_mesa():
             return jsonify({'message': 'Error al guardar la mesa.'}), 500
 
     return jsonify({'message': 'Mesa añadida correctamente'}), 201
+
+
+@mesa_api.route('/mesas_con_trabajadores', methods=['GET'])
+def get_mesas_con_trabajadores():
+    # Obtener todas las mesas
+    mesas = Mesa.query.all()
+
+    mesas_data = []
+    for m in mesas:
+        # Si la mesa tiene trabajadores asignados, estará ocupada
+        mesa_info = {
+            'id_mesa': m.id_mesa,
+            'longitud_x': str(m.longitud_x),
+            'latitud_y': str(m.latitud_y),
+            'ocupada': len(m.trabajadores) > 0  # Si hay trabajadores asignados, está ocupada
+        }
+        mesas_data.append(mesa_info)
+
+    return jsonify(mesas_data)
