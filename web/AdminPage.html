@@ -156,12 +156,11 @@
       <table class="admin-table">
         <thead>
           <tr>
-            <th>ID</th>
             <th>DNI</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
-            <th>Contraseña</th>
+            <th>Mesa</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -196,22 +195,34 @@
     </section>
   </main>
 
-  <!-- MODAL EDITAR TRABAJADOR -->
-  <div id="editWorkerModal" class="modal" style="display:none;">
-    <div class="modal-content">
+<!-- MODAL EDITAR TRABAJADOR -->
+<div id="editWorkerModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <form id="editWorkerForm">
       <span id="closeEditWorkerModal" class="close">&times;</span>
-      <h3>Editar Trabajador</h3>
-      <form id="editWorkerForm">
-        <input type="hidden" id="editWorkerId" />
-        <input type="text" id="editWorkerDNI" placeholder="DNI" required />
-        <input type="text" id="editWorkerName" placeholder="Nombre" required />
-        <input type="text" id="editWorkerLastName" placeholder="Apellido" required />
-        <input type="email" id="editWorkerEmail" placeholder="Correo electrónico" required />
-        <input type="password" id="editWorkerPassword" placeholder="Contraseña" required />
-        <button type="submit" class="btn-azul">Guardar Cambios</button>
-      </form>
-    </div>
+      
+      <div class="worker-info-field">
+        <label>DNI:</label>
+        <span id="displayWorkerDNI"></span>
+      </div>
+      
+      <div class="worker-info-field">
+        <label>Nombre:</label>
+        <span id="displayWorkerName"></span>
+      </div>
+      
+      <div class="worker-info-field">
+        <label>Apellido:</label>
+        <span id="displayWorkerLastName"></span>
+      </div>
+    
+      <input type="email" id="editWorkerEmail" placeholder="Correo electrónico" required />
+      <input type="password" id="editWorkerPassword" placeholder="Nueva contraseña (dejar en blanco para no cambiar)" />
+      
+      <button type="submit" class="btn-azul">Guardar Cambios</button>
+    </form>
   </div>
+</div>
 
   <!-- MODAL ASIGNAR CABINA -->
   <div id="changeDeskModal" class="modal" style="display:none;">

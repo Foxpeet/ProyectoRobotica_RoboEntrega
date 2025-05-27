@@ -29,37 +29,6 @@ const deskSelect = document.getElementById("deskSelect");
 const confirmChangeDeskBtn = document.getElementById("confirmChangeDeskBtn");
 
 const API_URL = 'http://127.0.0.1:5000/api';
-// --- FUNCIONES DE NOTIFICACIÓN ---
-function showNotification(message, isError = false) {
-  // Crear el div si no existe
-  let notif = document.getElementById("notification");
-  if (!notif) {
-    notif = document.createElement("div");
-    notif.id = "notification";
-    notif.style.position = "fixed";
-    notif.style.top = "20px";
-    notif.style.right = "20px";
-    notif.style.padding = "15px 25px";
-    notif.style.backgroundColor = isError ? "#e74c3c" : "#2ecc71";
-    notif.style.color = "white";
-    notif.style.borderRadius = "5px";
-    notif.style.boxShadow = "0 2px 10px rgba(0,0,0,0.3)";
-    notif.style.zIndex = "9999";
-    notif.style.fontSize = "16px";
-    notif.style.fontWeight = "bold";
-    notif.style.opacity = "0";
-    notif.style.transition = "opacity 0.3s ease";
-    document.body.appendChild(notif);
-  }
-  notif.textContent = message;
-  notif.style.backgroundColor = isError ? "#e74c3c" : "#2ecc71";
-  notif.style.opacity = "1";
-
-  // Desaparecer después de 3 segundos
-  setTimeout(() => {
-    notif.style.opacity = "0";
-  }, 3000);
-}
 
 // --- FUNCIONES ROBOTS ---
 function renderRobots() {
@@ -104,48 +73,140 @@ robotForm.addEventListener("submit", (e) => {
 });
 
 // --- FUNCIONES TRABAJADORES ---
-function renderWorkers() {
-  workerTable.innerHTML = "";
-  workers.forEach((w) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${w.id}</td>
-      <td>${w.dni}</td>
-      <td>${w.name}</td>
-      <td>${w.lastName}</td>
-      <td>${w.email}</td>
-      <td>${"*".repeat(w.password.length)}</td>
-      <td>
-        <button class="edit-button" title="Editar trabajador">
-          <img src="img/lapiz_edit_button.png" alt="Editar" />
-        </button>
-        <button class="delete-button" title="Eliminar trabajador">
-          <img src="img/basura_eliminar_boton.png" alt="Eliminar" />
-        </button>
-        <button class="btn-azul change-button" title="Asignar cabina">Cabina</button>
-      </td>
-    `;
-    // Editar trabajador
-    tr.querySelector(".edit-button").addEventListener("click", () => {
-      openEditWorkerModal(w);
+async function renderWorkers() {
+  try {
+    const response = await fetch(`${API_URL}/trabajadores`);
+    const trabajadores = await response.json();
+
+    const table = document.getElementById("workerTable");
+    table.innerHTML = ""; // Limpiar la tabla antes de insertar
+    console.table(trabajadores);
+
+    trabajadores.forEach((t) => {
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td>${t.dni_trabajador}</td>
+        <td>${t.nombre_trabajador}</td>
+        <td>${t.apellido_trabajador}</td>
+        <td>${t.correo}</td>
+        <td>${t.mesa_id_mesa}</td>
+        <td>
+          <button class="edit-button" title="Editar trabajador">
+            <img src="img/lapiz_edit_button.png" alt="Editar" />
+          </button>
+          <button class="delete-button" title="Eliminar trabajador">
+            <img src="img/basura_eliminar_boton.png" alt="Eliminar" />
+          </button>
+          <button class="btn-azul change-button" title="Asignar cabina">Cabina</button>
+        </td>
+      `;
+
+      // Botón editar
+      tr.querySelector(".edit-button").addEventListener("click", () => {
+        openEditWorkerModal(t);
+      });
+
+      // Botón eliminar con gestión de concurrencia
+      tr.querySelector(".delete-button").addEventListener("click", async () => {
+        const confirmado = confirm(`¿Eliminar trabajador ${t.nombre_trabajador} ${t.apellido_trabajador}?`);
+
+        if (!confirmado) return;
+
+        await deleteWorker(t.dni_trabajador);
+      });
+
+      // Botón asignar cabina
+      tr.querySelector(".change-button").addEventListener("click", () => {
+        openChangeDeskModal(t);
+      });
+
+      table.appendChild(tr);
     });
-    // Eliminar trabajador
-    tr.querySelector(".delete-button").addEventListener("click", () => {
-      if (confirm(`¿Eliminar trabajador ${w.name} ${w.lastName}?`)) {
-        workers = workers.filter((worker) => worker.id !== w.id);
-        log(`Trabajador ${w.name} eliminado.`);
-        renderWorkers();
-        showNotification(`Trabajador ${w.name} eliminado.`);
-      }
+  } catch (err) {
+    console.error("❌ Error cargando trabajadores:", err);
+    mostrarError("Error cargando trabajadores", "error");
+  }
+}
+// --- FUNCIONES TRABAJADORES ---
+async function renderWorkers() {
+  try {
+    const response = await fetch(`${API_URL}/trabajadores`);
+    if (!response.ok) {
+      throw new Error('Error al obtener los trabajadores');
+    }
+    const trabajadores = await response.json();
+
+    const table = document.getElementById('workerTable');
+    table.innerHTML = ""; // Limpiar la tabla antes de insertar
+    console.table(trabajadores);
+    
+    trabajadores.forEach((t) => {
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td>${t.dni_trabajador}</td>
+        <td>${t.nombre_trabajador}</td>
+        <td>${t.apellido_trabajador}</td>
+        <td>${t.correo}</td>
+        <td>${t.mesa_id_mesa}</td>
+        <td>
+          <button class="edit-button" title="Editar trabajador">
+            <img src="img/lapiz_edit_button.png" alt="Editar" />
+          </button>
+          <button class="delete-button" title="Eliminar trabajador">
+            <img src="img/basura_eliminar_boton.png" alt="Eliminar" />
+          </button>
+          <button class="btn-azul change-button" title="Asignar cabina">Cabina</button>
+        </td>
+      `;
+
+      // Botón editar
+      tr.querySelector(".edit-button").addEventListener("click", () => {
+        openEditWorkerModal(t);
+      });
+
+      // Botón eliminar
+      tr.querySelector(".delete-button").addEventListener("click", async () => {
+        const confirmado = confirm(`¿Eliminar trabajador ${t.nombre_trabajador} ${t.apellido_trabajador}?`);
+        if (!confirmado) return;
+        await deleteWorker(t.dni_trabajador);
+      });
+      
+      // Asignar cabina
+      tr.querySelector(".change-button").addEventListener("click", () => {
+        openChangeDeskModal(t);
+      });
+
+      table.appendChild(tr);
     });
-    // Asignar cabina
-    tr.querySelector(".change-button").addEventListener("click", () => {
-      openChangeDeskModal(w);
+  } catch (err) {
+    console.error("❌ Error cargando trabajadores:", err);
+    mostrarError("Error cargando trabajadores", "error");
+  }
+}
+
+// Función para eliminar trabajador (separada para mejor organización)
+async function deleteWorker(dni) {
+  try {
+    const response = await fetch(`${API_URL}/trabajadores/${dni}`, {
+      method: 'DELETE'
     });
 
-    workerTable.appendChild(tr);
-  });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'No se pudo eliminar el trabajador.');
+    }
+
+    console.log(`✅ Trabajador eliminado.`);
+    mostrarExito(`Trabajador eliminado correctamente`, 'success');
+    renderWorkers(); // Recargar la lista
+  } catch (err) {
+    console.error(`❌ Error eliminando trabajador: ${err}`);
+    mostrarError(`Error eliminando trabajador: ${err.message}`, 'error');
+  }
 }
+
 
 workerForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -174,42 +235,56 @@ workerForm.addEventListener("submit", (e) => {
 });
 
 // --- MODAL EDITAR TRABAJADOR ---
-function openEditWorkerModal(worker) {
-  editWorkerModal.style.display = "flex";
-  document.getElementById("editWorkerId").value = worker.id;
-  document.getElementById("editWorkerDNI").value = worker.dni;
-  document.getElementById("editWorkerName").value = worker.name;
-  document.getElementById("editWorkerLastName").value = worker.lastName;
-  document.getElementById("editWorkerEmail").value = worker.email;
-  document.getElementById("editWorkerPassword").value = worker.password;
-}
-closeEditWorkerModal.addEventListener("click", () => {
-  editWorkerModal.style.display = "none";
-});
-editWorkerForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const id = parseInt(document.getElementById("editWorkerId").value);
-  const dni = document.getElementById("editWorkerDNI").value.trim();
-  const name = document.getElementById("editWorkerName").value.trim();
-  const lastName = document.getElementById("editWorkerLastName").value.trim();
-  const email = document.getElementById("editWorkerEmail").value.trim();
-  const password = document.getElementById("editWorkerPassword").value;
-  if (!dni || !name || !lastName || !email || !password) {
-    alert("Por favor, rellena todos los campos.");
-    return;
-  }
-  const workerIndex = workers.findIndex((w) => w.id === id);
-  if (workerIndex >= 0) {
-    workers[workerIndex].dni = dni;
-    workers[workerIndex].name = name;
-    workers[workerIndex].lastName = lastName;
-    workers[workerIndex].email = email;
-    workers[workerIndex].password = password;/*Aquí tienes dos modales simples en HTML y CSS (puedes añadir JavaScript si quieres que se cierren al hacer clic o automáticamente). Uno para éxito y otro para error:*/
-    log(`Trabajador "${name} ${lastName}" modificado.`);
-    renderWorkers();
+document.addEventListener('DOMContentLoaded', () => {
+  const editWorkerModal = document.getElementById("editWorkerModal");
+  const closeEditWorkerModal = document.getElementById("closeEditWorkerModal");
+  const editWorkerForm = document.getElementById("editWorkerForm");
+
+  window.openEditWorkerModal = function(t) {
+    editWorkerModal.style.display = "flex";
+    document.getElementById("displayWorkerDNI").textContent = t.dni_trabajador;
+    document.getElementById("displayWorkerName").textContent = t.nombre_trabajador;
+    document.getElementById("displayWorkerLastName").textContent = t.apellido_trabajador;
+    document.getElementById("editWorkerEmail").value = t.correo;
+    document.getElementById("editWorkerPassword").value = "";
+  };
+
+  closeEditWorkerModal.addEventListener("click", () => {
     editWorkerModal.style.display = "none";
-    showNotification(`Trabajador "${name} ${lastName}" modificado.`);
-  }
+  });
+  editWorkerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+      dni_trabajador: document.getElementById("displayWorkerDNI").textContent,
+      correo: document.getElementById("editWorkerEmail").value,
+      contraseña: document.getElementById("editWorkerPassword").value
+    };
+
+    try {
+      const response = await fetch(`${API_URL}/trabajadores/${formData.dni_trabajador}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) throw new Error('Error al actualizar');
+      
+      mostrarExito('Trabajador actualizado correctamente');
+      editWorkerModal.style.display = "none";
+      renderWorkers();
+    } catch (error) {
+      mostrarError(`Error: ${error.message}`, 'error');
+    }
+  });
+
+  editWorkerModal.addEventListener("click", (e) => {
+    if (e.target === editWorkerModal) {
+      editWorkerModal.style.display = "none";
+    }
+  });
 });
 
 // --- MODAL ASIGNAR CABINA ---
@@ -218,7 +293,7 @@ let currentWorkerForDesk = null;
 function openChangeDeskModal(worker) {
   currentWorkerForDesk = worker;
   changeDeskModal.style.display = "flex";
-  deskSelect.innerHTML = ""; // Limpiar opciones
+  deskSelect.innerHTML = "";
   if (desks.length === 0) {
     const option = document.createElement("option");
     option.textContent = "No hay cabinas disponibles";
