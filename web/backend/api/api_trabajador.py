@@ -3,6 +3,8 @@ from flask import Blueprint, request, jsonify
 from extensions import db
 from sqlalchemy.exc import IntegrityError, OperationalError
 from models.trabajador import Trabajador
+from models.mesa import Mesa
+
 
 
 trabajador_api = Blueprint('api_trabajador', __name__)
@@ -161,3 +163,37 @@ def update_trabajador(dni_trabajador):
             'message': 'Error al actualizar trabajador',
             'error': str(e)
         }), 500
+    
+
+@trabajador_api.route('/trabajadores/<dni_trabajador>/cambiar_mesa', methods=['PATCH'])
+def cambiar_mesa(dni_trabajador):
+    data = request.get_json()
+    nuevo_id_mesa = data.get('id_mesa')
+
+    # Verificar si el trabajador existe
+    trabajador = Trabajador.query.filter_by(dni_trabajador=dni_trabajador).first()
+    if not trabajador:
+        return jsonify({'message': 'Trabajador no encontrado'}), 404
+
+    # Verificar si la nueva mesa existe
+    nueva_mesa = Mesa.query.filter_by(id_mesa=nuevo_id_mesa).first()
+    if not nueva_mesa:
+        return jsonify({'message': 'Mesa no encontrada'}), 404
+
+    # Verificar si la nueva mesa está ocupada por otro trabajador
+    mesa_ocupada = Trabajador.query.filter_by(mesa_id_mesa=nuevo_id_mesa).first()
+    if mesa_ocupada:
+        return jsonify({'message': 'La mesa seleccionada ya está ocupada por otro trabajador'}), 400
+
+    # Cambiar la mesa del trabajador
+    trabajador.mesa_id_mesa = nuevo_id_mesa
+
+    try:
+        db.session.commit()
+        return jsonify({'message': 'La mesa ha sido cambiada con éxito'}), 200
+    except IntegrityError as e:
+        db.session.rollback()
+        return jsonify({'message': f'Error de integridad: {str(e)}'}), 400
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': f'Error inesperado: {str(e)}'}), 500

@@ -228,13 +228,14 @@
   </div>
 </div>
 
-  <!-- MODAL ASIGNAR CABINA -->
+  <!-- MODAL CAMBIAR CABINA -->
   <div id="changeDeskModal" class="modal" style="display:none;">
     <div class="modal-content">
       <span id="closeChangeDeskModal" class="close">&times;</span>
-      <h3>Asignar Cabina</h3>
-      <select id="deskSelect" style="width: 100%; padding: 6px; font-size: 14px;"></select>
-      <br /><br />
+      <h3 id="changeDeskName"></h3>
+      <select id="deskChange" style="width: 100%; padding: 6px; font-size: 14px;">
+        <option value="" disabled selected>Elige una nueva mesa</option>
+      </select>
       <button id="confirmChangeDeskBtn" class="btn-azul">Asignar</button>
     </div>
   </div>

@@ -26,6 +26,7 @@ const editWorkerForm = document.getElementById("editWorkerForm");
 const changeDeskModal = document.getElementById("changeDeskModal");
 const closeChangeDeskModal = document.getElementById("closeChangeDeskModal");
 const deskSelect = document.getElementById("deskSelect");
+const deskChange = document.getElementById("deskChange");
 const confirmChangeDeskBtn = document.getElementById("confirmChangeDeskBtn");
 
 const API_URL = 'http://127.0.0.1:5000/api';
@@ -203,6 +204,7 @@ async function deleteWorker(dni) {
     mostrarError(`Error eliminando trabajador: ${err.message}`, 'error');
   }
 }
+
 async function loadDesks() {
   const deskSelect = document.getElementById("deskSelect");
 
@@ -217,7 +219,6 @@ async function loadDesks() {
     }
 
     const desks = await response.json(); // Obtener los datos de las mesas
-    console.log("Datos recibidos:", desks); // Log para verificar la respuesta
 
     // Limpiar las opciones del select antes de agregar las nuevas (excepto el placeholder)
     deskSelect.innerHTML = '';  // Eliminar todas las opciones
@@ -242,7 +243,7 @@ async function loadDesks() {
         option.value = desk.id_mesa; // Usamos 'id_mesa' como valor
         
         // Crear el texto de la opción
-        option.textContent = `MESA - ${desk.id_mesa}`;
+        option.textContent = `Mesa - ${desk.id_mesa}`;
         
         // Si la mesa está ocupada, deshabilitar la opción
         if (desk.ocupada) {
@@ -256,7 +257,7 @@ async function loadDesks() {
     }
   } catch (error) {
     console.error("Error:", error);
-    alert("Hubo un problema al cargar las mesas. Ver consola para más detalles.");
+    mostrarError("Hubo un problema al cargar las mesas. Ver consola para más detalles.");
   }
 }
 
@@ -273,7 +274,6 @@ workerForm.addEventListener("submit", async (e) => {
     contraseña: document.getElementById('workerPassword').value,
     id_mesa: document.getElementById('deskSelect').value  // Aquí se toma el valor de la mesa seleccionada
   };
-console.table(nuevoTrabajador);
 
   // Basic validation for empty fields
   if (!nuevoTrabajador.dni_trabajador || 
@@ -331,9 +331,6 @@ console.table(nuevoTrabajador);
   }
 });
 
-
-
-
 // --- MODAL EDITAR TRABAJADOR ---
 document.addEventListener('DOMContentLoaded', () => {
   const editWorkerModal = document.getElementById("editWorkerModal");
@@ -386,6 +383,111 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+// --- MODAL CAMBIAR CABINA ---
+let currentWorkerForDesk = null;
+
+async function openChangeDeskModal(worker) {
+  currentWorkerForDesk = worker;  // Guardamos el trabajador actual para cambiar de mesa
+  const changeDeskName = document.getElementById("changeDeskName");
+  changeDeskName.textContent = `Cambiar Cabina para ${worker.nombre_trabajador} ${worker.apellido_trabajador}`;  changeDeskModal.style.display = "flex";  // Abrir el modal
+  deskChange.innerHTML = "";  // Limpiar las opciones previas del select
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.disabled = true;
+  placeholder.selected = true;
+  placeholder.textContent = "Elige nueva mesa";
+  deskChange.appendChild(placeholder); // Agregar el placeholder al principio
+
+  try {
+    // Llamar a la API para obtener las mesas y su estado
+    const response = await fetch(`${API_URL}/mesas_con_trabajadores`);
+    if (!response.ok) {
+      throw new Error("Error al obtener las mesas.");
+    }
+
+    const desks = await response.json(); // Obtener los datos de las mesas
+
+    // Si no hay mesas, mostrar un mensaje y deshabilitar el botón de cambio
+    if (desks.length === 0) {
+      const option = document.createElement("option");
+      option.textContent = "No hay cabinas disponibles";
+      option.disabled = true;
+      deskChange.appendChild(option);
+      confirmChangeDeskBtn.disabled = true;  // Deshabilitar el botón si no hay mesas
+    } else {
+      let hasAvailableDesk = false;  // Flag para verificar si hay mesas libres
+
+      // Recorrer todas las mesas y crear las opciones
+      desks.forEach((desk) => {
+        const option = document.createElement("option");
+        option.value = desk.id_mesa;  // Asignamos el id_mesa como el valor de la opción
+
+        // Crear el texto de la opción
+        option.textContent = `Mesa - ${desk.id_mesa}`;
+
+        // Si la mesa está ocupada, deshabilitar la opción
+        if (desk.ocupada) {
+          option.disabled = true;
+          option.textContent += " (Ocupada)";  // Añadir "(Ocupada)" al texto
+        } else {
+          hasAvailableDesk = true;  // Hay al menos una mesa libre
+        }
+
+        // Añadir la opción al select
+        deskChange.appendChild(option);
+      });
+
+      // Habilitar o deshabilitar el botón de confirmación según la disponibilidad de mesas libres
+      confirmChangeDeskBtn.disabled = !hasAvailableDesk; // Solo habilitar si hay mesas libres
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un problema al cargar las mesas. Por favor, intenta nuevamente.");
+  }
+}
+
+
+closeChangeDeskModal.addEventListener("click", () => {
+  changeDeskModal.style.display = "none";
+  currentWorkerForDesk = null;
+});
+
+
+confirmChangeDeskBtn.addEventListener("click", async () => {
+  if (!currentWorkerForDesk) return;
+
+  const selectedDeskId = parseInt(deskChange.value);
+
+  // Verificar si se ha seleccionado una mesa
+  if (!selectedDeskId) {
+    alert("Por favor, selecciona una nueva mesa.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_URL}/trabajadores/${currentWorkerForDesk.dni_trabajador}/cambiar_mesa`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_mesa: selectedDeskId })
+    });
+
+    if (response.ok) {
+      mostrarExito("La mesa ha sido cambiada con éxito.");
+      changeDeskModal.style.display = "none";  // Cerrar el modal después del cambio
+      renderWorkers();  
+    } else {
+      const responseData = await response.json();
+      mostrarError(`Error: ${responseData.message || 'No se pudo realizar el cambio de mesa.'}`);
+    }
+  } catch (error) {
+    console.error("Error al cambiar la mesa:", error);
+    mostrarError("Hubo un error al intentar cambiar la mesa. Por favor, intenta nuevamente.");
+  }
+});
+
+
 
 // --- FUNCIONES CABINAS CON API ---
 async function renderDesks() {
@@ -504,7 +606,6 @@ function mostrarError(mensaje, formId = null) {
     if (form) form.reset();
   }
 }
-
 
 function cerrarModal(id) {
   const modal = document.getElementById(id);

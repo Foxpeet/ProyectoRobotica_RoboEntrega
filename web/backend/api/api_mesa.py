@@ -43,6 +43,7 @@ def create_mesa():
 
     return jsonify({'message': 'Mesa añadida correctamente'}), 201
 
+
 @mesa_api.route('/mesas_con_trabajadores', methods=['GET'])
 def get_mesas_con_trabajadores():
     # Obtener todas las mesas con el número de trabajadores asociados
@@ -61,3 +62,4 @@ def get_mesas_con_trabajadores():
     ]
 
     return jsonify(mesas_data)
+
