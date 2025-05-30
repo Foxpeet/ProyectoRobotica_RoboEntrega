@@ -80,7 +80,6 @@ async function renderWorkers() {
 
     const table = document.getElementById("workerTable");
     table.innerHTML = ""; // Limpiar la tabla antes de insertar
-    console.table(trabajadores);
 
     trabajadores.forEach((t) => {
       const tr = document.createElement("tr");
@@ -139,7 +138,6 @@ async function renderWorkers() {
 
     const table = document.getElementById('workerTable');
     table.innerHTML = ""; // Limpiar la tabla antes de insertar
-    console.table(trabajadores);
     
     trabajadores.forEach((t) => {
       const tr = document.createElement("tr");
@@ -205,20 +203,77 @@ async function deleteWorker(dni) {
     mostrarError(`Error eliminando trabajador: ${err.message}`, 'error');
   }
 }
+async function loadDesks() {
+  const deskSelect = document.getElementById("deskSelect");
 
+  try {
+    // Llamar a la API para obtener las mesas y su estado
+    const response = await fetch(`${API_URL}/mesas_con_trabajadores`);
+    
+    // Revisar si la respuesta es correcta
+    if (!response.ok) {
+      const errorDetails = await response.text();  // Capturar el mensaje de error
+      throw new Error(`Error al obtener las mesas: ${response.status} - ${errorDetails}`);
+    }
 
+    const desks = await response.json(); // Obtener los datos de las mesas
+    console.log("Datos recibidos:", desks); // Log para verificar la respuesta
 
-// Event Listener for the form submission
+    // Limpiar las opciones del select antes de agregar las nuevas (excepto el placeholder)
+    deskSelect.innerHTML = '';  // Eliminar todas las opciones
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = "Elige una mesa";
+    deskSelect.appendChild(placeholder); // Agregar el placeholder al principio
+
+    // Si no hay mesas, mostrar un mensaje
+    if (desks.length === 0) {
+      const option = document.createElement("option");
+      option.textContent = "No hay cabinas disponibles";
+      option.disabled = true;
+      deskSelect.appendChild(option);
+    } else {
+
+      // Recorrer todas las mesas y crear las opciones
+      desks.forEach((desk) => {
+        const option = document.createElement("option");
+        option.value = desk.id_mesa; // Usamos 'id_mesa' como valor
+        
+        // Crear el texto de la opción
+        option.textContent = `MESA - ${desk.id_mesa}`;
+        
+        // Si la mesa está ocupada, deshabilitar la opción
+        if (desk.ocupada) {
+          option.disabled = true;
+          option.textContent += " (Ocupada)";
+        }
+
+        // Añadir la opción al select
+        deskSelect.appendChild(option);
+      });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un problema al cargar las mesas. Ver consola para más detalles.");
+  }
+}
+
+// Cargar las mesas cuando se cargue el documento
+document.addEventListener('DOMContentLoaded', loadDesks);
+
 workerForm.addEventListener("submit", async (e) => {
   e.preventDefault();  // Prevent default form submission
-
   const nuevoTrabajador = {
     dni_trabajador: document.getElementById('workerDNI').value,
     nombre_trabajador: document.getElementById('workerName').value,
     apellido_trabajador: document.getElementById('workerLastName').value,
     correo: document.getElementById('workerEmail').value,
     contraseña: document.getElementById('workerPassword').value,
-};
+    id_mesa: document.getElementById('deskSelect').value  // Aquí se toma el valor de la mesa seleccionada
+  };
+console.table(nuevoTrabajador);
 
   // Basic validation for empty fields
   if (!nuevoTrabajador.dni_trabajador || 
@@ -242,6 +297,12 @@ workerForm.addEventListener("submit", async (e) => {
       return;
   }
 
+  // Validate that a desk has been selected
+  if (!nuevoTrabajador.id_mesa) {
+      mostrarError("Por favor, selecciona una mesa para el trabajador");
+      return;
+  }
+
   // Send the data to the backend API
   try {
       const response = await fetch(`${API_URL}/trabajadores`, {
@@ -251,8 +312,7 @@ workerForm.addEventListener("submit", async (e) => {
       });
 
       if (response.ok) {
-          // Assuming renderWorkers is a function that refreshes the list of workers
-          renderWorkers();
+          renderWorkers();  // Refresh the worker list after adding
           e.target.reset();  // Reset the form fields
           mostrarExito('Trabajador añadido correctamente');
       } else {
@@ -270,6 +330,7 @@ workerForm.addEventListener("submit", async (e) => {
       mostrarError(`Error añadiendo trabajador: ${error}`);
   }
 });
+
 
 
 
@@ -325,77 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-// --- MODAL ASIGNAR CABINA ---
-let currentWorkerForDesk = null;
-
-async function openChangeDeskModal(worker) {
-  currentWorkerForDesk = worker;
-  changeDeskModal.style.display = "flex";
-  deskSelect.innerHTML = ""; // Limpiar el select
-  
-  try {
-    // Llamar a la API para obtener las mesas y su estado
-    const response = await fetch('/mesas_con_trabajadores');
-    if (!response.ok) {
-      throw new Error("Error al obtener las mesas.");
-    }
-
-    const desks = await response.json(); // Obtener los datos de las mesas
-
-    // Si no hay mesas, mostrar un mensaje
-    if (desks.length === 0) {
-      const option = document.createElement("option");
-      option.textContent = "No hay cabinas disponibles";
-      option.disabled = true;
-      deskSelect.appendChild(option);
-      confirmChangeDeskBtn.disabled = true;
-    } else {
-      // Recorrer todas las mesas y crear las opciones
-      desks.forEach((desk) => {
-        const option = document.createElement("option");
-        option.value = desk.id_mesa; // Usamos 'id_mesa' como valor
-        
-        // Crear el texto de la opción
-        option.textContent = `ID ${desk.id_mesa} - Lon: ${desk.longitud_x}, Lat: ${desk.latitud_y}`;
-        
-        // Si la mesa está ocupada, deshabilitar la opción
-        if (desk.ocupada) {
-          option.disabled = true;
-          option.textContent += " (Ocupada)";
-        }
-
-        // Añadir la opción al select
-        deskSelect.appendChild(option);
-      });
-
-      // Habilitar o deshabilitar el botón de confirmación según disponibilidad
-      confirmChangeDeskBtn.disabled = !desks.some(desk => !desk.ocupada); // Habilitar solo si hay mesas libres
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Hubo un problema al cargar las mesas.");
-  }
-}
-
-closeChangeDeskModal.addEventListener("click", () => {
-  changeDeskModal.style.display = "none";
-  currentWorkerForDesk = null;
-});
-
-confirmChangeDeskBtn.addEventListener("click", () => {
-  if (!currentWorkerForDesk) return;
-
-  const selectedDeskId = parseInt(deskSelect.value);
-  if (isNaN(selectedDeskId)) {
-    alert("Selecciona una cabina válida.");
-    return;
-  }
-
-  // Aquí puedes agregar el código para realizar la asignación del trabajador a la mesa
-  // Por ejemplo, puedes hacer una llamada API para asignar el trabajador a la mesa seleccionada
-});
-
 
 // --- FUNCIONES CABINAS CON API ---
 async function renderDesks() {

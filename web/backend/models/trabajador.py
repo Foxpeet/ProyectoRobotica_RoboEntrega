@@ -7,7 +7,7 @@ class Trabajador(db.Model):
     nombre_trabajador = db.Column(db.String(45), nullable=False)
     apellido_trabajador = db.Column(db.String(45), nullable=False)
     correo = db.Column(db.String(45), unique=True, nullable=False)
-    contraseña_hash = db.Column(db.String(100), unique=True, nullable=False)
+    contraseña_hash = db.Column(db.String(100),nullable=False)
     presente = db.Column(db.Boolean, default=False, nullable=False)
     rol_admin = db.Column(db.Boolean, default=False, nullable=False)
     mesa_id_mesa = db.Column(db.Integer, db.ForeignKey('mesa.id_mesa'), nullable=False)

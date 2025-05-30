@@ -4,6 +4,7 @@ from extensions import db
 from sqlalchemy.exc import IntegrityError, OperationalError
 from models.trabajador import Trabajador
 
+
 trabajador_api = Blueprint('api_trabajador', __name__)
 
 @trabajador_api.route('/trabajadores', methods=['GET'])
@@ -50,7 +51,7 @@ def create_trabajador():
         contraseña_hash=password_hash,
         presente=data.get('presente', False),
         rol_admin=data.get('rol_admin', False),
-        mesa_id_mesa = 0
+        mesa_id_mesa=data['id_mesa']
     )
 
     db.session.add(nuevo)
@@ -59,13 +60,26 @@ def create_trabajador():
         return jsonify({'message': 'Trabajador añadido correctamente'}), 201
     except IntegrityError as e:
         db.session.rollback()  # Deshacer cualquier cambio si ocurre un error
-        if "duplicate key value violates unique constraint" in str(e.orig):
-            # Si la excepción es de clave duplicada, dar más detalles
-            return jsonify({'message': 'Error de integridad: ya existe un trabajador con ese DNI o correo electrónico.'}), 400
-        return jsonify({'message': 'Error de integridad, posible conflicto de datos.'}), 400
+        error_message = str(e.orig)  # Obtener el mensaje del error original
+
+        # Si la excepción es de clave duplicada, dar más detalles
+        if "duplicate key value violates unique constraint" in error_message:
+            # Capturar el nombre de la restricción y el campo
+            if 'dni_trabajador' in error_message:
+                return jsonify({'message': 'Error de integridad: El DNI ya está registrado.'}), 400
+            elif 'correo' in error_message:
+                return jsonify({'message': 'Error de integridad: El correo electrónico ya está registrado.'}), 400
+            else:
+                return jsonify({'message': f'Error de integridad, conflicto con una clave única. Detalles: {error_message}'}), 400
+        
+        # Mensaje general para otros tipos de errores de integridad
+        return jsonify({'message': f'Error de integridad: {error_message}'}), 400
+
     except Exception as e:
         db.session.rollback()
         return jsonify({'message': f'Error inesperado: {str(e)}. Por favor, intente nuevamente.'}), 500
+
+
 
 @trabajador_api.route('/trabajadores/no_admin', methods=['GET'])
 def get_no_admin_trabajadores():

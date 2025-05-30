@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify
 from sqlalchemy.exc import IntegrityError
 from extensions import db
 from models.mesa import Mesa
+from sqlalchemy import func
+from models.trabajador import Trabajador
 
 mesa_api = Blueprint('api_mesa', __name__)
 
@@ -41,21 +43,21 @@ def create_mesa():
 
     return jsonify({'message': 'Mesa añadida correctamente'}), 201
 
-
 @mesa_api.route('/mesas_con_trabajadores', methods=['GET'])
 def get_mesas_con_trabajadores():
-    # Obtener todas las mesas
-    mesas = Mesa.query.all()
+    # Obtener todas las mesas con el número de trabajadores asociados
+    mesas = Mesa.query.with_entities(
+        Mesa.id_mesa,
+        func.count(Trabajador.dni_trabajador).label('num_trabajadores')
+    ).join(Trabajador, isouter=True).group_by(Mesa.id_mesa).all()
 
-    mesas_data = []
-    for m in mesas:
-        # Si la mesa tiene trabajadores asignados, estará ocupada
-        mesa_info = {
+    # Crear una lista de mesas con su estado de ocupación
+    mesas_data = [
+        {
             'id_mesa': m.id_mesa,
-            'longitud_x': str(m.longitud_x),
-            'latitud_y': str(m.latitud_y),
-            'ocupada': len(m.trabajadores) > 0  # Si hay trabajadores asignados, está ocupada
+            'ocupada': m.num_trabajadores > 0  # Si tiene trabajadores, está ocupada
         }
-        mesas_data.append(mesa_info)
+        for m in mesas
+    ]
 
     return jsonify(mesas_data)
