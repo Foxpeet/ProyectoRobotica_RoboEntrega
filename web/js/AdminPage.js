@@ -32,45 +32,107 @@ const confirmChangeDeskBtn = document.getElementById("confirmChangeDeskBtn");
 const API_URL = 'http://127.0.0.1:5000/api';
 
 // --- FUNCIONES ROBOTS ---
-function renderRobots() {
+async function renderRobots() {
   robotTable.innerHTML = "";
+  const response = await fetch(`${API_URL}/robots`);
+  const robots = await response.json();
+
   robots.forEach((r) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${r.id}</td>
-      <td>${r.model}</td>
-      <td>${r.serial}</td>
+      <td>${r.id_robot}</td>
+      <td>${r.modelo_robot}</td>
+      <td>${r.numero_serie_robot}</td>
       <td>
         <button class="delete-button" title="Eliminar robot">
           <img src="img/basura_eliminar_boton.png" alt="Eliminar" />
         </button>
       </td>`;
+
     // Añadir listener eliminar
     tr.querySelector(".delete-button").addEventListener("click", () => {
-      if (confirm(`¿Eliminar robot ID ${r.id} (${r.model})?`)) {
-        robots = robots.filter((robot) => robot.id !== r.id);
-        log(`Robot ID ${r.id} eliminado.`);
-        renderRobots();
-        showNotification(`Robot ID ${r.id} eliminado.`);
-      }
+      openDeleteRobotModal(r); 
     });
+
     robotTable.appendChild(tr);
   });
 }
 
-robotForm.addEventListener("submit", (e) => {
+// Función para abrir el modal de confirmación
+function openDeleteRobotModal(robot) {
+  const modal = document.getElementById("deleteRobotModal");
+  const message = document.getElementById("deleteRobotMessage");
+  const confirmBtn = document.getElementById("confirmDeleteRobotBtn");
+  const cancelBtn = document.getElementById("cancelDeleteRobotBtn");
+
+  // Establecer el mensaje con información del robot
+  message.textContent = `¿Eliminar robot ${robot.modelo_robot} ${robot.numero_serie_robot}?`;
+
+  // Mostrar el modal
+  modal.style.display = "flex";
+
+  // Confirmar eliminación
+  confirmBtn.onclick = async () => {
+    try {
+      const deleteResponse = await fetch(`${API_URL}/robots/${robot.id_robot}`, {
+        method: 'DELETE',
+      });
+
+      if (deleteResponse.ok) {
+        mostrarExito(`Robot ID ${robot.id_robot} eliminado.`);
+        renderRobots(); // Actualizar la lista de robots
+      } else {
+        mostrarError("Error al eliminar el robot.");
+      }
+
+      // Cerrar el modal después de la eliminación
+      closeDeleteRobotModal();
+    } catch (error) {
+      console.error("Error eliminando robot:", error);
+      mostrarError("Hubo un error al eliminar el robot.");
+    }
+  };
+
+  // Cancelar eliminación
+  cancelBtn.onclick = () => {
+    closeDeleteRobotModal();
+  };
+
+  // Cerrar el modal cuando se haga clic en el botón de cerrar
+  document.getElementById("closeDeleteRobotModal").onclick = closeDeleteRobotModal;
+}
+
+// Función para cerrar el modal
+function closeDeleteRobotModal() {
+  const modal = document.getElementById("deleteRobotModal");
+  modal.style.display = "none";
+}
+
+
+// Añadir nuevo robot
+robotForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const model = document.getElementById("robotModel").value.trim();
-  const serial = document.getElementById("robotSerial").value.trim();
-  if (!model || !serial) {
-    alert("Por favor, rellena modelo y número de serie.");
-    return;
+  const newRobot = {
+    modelo_robot: document.getElementById('robotModel').value.trim(),
+    numero_serie_robot: document.getElementById("robotSerial").value.trim(),
+  };
+
+  try {
+    const response = await fetch(`${API_URL}/robots`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newRobot),
+    });
+
+    if (response.ok) {
+      renderRobots();
+      mostrarExito('Robot añadido correctamente', 'robotForm');
+    } else {
+      mostrarError(`Error añadiendo robot: ${response.statusText}`);
+    }
+  } catch (error) {
+    mostrarError(`Error añadiendo robot: ${error}`);
   }
-  robots.push({ id: nextRobotId++, model, serial });
-  log(`Robot "${model}" añadido.`);
-  robotForm.reset();
-  renderRobots();
-  showNotification(`Robot "${model}" añadido correctamente.`);
 });
 
 // --- FUNCIONES TRABAJADORES ---
@@ -128,6 +190,9 @@ async function renderWorkers() {
     mostrarError("Error cargando trabajadores", "error");
   }
 }
+
+
+
 // --- FUNCIONES TRABAJADORES ---
 async function renderWorkers() {
   try {

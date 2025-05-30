@@ -43,3 +43,20 @@ def get_robots():
     } for robot in robots]
 
     return jsonify(robots_list), 200
+
+@robot_api.route('/robots/<int:id_robot>', methods=['DELETE'])
+def eliminar_robot(id_robot):
+    # Buscar el robot por su ID
+    robot = Robot.query.get(id_robot)
+    
+    if not robot:
+        return jsonify({'message': 'Robot no encontrado'}), 404
+    
+    try:
+        # Eliminar el robot de la base de datos
+        db.session.delete(robot)
+        db.session.commit()
+        return jsonify({'message': f'Robot ID {id_robot} eliminado con éxito'}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': f'Error al eliminar el robot: {str(e)}'}), 500
