@@ -16,8 +16,6 @@ const workerTable = document.getElementById("workerTable");
 const deskForm = document.getElementById("deskForm");
 const deskTable = document.getElementById("deskTable");
 
-const consoleLog = document.getElementById("console");
-
 // MODALES
 const editWorkerModal = document.getElementById("editWorkerModal");
 const closeEditWorkerModal = document.getElementById("closeEditWorkerModal");
@@ -88,7 +86,6 @@ function openDeleteRobotModal(robot) {
       // Cerrar el modal después de la eliminación
       closeDeleteRobotModal();
     } catch (error) {
-      console.error("Error eliminando robot:", error);
       mostrarError("Hubo un error al eliminar el robot.");
     }
   };
@@ -186,7 +183,6 @@ async function renderWorkers() {
       table.appendChild(tr);
     });
   } catch (err) {
-    console.error("❌ Error cargando trabajadores:", err);
     mostrarError("Error cargando trabajadores", "error");
   }
 }
@@ -245,7 +241,6 @@ async function renderWorkers() {
       table.appendChild(tr);
     });
   } catch (err) {
-    console.error("❌ Error cargando trabajadores:", err);
     mostrarError("Error cargando trabajadores", "error");
   }
 }
@@ -261,11 +256,9 @@ async function deleteWorker(dni) {
       throw new Error(errorData.message || 'No se pudo eliminar el trabajador.');
     }
 
-    console.log(`✅ Trabajador eliminado.`);
     mostrarExito(`Trabajador eliminado correctamente`, 'success');
     renderWorkers(); // Recargar la lista
   } catch (err) {
-    console.error(`❌ Error eliminando trabajador: ${err}`);
     mostrarError(`Error eliminando trabajador: ${err.message}`, 'error');
   }
 }
@@ -321,7 +314,6 @@ async function loadDesks() {
       });
     }
   } catch (error) {
-    console.error("Error:", error);
     mostrarError("Hubo un problema al cargar las mesas. Ver consola para más detalles.");
   }
 }
@@ -508,7 +500,6 @@ async function openChangeDeskModal(worker) {
       confirmChangeDeskBtn.disabled = !hasAvailableDesk; // Solo habilitar si hay mesas libres
     }
   } catch (error) {
-    console.error("Error:", error);
     alert("Hubo un problema al cargar las mesas. Por favor, intenta nuevamente.");
   }
 }
@@ -547,7 +538,6 @@ confirmChangeDeskBtn.addEventListener("click", async () => {
       mostrarError(`Error: ${responseData.message || 'No se pudo realizar el cambio de mesa.'}`);
     }
   } catch (error) {
-    console.error("Error al cambiar la mesa:", error);
     mostrarError("Hubo un error al intentar cambiar la mesa. Por favor, intenta nuevamente.");
   }
 });
@@ -575,7 +565,6 @@ async function renderDesks() {
             No hay cabinas registradas
           </td>
         </tr>`;
-      log("Lista de cabinas vacía recibida de la API");
       return;
     }
     
@@ -587,19 +576,9 @@ async function renderDesks() {
         <td>${desk.latitud_y}</td>
       </tr>
     `).join('');
-    
-    log(`✅ ${desks.length} cabinas cargadas desde API`);
-    
+        
   } catch (error) {
-    deskTable.innerHTML = `
-      <tr>
-        <td colspan="3" class="error-message">
-          Error al cargar cabinas: ${error.message}
-        </td>
-      </tr>`;
-    
-    log(`❌ Error al cargar cabinas: ${error}`);
-    console.error("Error en renderDesks:", error);
+    mostrarError(` Error al cargar cabinas: ${error}`);
   }
 }
 
@@ -632,16 +611,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       mostrarExito("Mesa añadida correctamente", "deskForm");
-      if (typeof log === "function") {
-        log("Mesa añadida correctamente");
-      }
+
 
     } catch (error) {
       mostrarError(`Error añadiendo mesa: ${error.message}`, "deskForm");
-
-      if (typeof log === "function") {
-        log(`❌ Error añadiendo mesa: ${error}`);
-      }
     }
   });
 });
@@ -649,7 +622,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Funcion de modal exito o error
 function mostrarExito(mensaje, formId = null) {
-  console.log("mostrarExito llamada con mensaje:", mensaje);
   const modal = document.getElementById("modal-exito");
   modal.querySelector("p").innerText = mensaje;
   modal.classList.add("mostrar");
@@ -661,7 +633,6 @@ function mostrarExito(mensaje, formId = null) {
 }
 
 function mostrarError(mensaje, formId = null) {
-  console.log("mostrarError llamada con mensaje:", mensaje);
   const modal = document.getElementById("modal-error");
   modal.querySelector("p").innerText = mensaje;
   modal.classList.add("mostrar");
@@ -679,13 +650,70 @@ function cerrarModal(id) {
 }
 
 
+// Función para cargar las entregas en la consola con formato amigable
+async function cargarEntregasEnConsola() {
+  const consoleElement = document.getElementById('console');
+  
+  try {
+    // Hacer la solicitud GET a la API
+    const response = await fetch(`${API_URL}/entregas`);
+    
+    if (!response.ok) {
+      throw new Error('Error al obtener las entregas');
+    }
+    
+    // Parsear la respuesta JSON
+    const entregas = await response.json();
+    
+    // Crear un texto con formato personalizado para cada entrega
+    let formattedText = '';
+    
+    entregas.forEach(entrega => {
+      // Formatear la hora y estado de cada entrega
+      const hora = entrega.hora;
+      const tipo = entrega.tipo;
+      const completado = entrega.completado ? 'Completado' : 'Pendiente';
+      const robotId = entrega.robot_id_robot;
 
-// Función para loguear en la consola visual
-        function log(message) {
-            const consoleElem = document.getElementById('console');
-            consoleElem.innerHTML += `${new Date().toLocaleTimeString()}: ${message}\n`;
-            consoleElem.scrollTop = consoleElem.scrollHeight;
+      // Verificamos si la entrega tiene paquetes o documentos
+      const paquetes = entrega.paquetes.length > 0 ? entrega.paquetes.join(', ') : null;
+      const documentos = entrega.documentos.length > 0 ? entrega.documentos.join(', ') : null;
+
+      // Solo agregamos la entrega si tiene paquetes o documentos
+      if (paquetes || documentos) {
+        formattedText += `
+          ----------------------------------------
+          Hora: ${hora} 
+          Tipo: ${tipo}
+          Estado: ${completado}
+        `;
+        
+        // Si tiene paquetes, los mostramos
+        if (paquetes) {
+          formattedText += `\nPaquetes: ${paquetes}`;
         }
+        
+        // Si tiene documentos, los mostramos
+        if (documentos) {
+          formattedText += `\nDocumentos: ${documentos}`;
+        }
+
+        formattedText += `
+          ----------------------------------------
+          \n
+        `;
+      }
+    });
+    
+    // Mostrar el texto formateado en la consola
+    consoleElement.textContent = formattedText || 'No hay entregas con paquetes o documentos.';
+  } catch (error) {
+    consoleElement.textContent = `Error cargando entregas: ${error.message}`;
+  }
+}
+
+// Llamar a la función cuando la página esté lista (o en el momento que desees)
+document.addEventListener('DOMContentLoaded', cargarEntregasEnConsola);
 
 // Inicializamos las tablas vacías
 renderRobots();
