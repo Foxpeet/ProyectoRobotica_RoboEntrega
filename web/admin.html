@@ -15,13 +15,13 @@
                 dni_trabajador: '00000000A',
                 nombre_trabajador: 'admin',
                 apellido_trabajador: 'admin',
-                correo: 'admin',
-                contraseña: 'admin',  // se enviará sin hashear
+                correo: 'admin@gmail.com',
+                contraseña: 'admin',
                 rol_admin: 1,
                 presente: 1,
-                mesa_id_mesa: 0
+                id_mesa: 0
             };
-
+            console.table(nuevoAdmin);
             try {
                 const res = await fetch('http://127.0.0.1:5000/api/trabajadores', {
                     method: 'POST',

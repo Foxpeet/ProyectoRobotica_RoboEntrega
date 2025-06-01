@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Verificar si ya hay sesión iniciada
-    if (sessionStorage.getItem('usuario')) {
-        window.location.href = 'mapa.html';
-        return;
+    const usuario = sessionStorage.getItem('usuario');
+    if (usuario) {
+        const usuarioData = JSON.parse(usuario); // Convertir la cadena a objeto
+        if (usuarioData.rol_admin === false) {
+            window.location.href = 'mapa.html';
+        } else if (usuarioData.rol_admin === true) {
+            window.location.href = 'AdminPage.html';
+        }
     }
 
     const form = document.getElementById('login-form');
@@ -48,8 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const data = await response.json();
-                sessionStorage.setItem('usuario', JSON.stringify(data));
-                window.location.href = 'mapa.html';
+                sessionStorage.setItem('usuario', JSON.stringify(data)); // Guardar el usuario en sessionStorage
+                
+                if (data.rol_admin === false) {
+                    window.location.href = 'mapa.html';
+                } else if (data.rol_admin === true) {
+                    window.location.href = 'AdminPage.html';
+                }
             } else if (response.status === 401) {
                 errorMsg.textContent = 'Correo o contraseña incorrectos';
                 errorMsg.style.display = 'block';
@@ -63,7 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMsg.style.display = 'block';
         } finally {
             // Habilitar el botón de nuevo después de procesar la solicitud
-            loginButton.disabled = false;
+            loginButton.disabled = false;   
         }
     });
+    console.log(sessionStorage.getItem('usuario'));
+
 });

@@ -53,7 +53,7 @@ def create_trabajador():
         contraseña_hash=password_hash,
         presente=data.get('presente', False),
         rol_admin=data.get('rol_admin', False),
-        mesa_id_mesa=data['id_mesa']
+        mesa_id_mesa=data['id_mesa'],
     )
 
     db.session.add(nuevo)
@@ -82,23 +82,34 @@ def create_trabajador():
         return jsonify({'message': f'Error inesperado: {str(e)}. Por favor, intente nuevamente.'}), 500
 
 
-
 @trabajador_api.route('/trabajadores/no_admin', methods=['GET'])
 def get_no_admin_trabajadores():
-    trabajadores_no_admin = Trabajador.query.filter_by(rol_admin=False).all()
-    
-    if not trabajadores_no_admin:
-        return jsonify({'message': 'No hay trabajadores no admins'}), 404
-    
-    return jsonify([
-        {
+    try:
+        # Obtener el DNI del trabajador logueado desde los parámetros de la URL
+        dni_logueado = request.args.get('dni_logueado')
+        if not dni_logueado:
+            return jsonify({'error': 'El DNI del trabajador logueado es necesario'}), 400
+
+        # Filtrar los trabajadores no administradores
+        trabajadores_no_admin = Trabajador.query.filter_by(rol_admin=False).all()
+
+        if not trabajadores_no_admin:
+            return jsonify([])  # Si no hay trabajadores no admins, devolver una lista vacía.
+
+        # Filtrar el trabajador logueado de la lista
+        trabajadores_no_admin = [t for t in trabajadores_no_admin if t.dni_trabajador != dni_logueado]
+
+        # Si no hay trabajadores después de filtrar, devolver lista vacía
+        return jsonify([{
             'dni_trabajador': t.dni_trabajador,
             'nombre_trabajador': t.nombre_trabajador,
             'apellido_trabajador': t.apellido_trabajador,
             'presente': t.presente
-        }
-        for t in trabajadores_no_admin
-    ])
+        } for t in trabajadores_no_admin])
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 @trabajador_api.route('/trabajadores/<string:dni_trabajador>', methods=['DELETE'])
 def delete_trabajador(dni_trabajador):

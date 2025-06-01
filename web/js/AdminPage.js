@@ -29,6 +29,64 @@ const confirmChangeDeskBtn = document.getElementById("confirmChangeDeskBtn");
 
 const API_URL = 'http://127.0.0.1:5000/api';
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Verificar si el usuario está logueado
+   usuario = sessionStorage.getItem('usuario');
+
+  if (!usuario) {
+      // Si no hay sesión activa, redirigir al inicio de sesión
+      window.location.href = 'iniciarSesion.html';
+      return;
+  }
+
+  // Parsear el objeto usuario desde sessionStorage
+  const datosUsuario = JSON.parse(usuario);
+
+  // Obtener el nombre y apellido del usuario
+  const nombre = datosUsuario.nombre_trabajador;
+  const apellido = datosUsuario.apellido_trabajador;
+
+  // Actualizar el título de bienvenida con el nombre y apellido
+  const bienvenida = document.getElementById('bievenida_admin');
+  bienvenida.textContent = `¡Bienvenido, ${nombre} ${apellido}!`;
+
+
+// Gestionar el cierre de sesión
+const logoutLink = document.getElementById('header-logout-link');
+logoutLink.addEventListener('click', async (e) => {
+    e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+    
+    try {
+        // Llamar al endpoint de logout
+        const response = await fetch('http://127.0.0.1:5000/api/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                correo: datosUsuario.correo
+            })
+        });
+
+        if (response.ok) {
+            // Eliminar el usuario de sessionStorage
+            sessionStorage.removeItem('usuario');
+            
+            // Redirigir al inicio de sesión
+            window.location.href = 'iniciarSesion.html';
+        } else {
+            const errorData = await response.json();
+            console.error('Error al cerrar sesión:', errorData.error);
+            alert('Ocurrió un error al cerrar sesión. Por favor, inténtalo de nuevo.');
+        }
+    } catch (error) {
+        console.error('Error al conectar con el servidor:', error);
+        alert('No se pudo conectar con el servidor. Verifica tu conexión a internet.');
+    }
+});
+});
+
+
 // --- FUNCIONES ROBOTS ---
 async function renderRobots() {
   robotTable.innerHTML = "";
@@ -653,66 +711,68 @@ function cerrarModal(id) {
 // Función para cargar las entregas en la consola con formato amigable
 async function cargarEntregasEnConsola() {
   const consoleElement = document.getElementById('console');
-  
+
   try {
-    // Hacer la solicitud GET a la API
-    const response = await fetch(`${API_URL}/entregas`);
-    
+    const response = await fetch(`${API_URL}/entregas/vista`);
+
     if (!response.ok) {
-      throw new Error('Error al obtener las entregas');
+      throw new Error(`Error al obtener las entregas: ${response.statusText}`);
     }
-    
-    // Parsear la respuesta JSON
-    const entregas = await response.json();
-    
-    // Crear un texto con formato personalizado para cada entrega
+
+    const result = await response.json();
+
+    // Verifica si el campo 'data' existe y es un array
+    if (!result.data || !Array.isArray(result.data)) {
+      throw new Error('El formato de la respuesta no es el esperado.');
+    }
+
+    const entregas = result.data;
+
+    if (entregas.length === 0) {
+      consoleElement.textContent = 'No hay entregas disponibles.';
+      return;
+    }
+
     let formattedText = '';
-    
+
     entregas.forEach(entrega => {
-      // Formatear la hora y estado de cada entrega
       const hora = entrega.hora;
       const tipo = entrega.tipo;
       const completado = entrega.completado ? 'Completado' : 'Pendiente';
+      const origen = entrega.dni_origen || 'No disponible';  // Maneja el caso cuando no esté presente
+      const destino = entrega.dni_destino || 'No disponible'; // Maneja el caso cuando no esté presente
       const robotId = entrega.robot_id_robot;
 
-      // Verificamos si la entrega tiene paquetes o documentos
-      const paquetes = entrega.paquetes.length > 0 ? entrega.paquetes.join(', ') : null;
-      const documentos = entrega.documentos.length > 0 ? entrega.documentos.join(', ') : null;
+      // Verifica si el éxito de la respuesta es true
+      if (result.success) {
+        formattedText += `----------------------------------------\n
+          Hora: ${hora}\n
+          Tipo: ${tipo}\n
+          Estado: ${completado}\n
+          Origen: ${origen}\n
+          Destino: ${destino}\n
+          Robot ID: ${robotId}\n`;
 
-      // Solo agregamos la entrega si tiene paquetes o documentos
-      if (paquetes || documentos) {
-        formattedText += `
-          ----------------------------------------
-          Hora: ${hora} 
-          Tipo: ${tipo}
-          Estado: ${completado}
-        `;
-        
-        // Si tiene paquetes, los mostramos
-        if (paquetes) {
-          formattedText += `\nPaquetes: ${paquetes}`;
-        }
-        
-        // Si tiene documentos, los mostramos
-        if (documentos) {
-          formattedText += `\nDocumentos: ${documentos}`;
-        }
-
-        formattedText += `
-          ----------------------------------------
-          \n
-        `;
+        formattedText += `----------------------------------------\n\n`;
       }
     });
-    
-    // Mostrar el texto formateado en la consola
-    consoleElement.textContent = formattedText || 'No hay entregas con paquetes o documentos.';
+
+    if (formattedText) {
+      consoleElement.textContent = formattedText;
+    } else {
+      consoleElement.textContent = 'No hay entregas con paquetes o documentos.';
+    }
+
   } catch (error) {
+    // Muestra el error completo en la consola
     consoleElement.textContent = `Error cargando entregas: ${error.message}`;
+
+    // Log del error completo para depuración
+    console.error('Detalles del error:', error);
   }
 }
 
-// Llamar a la función cuando la página esté lista (o en el momento que desees)
+// Llamar a la función cuando la página esté lista
 document.addEventListener('DOMContentLoaded', cargarEntregasEnConsola);
 
 // Inicializamos las tablas vacías
