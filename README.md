@@ -110,6 +110,11 @@ ros2 topic pub --once /navigate_goal std_msgs/msg/Float32MultiArray "{data: [0.5
 > pip install tornado
 > ```
 
+> [!IMPORTANT]
+> Hay un usuario admin ya creado; \
+> correo: admin@gmail.com \
+> Contraseña: admin
+
 ## Nuestro proyecto
 ### Como vamos a organizar el git?
 Al crear el repositorio tenemos una rama `main` que contendrá el codigo totalmente funcional que presentaremos en cada *Sprint review*, de esta rama `main` se crean ramas `release0X` al principio de sprint donde *X* es el número del sprint que trabajaremos y que se cerrará al finalizar un sprint y por último de ésta rama `release0X` se crearán ramas `QT-HX-YY` donde *YY* es el número de tarea y *X* el número de la historia de usuario a la que corresponde esa tarea, y que representará el trabajo de una tarea, al terminar la tarea la rama se cerrara en `release0X`. \
