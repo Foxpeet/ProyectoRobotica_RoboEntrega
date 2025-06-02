@@ -12,7 +12,7 @@ function connect(){
       //Activar el boton de enviar coordenadas una vez se ha conectado ros2
       //document.getElementById('sendCoordinatesButton').disabled = false;
       //actualizamos una sola vez la cámara
-      updateCameraFeed()
+      //updateCameraFeed()
       iniciarSubscripcionMapa()
   })
   data.ros.on("error", (error) => {
