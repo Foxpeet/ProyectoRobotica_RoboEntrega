@@ -1,6 +1,26 @@
 # RoboEntrega - Equipo 1
 
 ## Instrucciones
+### Conectarse al robot real
+Para conectarnos al robot real debemos primero conectarnos a su misma red wifi, en nuestro caso como estamos usando el robot 11 la red es **TP-LINK_6CAE**.\
+Comprobamos que desde la máquina virtual tenemos conexion y que nuestra ip comienza por 192.168.0., se puede comprobar con el comando **ifconfig**.\
+Ahora nos conectamos a nuestro robot poniendo en el cmd:
+```
+[Terminal de conexión]
+ssh ubuntu@192.168.0.136
+```
+Si se ha hecho bien pedirá la contraseña, esta es **turtlebot**.\
+Para inicializar el robot se debe usar
+```
+ros2 launch turtlebot3_bringup robot.launch.py
+```
+> [!IMPORTANT]
+> Aunque varias perosnas se conecten a la vez, solo UNA debera hacer esta última linea, de hacerla varios el robot crasheará, se reiniciará y habrá que iniciarlo todo de nuevo
+> 
+Tambien hay que asegurarse de que la id del robot sea el 1, ya que somos el equipo 1
+```
+export ROS_DOMAIN_ID=1 # ID del equipo
+```
 ### Comandos para iniciar
 #### ROS2
 Como tenemos la norma de no subir al git los archivos de compilado, primero compilaremos con:
@@ -112,8 +132,3 @@ Programaremos el robot que se nos ha proporcionado en clase, un **turtlebot3 mod
 ### Nuestro robot
 Nuestro robot es un [turtlebot3 modelo burger](https://www.turtlebot.com/turtlebot3/).\
 En proximos sprints diseñaremos e imprimiremos piezas para el turtlebot con la intencion de hacerlo mas eficiente en el reparto de paquetes y cartas
-### Nuestro mapa
-Nuestro mapa/espacio de simulacion donde el robot realizará las pruebas y testeos es una oficina creada por [Melih Erdogan](https://github.com/mlherd) en su repositorio [Dataset-of-Gazebo-Worlds-Models-and-Maps](https://github.com/mlherd/Dataset-of-Gazebo-Worlds-Models-and-Maps).
-Modificamos su mapa para no consumir tantos recursos en nuestra **máquina virtual Linux Ubuntu**.\
-Así resultó:
-![imagen del mapa de la oficina de gazebo](https://i.imgur.com/s6jIldi.png)
