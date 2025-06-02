@@ -29,41 +29,14 @@
 
 .admin-form input,
 .admin-form select {
-  padding: 10px;
+  padding: 20px;
+  font-size: 30px;
   border-radius: 5px;
   border: 1px solid #bbb;
   flex: 1;
   min-width: 150px;
 }
 
-.btn-azul {
-  background-color: #5ba8df;
-  color: black;
-  padding: 10px 20px;
-  border: 1px solid #000000;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.btn-azul:hover {
-  background-color: #6590bb;
-}
-
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.admin-table th,
-.admin-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-}
-
-.admin-table th {
-  background-color: #aad3f2;
-}
 
 #console {
   background-color: #f0f0f0;
@@ -126,22 +99,15 @@ color: white;
 }
 
 /* Formulario admin */
-.admin-form input, .admin-form select, .admin-form button {
-margin: 5px 5px 10px 0;
-padding: 8px;
-font-size: 15px;
+.admin-form input,
+.admin-form select,
+.admin-form button {
+  margin: 5px 5px 10px 0;
+  padding: 14px 12px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-.modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
 .modal-content {
     background: white;
     padding: 20px;
@@ -160,6 +126,40 @@ font-size: 15px;
     cursor: pointer;
     user-select: none;
   }
+
+  .btn-rojo {
+    background-color: #f44336; /* rojo vivo */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-rojo:hover {
+    background-color: #c62828; 
+  }
+  
+  .btn-gris {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-gris:hover {
+    background-color: #bdbdbd;
+  }
+
+  
 .btn-azul {
     background-color: #007BFF;
     border: none;
@@ -229,4 +229,25 @@ text-align: center;
 #editWorkerModal .modal-content input {
   margin-bottom: 12px;
 }
+
+#changeDeskModal select {
+  margin-bottom: 15px;
+}
+.worker-info-field {
+  margin-bottom: 12px;
+}
+
+#editWorkerModal input[type="email"],
+#editWorkerModal input[type="password"] {
+  padding: 15px 16px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+
+
 

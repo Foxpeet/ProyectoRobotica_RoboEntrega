@@ -173,7 +173,7 @@ def crear_entrega():
                 'error': 'El campo id_entrega es obligatorio.'
             }), 400
         
-        hora = datetime.now().time()
+        hora = datetime.datetime.now().time()
         # La hora se debe tomar del servidor (hora actual)
         
         # Tipo es siempre 'documento'
