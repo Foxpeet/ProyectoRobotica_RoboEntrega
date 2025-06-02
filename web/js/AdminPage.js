@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Actualizar el título de bienvenida con el nombre y apellido
   const bienvenida = document.getElementById('bievenida_admin');
-  bienvenida.textContent = `¡Bienvenido, ${nombre} ${apellido}!`;
+  bienvenida.textContent = `¡Bienvenido, ${nombre}!`;
 
 
 // Gestionar el cierre de sesión
@@ -208,7 +208,7 @@ async function renderWorkers() {
         <td>${t.apellido_trabajador}</td>
         <td>${t.correo}</td>
         <td>${t.mesa_id_mesa}</td>
-        <td>
+        <td class="worker-actions">
           <button class="edit-button" title="Editar trabajador">
             <img src="img/lapiz_edit_button.png" alt="Editar" />
           </button>
