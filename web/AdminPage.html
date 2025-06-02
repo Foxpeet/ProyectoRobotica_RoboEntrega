@@ -7,104 +7,6 @@
   <link rel="stylesheet" href="css/estilo-comun.css" />
   <link rel="stylesheet" href="css/estilo-landing.css" />
   <link rel="stylesheet" href="css/estilo-admin.css" />
-  <style>
-    /* Modal base */
-    .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0,0,0,0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      width: 320px;
-      max-width: 90%;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      position: relative;
-    }
-    .modal-content .close {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 22px;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-    }
-    .btn-azul {
-      background-color: #007BFF;
-      border: none;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: background-color 0.3s ease;
-    }
-    .btn-azul:hover {
-      background-color: #0056b3;
-    }
-
-
-    .modal {
-  display: none; /* Ocultos por defecto */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal.mostrar {
-  display: flex;
-}
-
-.modal-contenido {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  position: relative;
-}
-
-.modal-contenido.exito {
-  border: 2px solid #4CAF50;
-  color: #4CAF50;
-}
-
-.modal-contenido.error {
-  border: 2px solid #F44336;
-  color: #F44336;
-}
-
-.modal-close {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  color: #999;
-}
-.modal-close:hover {
-  color: #333;
-}
-#bievenida_admin{
-  text-align: center;
-}
-
-  </style>
 </head>
 <body>
   <!-- HEADER -->
@@ -128,7 +30,7 @@
 
     <!-- ROBOTS -->
     <section class="admin-card">
-      <h2>🤖 Robots</h2>
+      <h2>Robots</h2>
       <form id="robotForm" class="admin-form">
         <input type="text" id="robotModel" placeholder="Modelo" required />
         <input type="text" id="robotSerial" placeholder="Número de serie" required />
@@ -149,7 +51,7 @@
 
     <!-- TRABAJADORES -->
     <section class="admin-card">
-      <h2>👷 Trabajadores</h2>
+      <h2>Trabajadores</h2>
       <form id="workerForm" class="admin-form">
         <input type="text" id="workerDNI" placeholder="DNI" required />
         <input type="text" id="workerName" placeholder="Nombre" required />
@@ -179,7 +81,7 @@
 
     <!-- CABINAS -->
     <section class="admin-card">
-      <h2>🪑 Cabinas</h2>
+      <h2>Cabinas</h2>
       <form id="deskForm" class="admin-form">
         <input type="number" step="any" id="deskLongitude" placeholder="Longitud" required />
         <input type="number" scontenidotep="any" id="deskLatitude" placeholder="Latitud" required />
