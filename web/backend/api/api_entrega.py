@@ -90,11 +90,9 @@ def get_entregas_ubicaciones():
         }), 500
 
 
-# Ruta para marcar una entrega como completada
 @entrega_api.route('/entregas/completar/<string:id_entrega>', methods=['PUT'])
 def completar_entrega(id_entrega):
     try:
-        # Obtener la entrega por ID
         entrega = Entrega.query.get(id_entrega)
         if not entrega:
             return jsonify({
@@ -102,7 +100,6 @@ def completar_entrega(id_entrega):
                 'error': 'Entrega no encontrada'
             }), 404
 
-        # Marcar la entrega como completada
         entrega.completado = True
         db.session.commit()
 
@@ -128,10 +125,8 @@ def completar_entrega(id_entrega):
 @entrega_api.route('/entregas/vista', methods=['GET'])
 def obtener_entregas_ordenadas():
     try:
-        # Obtener las entregas ordenadas por hora (más antiguas primero)
         entregas = Entrega.query.order_by(Entrega.hora.asc()).all()
 
-        # Crear una lista con los datos que quieres devolver
         entregas_data = [
             {
                 'id_entrega': e.id_entrega,
@@ -153,27 +148,22 @@ def obtener_entregas_ordenadas():
         }), 200
 
     except Exception as e:
-        # Capturar el traceback completo para obtener más detalles
         tb_str = traceback.format_exc()
 
-        # Imprimir el error completo para depuración
         print("Error en el servidor:", tb_str)
 
-        # Añadir más detalles para debug
         return jsonify({
             'success': False,
             'error': 'Unknown error',
             'message': str(e),
-            'traceback': tb_str  # Agregamos el traceback completo
+            'traceback': tb_str
         }), 500
 
 @entrega_api.route('/entregas', methods=['POST'])
 def crear_entrega():
     try:
-        # Obtener los datos del cuerpo de la solicitud
         data = request.get_json()
 
-        # Obtener los datos requeridos
         id_entrega = data.get('id_entrega')
         if not id_entrega:
             return jsonify({
@@ -182,9 +172,7 @@ def crear_entrega():
             }), 400
         
         hora = datetime.datetime.now().time()
-        # La hora se debe tomar del servidor (hora actual)
         
-        # Tipo es siempre 'documento'
         tipo = "documento"
         
         dni_destino = data.get('dni_destino')
@@ -194,14 +182,12 @@ def crear_entrega():
                 'error': 'El campo dni_destino es obligatorio.'
             }), 400
 
-        # Se debe proporcionar al menos un paquete o un documento
         if not data.get('paquetes') and not data.get('documentos'):
             return jsonify({
                 'success': False,
                 'error': 'Se debe proporcionar al menos un paquete o un documento.'
             }), 400
         
-        # Obtener el dni_origen del trabajador logueado (asumimos que lo envías en el request)
         dni_origen = data.get('dni_origen')
         if not dni_origen:
             return jsonify({
@@ -209,7 +195,6 @@ def crear_entrega():
                 'error': 'El campo dni_origen es obligatorio.'
             }), 400
         
-        # Verificar que el robot_id_robot esté presente
         robot_id_robot = data.get('robot_id_robot')
         if not robot_id_robot:
             return jsonify({
@@ -217,7 +202,6 @@ def crear_entrega():
                 'error': 'El campo robot_id_robot es obligatorio.'
             }), 400
 
-        # Crear la nueva entrega
         nueva_entrega = Entrega(
             id_entrega=id_entrega,
             hora=hora,
@@ -227,7 +211,6 @@ def crear_entrega():
             robot_id_robot=robot_id_robot,
             completado=False
         )
-        # Guardar la nueva entrega
         db.session.add(nueva_entrega)
         db.session.commit()
 

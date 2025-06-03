@@ -35,7 +35,6 @@ def create_mesa():
     except IntegrityError as e:
         db.session.rollback()
 
-        # Versión robusta para SQLite
         if 'UNIQUE constraint failed: mesa.longitud_x, mesa.latitud_y' in str(e.orig):
             return jsonify({'message': 'Este lugar ya tiene una cabina.'}), 400
         else:
@@ -46,17 +45,15 @@ def create_mesa():
 
 @mesa_api.route('/mesas_con_trabajadores', methods=['GET'])
 def get_mesas_con_trabajadores():
-    # Obtener todas las mesas con el número de trabajadores asociados
     mesas = Mesa.query.with_entities(
         Mesa.id_mesa,
         func.count(Trabajador.dni_trabajador).label('num_trabajadores')
     ).join(Trabajador, isouter=True).group_by(Mesa.id_mesa).all()
 
-    # Crear una lista de mesas con su estado de ocupación
     mesas_data = [
         {
             'id_mesa': m.id_mesa,
-            'ocupada': m.num_trabajadores > 0  # Si tiene trabajadores, está ocupada
+            'ocupada': m.num_trabajadores > 0
         }
         for m in mesas
     ]

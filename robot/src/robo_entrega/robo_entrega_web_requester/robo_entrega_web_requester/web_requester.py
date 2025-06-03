@@ -43,8 +43,6 @@ class ApiClientNode(Node):
             
             self.estoy_ocupado = True
             
-            # calculamos la distancia desde el robot a todas las entregas
-            # Aqui va la IA que decide el mejor a donde ir (teoria de grafos?)
             distancia_menor = 9999
             pos_entrega_objetivo = 0
             for i in range(data['count']):
@@ -60,7 +58,7 @@ class ApiClientNode(Node):
             self.id_entrega = data['data'][pos_entrega_objetivo]['id_entrega']
             self.get_logger().info(f"id entrega {self.id_entrega}")
 
-            self.ubi_destino = data['data'][pos_entrega_objetivo]['destino'] #comprobar si origen es null
+            self.ubi_destino = data['data'][pos_entrega_objetivo]['destino']
             ubi_origen = data['data'][pos_entrega_objetivo]['origen']
 
             self._action_client.wait_for_server()

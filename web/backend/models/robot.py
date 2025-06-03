@@ -7,7 +7,6 @@ class Robot(db.Model):
     modelo_robot = db.Column(db.String(50), nullable=False)
     numero_serie_robot = db.Column(db.String(100), unique=True, nullable=False)
 
-    # Relación con el modelo Entrega
     entregas = db.relationship("Entrega", backref="robot")
 
     def __repr__(self):

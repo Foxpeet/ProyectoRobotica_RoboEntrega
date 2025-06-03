@@ -4,7 +4,7 @@ class Entrega(db.Model):
     __tablename__ = 'entregas'
 
     id_entrega = db.Column(db.String(45), primary_key=True)
-    hora = db.Column(db.Time, nullable=False)  # Cambio aquí: 'hora' es ahora un campo Time
+    hora = db.Column(db.Time, nullable=False)
     tipo = db.Column(db.String(45), nullable=False)
     dni_origen = db.Column(db.String(45), nullable=True)
     dni_destino = db.Column(db.String(45), nullable=False)

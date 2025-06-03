@@ -1,4 +1,4 @@
-// Variables globales para almacenar datos en memoria (simulando DB)
+
 let robots = [];
 let workers = [];
 let desks = [];
@@ -30,7 +30,6 @@ const confirmChangeDeskBtn = document.getElementById("confirmChangeDeskBtn");
 const API_URL = 'http://127.0.0.1:5000/api';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Verificar si el usuario está logueado
    usuario = sessionStorage.getItem('usuario');
 
   if (!usuario) {
@@ -39,14 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
   }
 
-  // Parsear el objeto usuario desde sessionStorage
   const datosUsuario = JSON.parse(usuario);
 
-  // Obtener el nombre y apellido del usuario
   const nombre = datosUsuario.nombre_trabajador;
   const apellido = datosUsuario.apellido_trabajador;
 
-  // Actualizar el título de bienvenida con el nombre y apellido
   const bienvenida = document.getElementById('bievenida_admin');
   bienvenida.textContent = `¡Bienvenido, ${nombre}!`;
 
@@ -57,7 +53,6 @@ logoutLink.addEventListener('click', async (e) => {
     e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
     
     try {
-        // Llamar al endpoint de logout
         const response = await fetch('http://127.0.0.1:5000/api/logout', {
             method: 'POST',
             headers: {
@@ -69,10 +64,8 @@ logoutLink.addEventListener('click', async (e) => {
         });
 
         if (response.ok) {
-            // Eliminar el usuario de sessionStorage
             sessionStorage.removeItem('usuario');
             
-            // Redirigir al inicio de sesión
             window.location.href = 'iniciarSesion.html';
         } else {
             const errorData = await response.json();
@@ -105,7 +98,6 @@ async function renderRobots() {
         </button>
       </td>`;
 
-    // Añadir listener eliminar
     tr.querySelector(".delete-button").addEventListener("click", () => {
       openDeleteRobotModal(r); 
     });
@@ -114,17 +106,14 @@ async function renderRobots() {
   });
 }
 
-// Función para abrir el modal de confirmación
 function openDeleteRobotModal(robot) {
   const modal = document.getElementById("deleteRobotModal");
   const message = document.getElementById("deleteRobotMessage");
   const confirmBtn = document.getElementById("confirmDeleteRobotBtn");
   const cancelBtn = document.getElementById("cancelDeleteRobotBtn");
 
-  // Establecer el mensaje con información del robot
   message.textContent = `¿Eliminar robot ${robot.modelo_robot} ${robot.numero_serie_robot}?`;
 
-  // Mostrar el modal
   modal.style.display = "flex";
 
   // Confirmar eliminación
@@ -136,12 +125,11 @@ function openDeleteRobotModal(robot) {
 
       if (deleteResponse.ok) {
         mostrarExito(`Robot ID ${robot.id_robot} eliminado.`);
-        renderRobots(); // Actualizar la lista de robots
+        renderRobots();
       } else {
         mostrarError("Error al eliminar el robot.");
       }
 
-      // Cerrar el modal después de la eliminación
       closeDeleteRobotModal();
     } catch (error) {
       mostrarError("Hubo un error al eliminar el robot.");
@@ -153,18 +141,14 @@ function openDeleteRobotModal(robot) {
     closeDeleteRobotModal();
   };
 
-  // Cerrar el modal cuando se haga clic en el botón de cerrar
   document.getElementById("closeDeleteRobotModal").onclick = closeDeleteRobotModal;
 }
 
-// Función para cerrar el modal
 function closeDeleteRobotModal() {
   const modal = document.getElementById("deleteRobotModal");
   modal.style.display = "none";
 }
 
-
-// Añadir nuevo robot
 robotForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const newRobot = {
@@ -197,7 +181,7 @@ async function renderWorkers() {
     const trabajadores = await response.json();
 
     const table = document.getElementById("workerTable");
-    table.innerHTML = ""; // Limpiar la tabla antes de insertar
+    table.innerHTML = "";
 
     trabajadores.forEach((t) => {
       const tr = document.createElement("tr");
@@ -257,7 +241,7 @@ async function renderWorkers() {
     const trabajadores = await response.json();
 
     const table = document.getElementById('workerTable');
-    table.innerHTML = ""; // Limpiar la tabla antes de insertar
+    table.innerHTML = "";
     
     trabajadores.forEach((t) => {
       const tr = document.createElement("tr");
@@ -315,7 +299,7 @@ async function deleteWorker(dni) {
     }
 
     mostrarExito(`Trabajador eliminado correctamente`, 'success');
-    renderWorkers(); // Recargar la lista
+    renderWorkers();
   } catch (err) {
     mostrarError(`Error eliminando trabajador: ${err.message}`, 'error');
   }
@@ -328,24 +312,22 @@ async function loadDesks() {
     // Llamar a la API para obtener las mesas y su estado
     const response = await fetch(`${API_URL}/mesas_con_trabajadores`);
     
-    // Revisar si la respuesta es correcta
     if (!response.ok) {
-      const errorDetails = await response.text();  // Capturar el mensaje de error
+      const errorDetails = await response.text();
       throw new Error(`Error al obtener las mesas: ${response.status} - ${errorDetails}`);
     }
 
-    const desks = await response.json(); // Obtener los datos de las mesas
+    const desks = await response.json();
 
     // Limpiar las opciones del select antes de agregar las nuevas (excepto el placeholder)
-    deskSelect.innerHTML = '';  // Eliminar todas las opciones
+    deskSelect.innerHTML = '';
     const placeholder = document.createElement('option');
     placeholder.value = '';
     placeholder.disabled = true;
     placeholder.selected = true;
     placeholder.textContent = "Elige una mesa";
-    deskSelect.appendChild(placeholder); // Agregar el placeholder al principio
+    deskSelect.appendChild(placeholder);
 
-    // Si no hay mesas, mostrar un mensaje
     if (desks.length === 0) {
       const option = document.createElement("option");
       option.textContent = "No hay cabinas disponibles";
@@ -356,18 +338,15 @@ async function loadDesks() {
       // Recorrer todas las mesas y crear las opciones
       desks.forEach((desk) => {
         const option = document.createElement("option");
-        option.value = desk.id_mesa; // Usamos 'id_mesa' como valor
+        option.value = desk.id_mesa;
         
-        // Crear el texto de la opción
         option.textContent = `Mesa - ${desk.id_mesa}`;
         
-        // Si la mesa está ocupada, deshabilitar la opción
         if (desk.ocupada) {
           option.disabled = true;
           option.textContent += " (Ocupada)";
         }
 
-        // Añadir la opción al select
         deskSelect.appendChild(option);
       });
     }
@@ -376,21 +355,19 @@ async function loadDesks() {
   }
 }
 
-// Cargar las mesas cuando se cargue el documento
 document.addEventListener('DOMContentLoaded', loadDesks);
 
 workerForm.addEventListener("submit", async (e) => {
-  e.preventDefault();  // Prevent default form submission
+  e.preventDefault();
   const nuevoTrabajador = {
     dni_trabajador: document.getElementById('workerDNI').value,
     nombre_trabajador: document.getElementById('workerName').value,
     apellido_trabajador: document.getElementById('workerLastName').value,
     correo: document.getElementById('workerEmail').value,
     contraseña: document.getElementById('workerPassword').value,
-    id_mesa: document.getElementById('deskSelect').value  // Aquí se toma el valor de la mesa seleccionada
+    id_mesa: document.getElementById('deskSelect').value 
   };
 
-  // Basic validation for empty fields
   if (!nuevoTrabajador.dni_trabajador || 
       !nuevoTrabajador.nombre_trabajador || 
       !nuevoTrabajador.apellido_trabajador || 
@@ -400,25 +377,21 @@ workerForm.addEventListener("submit", async (e) => {
       return;
   }
 
-  // Validate DNI format (8 digits + 1 letter)
   if (!/^[0-9]{8}[A-Za-z]$/.test(nuevoTrabajador.dni_trabajador)) {
       mostrarError("El DNI debe tener 8 números y 1 letra");
       return;
   }
 
-  // Validate email format
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nuevoTrabajador.correo)) {
       mostrarError("Por favor, introduce un email válido");
       return;
   }
 
-  // Validate that a desk has been selected
   if (!nuevoTrabajador.id_mesa) {
       mostrarError("Por favor, selecciona una mesa para el trabajador");
       return;
   }
 
-  // Send the data to the backend API
   try {
       const response = await fetch(`${API_URL}/trabajadores`, {
           method: 'POST',
@@ -427,12 +400,11 @@ workerForm.addEventListener("submit", async (e) => {
       });
 
       if (response.ok) {
-          renderWorkers();  // Refresh the worker list after adding
-          e.target.reset();  // Reset the form fields
+          renderWorkers();
+          e.target.reset(); 
           mostrarExito('Trabajador añadido correctamente');
       } else {
           const responseData = await response.json();
-          // Custom error handling for specific error messages
           if (responseData.message.includes('DNI')) {
               mostrarError("El DNI ya está registrado.");
           } else if (responseData.message.includes('correo')) {
@@ -504,58 +476,50 @@ document.addEventListener('DOMContentLoaded', () => {
 let currentWorkerForDesk = null;
 
 async function openChangeDeskModal(worker) {
-  currentWorkerForDesk = worker;  // Guardamos el trabajador actual para cambiar de mesa
+  currentWorkerForDesk = worker;
   const changeDeskName = document.getElementById("changeDeskName");
   changeDeskName.textContent = `Cambiar Cabina para ${worker.nombre_trabajador} ${worker.apellido_trabajador}`;  changeDeskModal.style.display = "flex";  // Abrir el modal
-  deskChange.innerHTML = "";  // Limpiar las opciones previas del select
+  deskChange.innerHTML = "";
   const placeholder = document.createElement('option');
   placeholder.value = '';
   placeholder.disabled = true;
   placeholder.selected = true;
   placeholder.textContent = "Elige nueva mesa";
-  deskChange.appendChild(placeholder); // Agregar el placeholder al principio
+  deskChange.appendChild(placeholder);
 
   try {
-    // Llamar a la API para obtener las mesas y su estado
     const response = await fetch(`${API_URL}/mesas_con_trabajadores`);
     if (!response.ok) {
       throw new Error("Error al obtener las mesas.");
     }
 
-    const desks = await response.json(); // Obtener los datos de las mesas
+    const desks = await response.json();
 
-    // Si no hay mesas, mostrar un mensaje y deshabilitar el botón de cambio
     if (desks.length === 0) {
       const option = document.createElement("option");
       option.textContent = "No hay cabinas disponibles";
       option.disabled = true;
       deskChange.appendChild(option);
-      confirmChangeDeskBtn.disabled = true;  // Deshabilitar el botón si no hay mesas
+      confirmChangeDeskBtn.disabled = true;
     } else {
-      let hasAvailableDesk = false;  // Flag para verificar si hay mesas libres
+      let hasAvailableDesk = false;
 
-      // Recorrer todas las mesas y crear las opciones
       desks.forEach((desk) => {
         const option = document.createElement("option");
-        option.value = desk.id_mesa;  // Asignamos el id_mesa como el valor de la opción
+        option.value = desk.id_mesa;
 
-        // Crear el texto de la opción
         option.textContent = `Mesa - ${desk.id_mesa}`;
 
-        // Si la mesa está ocupada, deshabilitar la opción
         if (desk.ocupada) {
           option.disabled = true;
-          option.textContent += " (Ocupada)";  // Añadir "(Ocupada)" al texto
+          option.textContent += " (Ocupada)";
         } else {
-          hasAvailableDesk = true;  // Hay al menos una mesa libre
+          hasAvailableDesk = true;
         }
-
-        // Añadir la opción al select
         deskChange.appendChild(option);
       });
 
-      // Habilitar o deshabilitar el botón de confirmación según la disponibilidad de mesas libres
-      confirmChangeDeskBtn.disabled = !hasAvailableDesk; // Solo habilitar si hay mesas libres
+      confirmChangeDeskBtn.disabled = !hasAvailableDesk;
     }
   } catch (error) {
     alert("Hubo un problema al cargar las mesas. Por favor, intenta nuevamente.");
@@ -574,7 +538,6 @@ confirmChangeDeskBtn.addEventListener("click", async () => {
 
   const selectedDeskId = parseInt(deskChange.value);
 
-  // Verificar si se ha seleccionado una mesa
   if (!selectedDeskId) {
     alert("Por favor, selecciona una nueva mesa.");
     return;
@@ -589,7 +552,7 @@ confirmChangeDeskBtn.addEventListener("click", async () => {
 
     if (response.ok) {
       mostrarExito("La mesa ha sido cambiada con éxito.");
-      changeDeskModal.style.display = "none";  // Cerrar el modal después del cambio
+      changeDeskModal.style.display = "none";
       renderWorkers();  
     } else {
       const responseData = await response.json();
@@ -626,7 +589,6 @@ async function renderDesks() {
       return;
     }
     
-    // 5. Generar el HTML de la tabla
     deskTable.innerHTML = desks.map(desk => `
       <tr>
         <td>${desk.id_mesa}</td>
@@ -704,11 +666,9 @@ function mostrarError(mensaje, formId = null) {
 function cerrarModal(id) {
   const modal = document.getElementById(id);
   modal.classList.remove("mostrar");
-  location.reload(); // Recarga la página al cerrar el modal
+  location.reload();
 }
 
-
-// Función para cargar las entregas en la consola con formato amigable
 async function cargarEntregasEnConsola() {
   const consoleElement = document.getElementById('console');
 
@@ -721,7 +681,6 @@ async function cargarEntregasEnConsola() {
 
     const result = await response.json();
 
-    // Verifica si el campo 'data' existe y es un array
     if (!result.data || !Array.isArray(result.data)) {
       throw new Error('El formato de la respuesta no es el esperado.');
     }
@@ -739,11 +698,10 @@ async function cargarEntregasEnConsola() {
       const hora = entrega.hora;
       const tipo = entrega.tipo;
       const completado = entrega.completado ? 'Completado' : 'Pendiente';
-      const origen = entrega.dni_origen || 'No disponible';  // Maneja el caso cuando no esté presente
-      const destino = entrega.dni_destino || 'No disponible'; // Maneja el caso cuando no esté presente
+      const origen = entrega.dni_origen || 'No disponible';
+      const destino = entrega.dni_destino || 'No disponible';
       const robotId = entrega.robot_id_robot;
 
-      // Verifica si el éxito de la respuesta es true
       if (result.success) {
         formattedText += `----------------------------------------\n
           Hora: ${hora}\n
@@ -764,10 +722,7 @@ async function cargarEntregasEnConsola() {
     }
 
   } catch (error) {
-    // Muestra el error completo en la consola
     consoleElement.textContent = `Error cargando entregas: ${error.message}`;
-
-    // Log del error completo para depuración
     console.error('Detalles del error:', error);
   }
 }
@@ -780,7 +735,6 @@ function connect(){
           url: data.rosbridge_address
   })
 
-  // Define callbacks
   data.ros.on("connection", () => {
       data.connected = true
       console.log("Conexion con ROSBridge correcta")

@@ -18,28 +18,20 @@ def generate_launch_description():
     rviz_config_dir = os.path.join(get_package_share_directory('robo_entrega_nav2_system'), 'config', 'map.rviz')
 
     #nodo_nav2_system/tb3
-        #cuidado con cuando reconoce que ha terminado
     initial_pose_launch = ExecuteProcess(
         cmd=['ros2', 'run', 'robo_entrega_nav2_system', 'initial_pose_pub', '--ros-args', '-p', 'use_sim_time:=True']
     )
     load_map_launch = ExecuteProcess(
         cmd=['ros2', 'run', 'robo_entrega_provide_map', 'load_map_client']
     )
-    
     #capture_image / nodos
     launch_capture_image = ExecuteProcess(
         cmd=['ros2', 'run', 'robo_entrega_capture_image', 'detectar_caja']
     )
-
     #waypoints
     launch_waypoints = ExecuteProcess(
         cmd=['ros2', 'run', 'robo_entrega_nav2_system', 'my_waypoint_follower']
     )
-
-    #todo lo de web?
-
-
-    #--------- implementar el setup todo lo que tienen los otros xd -------------
     
     return LaunchDescription([
         Node(
@@ -138,12 +130,4 @@ def generate_launch_description():
                 on_start=[launch_capture_image]
             )
         ),
-
-        # --- waypoints ---
-        #RegisterEventHandler(
-        #    OnProcessStart(
-        #        target_action=launch_capture_image,
-        #        on_start=[launch_waypoints]
-        #    )
-        #),
     ])

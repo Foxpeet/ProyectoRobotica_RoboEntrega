@@ -1,21 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Verificar si el usuario está logueado
     const usuario = sessionStorage.getItem('usuario');
 
     if (!usuario) {
-        // Si no hay sesión activa, redirigir al inicio de sesión
         window.location.href = 'iniciarSesion.html';
         return;
     }
-
-    // Parsear el objeto usuario desde sessionStorage
     const datosUsuario = JSON.parse(usuario);
 
-    // Obtener el nombre y apellido del usuario logueado
     const nombre = datosUsuario.nombre_trabajador;
     const apellido = datosUsuario.apellido_trabajador;
 
-    // Actualizar el título de bienvenida con el nombre y apellido
     const bienvenida = document.getElementById('bienvenida_mapa');
     if (bienvenida) {
         bienvenida.textContent = `¡Bienvenido, ${nombre} ${apellido}!`;
@@ -23,20 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('No se encontró el elemento de bienvenida en el DOM');
     }
 
-    // Obtener el DNI del trabajador logueado
     const dniLogueado = datosUsuario.dni_trabajador;
 
-    // Obtener el contenedor de los trabajadores
     const trabajadoresContainer = document.getElementById('trabajadores-lista');
-    trabajadoresContainer.style.display = 'grid'; // Disposición en grid para mejor organización
-    trabajadoresContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))'; // Distribuir los botones en varias columnas
+    trabajadoresContainer.style.display = 'grid';
+    trabajadoresContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
 
-    // Obtener el modal de confirmación y los botones de acción
     const modal = document.getElementById("modal"); // Modal de confirmación
     const btnSí = document.getElementById("btn-sí");
     const btnNo = document.getElementById("btn-no");
 
-    // Obtener el modal de éxito
     const modalConfirmacion = document.getElementById('modal-entrega-enviada');
     const closeModalEntrega = document.getElementById('close-modal-entrega');
 
@@ -48,46 +38,35 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`http://127.0.0.1:5000/api/trabajadores/no_admin?dni_logueado=${dniLogueado}`)
         .then(response => response.json())
         .then(data => {
-            // Limpiar el contenedor antes de agregar los nuevos botones
             trabajadoresContainer.innerHTML = '';
-
-            // Si la respuesta es una lista vacía, no hay más trabajadores
             if (data.length === 0) {
                 trabajadoresContainer.innerHTML = 'No hay más trabajadores disponibles.';
                 return;
             }
 
-            // Crear un botón para cada trabajador
             data.forEach(trabajador => {
                 const button = document.createElement('button');
                 button.textContent = `${trabajador.nombre_trabajador} ${trabajador.apellido_trabajador}`;
                 button.classList.add('trabajador-button');
 
-                // Deshabilitar el botón si el trabajador no está presente
                 if (!trabajador.presente) {
                     button.disabled = true;
                     button.classList.add('disabled');
                 } else {
-                    // Añadir un evento para abrir el modal de confirmación al hacer clic sobre el trabajador
                     button.addEventListener('click', () => {
-                        // Mostrar el modal de confirmación
                         document.getElementById("nombre-trabajador-modal").textContent = trabajador.nombre_trabajador;
                         document.getElementById("apellido-trabajador-modal").textContent = trabajador.apellido_trabajador;
-                        modal.style.display = "block"; // Mostrar el modal de confirmación
+                        modal.style.display = "block";
 
-                        // Lógica para manejar el botón "Sí"
                         btnSí.addEventListener('click', () => {
-                            // Obtener los datos del trabajador seleccionado
                             const trabajadorNombre = trabajador.nombre_trabajador;
                             const trabajadorApellido = trabajador.apellido_trabajador;
                             const dniDestino = trabajador.dni_trabajador;
 
-                            // Obtener el DNI del usuario logueado (dni_origen)
                             const usuario = sessionStorage.getItem('usuario');
                             const datosUsuario = JSON.parse(usuario);
                             const dniOrigen = datosUsuario.dni_trabajador;
 
-                            // Crear el objeto para la entrega
                             const entregaData = {
                                 id_entrega: `entrega_${Date.now()}`,  // Generar un ID único para la entrega (puedes cambiar esto)
                                 dni_origen: dniOrigen,

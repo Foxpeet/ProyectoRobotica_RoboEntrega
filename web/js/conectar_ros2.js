@@ -9,9 +9,6 @@ function connect(){
   data.ros.on("connection", () => {
       data.connected = true
       console.log("Conexion con ROSBridge correcta")
-      //Activar el boton de enviar coordenadas una vez se ha conectado ros2
-      //document.getElementById('sendCoordinatesButton').disabled = false;
-      //actualizamos una sola vez la cámara
       updateCameraFeed()
       iniciarSubscripcionMapa()
   })
@@ -22,8 +19,6 @@ function connect(){
   data.ros.on("close", () => {
       data.connected = false
       console.log("Conexion con ROSBridge cerrada")
-      //Deshabilitar el boton de enviar una vez se desconecta de ros2
-      //document.getElementById('sendCoordinatesButton').disabled = true;
   })
 }
 
@@ -39,12 +34,12 @@ function updateCameraFeed() {
     const timestamp = new Date().getTime(); // Evita caché agregando un timestamp
     img.src = `http://0.0.0.0:8080/stream?topic=/camera/image_raw`;
     //img.src = `http://0.0.0.0:8080/stream?topic=/deteccion/detecta_caja`;
-    //img.src = `http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw&console.log("Cactualizando: http://0.0.0.0:8080/stream?topic=/camera/image_raw)"`
+    //img.src = `http://localhost:8080/stream?topic=/turtlebot3/camera/image_raw
 }
 
 // función del mapa -----------------------------------------
 const mapaImagen = new Image();
-mapaImagen.src = "../img/mapa.png"; // Asegúrate de que este archivo exista en tu carpeta /img/
+mapaImagen.src = "../img/mapa.png";
 
 const MAP_RESOLUTION = 0.05; // metros por pixel
 const MAP_ORIGIN = { x: -3.64, y: -28.5 }; // origen del mundo real
@@ -74,7 +69,7 @@ function getYawFromQuaternion(orientation) {
     const { x, y, z, w } = orientation;
     const siny_cosp = 2 * (w * z + x * y);
     const cosy_cosp = 1 - 2 * (y * y + z * z);
-    return Math.atan2(siny_cosp, cosy_cosp); // radianes
+    return Math.atan2(siny_cosp, cosy_cosp);
 }
 
 function worldToCanvasCoords(x, y) {
@@ -99,7 +94,7 @@ function dibujarRobotEnMapa(x, y, theta) {
     if (!canvas || !mapaImagen.complete) return;
 
     const ctx = canvas.getContext("2d");
-    ctx.drawImage(mapaImagen, 0, 0, canvas.width, canvas.height); // Redibuja fondo
+    ctx.drawImage(mapaImagen, 0, 0, canvas.width, canvas.height);
 
     const { x: cx, y: cy } = worldToCanvasCoords(x, y);
 
@@ -149,28 +144,10 @@ document.addEventListener('DOMContentLoaded', event => {
 
     connect();
 
-    // Escuchador para el formulario de coordenadas
-    /*document.getElementById('coordinateForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-    
-        const x = parseFloat(document.getElementById('x').value);
-        const y = parseFloat(document.getElementById('y').value);
-        const w = parseFloat(document.getElementById('w').value);
-    
-        if (isNaN(x) || isNaN(y) || isNaN(w)) {
-            console.error("Valores inválidos ingresados.");
-            alert("Por favor, ingresa valores numéricos válidos para X, Y y W.");
-            return;
-        }
-    
-        enviarCoordenadas(x, y, w);
-    });*/
-
     data.ros.on("close", () => {
         data.connected = false;
         console.log("Conexion con ROSBridge cerrada. Intentando reconectar en 5 segundos...");
-        //document.getElementById('sendCoordinatesButton').disabled = true;
-    
+        
         setTimeout(() => {
             connect();
         }, 5000);
