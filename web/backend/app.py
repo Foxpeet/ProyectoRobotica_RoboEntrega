@@ -12,6 +12,7 @@ from api.api_entrega import entrega_api
 
 app = Flask(__name__)
 
+
 # Ruta absoluta dinámica al archivo SQLite
 basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, 'instance', 'robo_entrega.db')
