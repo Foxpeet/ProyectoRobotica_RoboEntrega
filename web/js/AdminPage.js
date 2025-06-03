@@ -805,7 +805,8 @@ function suscribirMensajesAdmin() {
 
     listener.subscribe((message) => {
       const consoleElement = document.getElementById('console');
-      consoleElement.textContent = consoleElement.textContent + message.data;
+      ahora = new Date()
+      consoleElement.textContent = consoleElement.textContent + "[" + ahora.toLocaleTimeString() + "] " + message.data;
     });
 }
 
