@@ -772,8 +772,64 @@ async function cargarEntregasEnConsola() {
   }
 }
 
+// Mostrar mensajes del robot
+// conectar a ros2
+function connect(){
+
+    data.ros = new ROSLIB.Ros({
+          url: data.rosbridge_address
+  })
+
+  // Define callbacks
+  data.ros.on("connection", () => {
+      data.connected = true
+      console.log("Conexion con ROSBridge correcta")
+      suscribirMensajesAdmin()
+  })
+  data.ros.on("error", (error) => {
+      console.log("Se ha producido algun error mientras se intentaba realizar la conexion")
+      console.log(error)
+  })
+  data.ros.on("close", () => {
+      data.connected = false
+      console.log("Conexion con ROSBridge cerrada")
+  })
+}
+
+function suscribirMensajesAdmin() {
+    const listener = new ROSLIB.Topic({
+        ros: data.ros,
+        name: '/mensajes_admin',
+        messageType: 'std_msgs/String'
+    });
+
+    listener.subscribe((message) => {
+      const consoleElement = document.getElementById('console');
+      consoleElement.textContent = consoleElement.textContent + message.data;
+    });
+}
+
 // Llamar a la función cuando la página esté lista
 document.addEventListener('DOMContentLoaded', cargarEntregasEnConsola);
+document.addEventListener('DOMContentLoaded', event => {
+    data = {
+        ros: null,
+        rosbridge_address: 'ws://127.0.0.1:9090/',
+        connected: false,
+    };
+
+    connect();
+
+    data.ros.on("close", () => {
+        data.connected = false;
+        console.log("Conexion con ROSBridge cerrada. Intentando reconectar en 5 segundos...");
+    
+        setTimeout(() => {
+            connect();
+        }, 5000);
+    });
+
+});
 
 // Inicializamos las tablas vacías
 renderRobots();
