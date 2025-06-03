@@ -1,0 +1,6 @@
+El enlace al drive donde se encuentra el zip con el entrenamiento necesario para usar yolo
+https://drive.google.com/file/d/1ltB5T_CBkEOFqBJEZsx4e00C-YlTQM-1/view?ts=683e107b
+
+NO COPIAR el archivo detectar_caja.py
+
+sustituir todos los archivos dentro de la carpeta dentro del zip en la carpeta dentro del proyecto con el mismo nombre (la de dentro).
