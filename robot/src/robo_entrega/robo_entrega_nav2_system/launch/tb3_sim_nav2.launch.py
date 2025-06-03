@@ -32,7 +32,7 @@ def generate_launch_description():
             parameters=[nav2_yaml]
         ),
         TimerAction(
-            period=10.0,  # Esperar 10 segundos
+            period=20.0,  # Esperar 10 segundos
             actions=[Node(
                 package='robo_entrega_nav2_system',
                 executable='initial_pose_pub',
@@ -42,7 +42,7 @@ def generate_launch_description():
             )]
         ),
         TimerAction(
-            period=6.0,  # Esperar 6 segundos
+            period=15.0,  # Esperar 6 segundos
             actions=[Node(
                 package='robo_entrega_provide_map',
                 executable='load_map_client',

@@ -26,6 +26,10 @@ def get_entregas_ubicaciones():
             Entrega.hora,
             Entrega.dni_origen,
             Entrega.dni_destino,
+            TrabajadorOrigen.nombre_trabajador.label('nombre_origen'),
+            TrabajadorOrigen.apellido_trabajador.label('apellido_origen'),
+            TrabajadorDestino.nombre_trabajador.label('nombre_destino'),
+            TrabajadorDestino.apellido_trabajador.label('apellido_destino'),
             MesaOrigen.longitud_x.label('origen_longitud'),
             MesaOrigen.latitud_y.label('origen_latitud'),
             MesaDestino.longitud_x.label('destino_longitud'),
@@ -51,13 +55,17 @@ def get_entregas_ubicaciones():
                 'hora': e.hora.isoformat(),
                 'destino': {
                     'longitud': float(e.destino_longitud),
-                    'latitud': float(e.destino_latitud)
+                    'latitud': float(e.destino_latitud),
+                    'nombre': e.nombre_destino,
+                    'apellido': e.apellido_destino
                 }
             }
             if e.dni_origen:
                 item['origen'] = {
                     'longitud': float(e.origen_longitud) if e.origen_longitud else None,
-                    'latitud': float(e.origen_latitud) if e.origen_latitud else None
+                    'latitud': float(e.origen_latitud) if e.origen_latitud else None,
+                    'nombre': e.nombre_origen,
+                    'apellido': e.apellido_origen
                 }
             ubicaciones_data.append(item)
 
@@ -83,7 +91,7 @@ def get_entregas_ubicaciones():
 
 
 # Ruta para marcar una entrega como completada
-@entrega_api.route('/entregas/completar/<int:id_entrega>', methods=['PUT'])
+@entrega_api.route('/entregas/completar/<string:id_entrega>', methods=['PUT'])
 def completar_entrega(id_entrega):
     try:
         # Obtener la entrega por ID
