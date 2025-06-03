@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'robo_entrega_nav_to_pose'
+package_name = 'robo_entrega_nodes_launcher'
 
 setup(
     name=package_name,
@@ -16,14 +16,13 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='equipo1',
-    maintainer_email='equipo1@gmail.com',
-    description='Servicio que se suscribe a /navigate_goal que insica al robot a donde ir en un determinado momento.',
+    maintainer='robotica',
+    maintainer_email='diegobal007@gmail.com',
+    description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'nav_to_pose_service = robo_entrega_nav_to_pose.nav_to_pose_service:main'
         ],
     },
 )
