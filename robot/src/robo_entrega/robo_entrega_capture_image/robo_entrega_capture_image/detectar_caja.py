@@ -8,6 +8,7 @@ from rclpy.node import Node
 from rclpy.qos import ReliabilityPolicy, QoSProfile
 from time import time
 from ament_index_python.packages import get_package_share_directory
+from pyzbar import pyzbar
 
 class Ros2OpenCVImageConverter(Node):   
 
@@ -22,6 +23,16 @@ class Ros2OpenCVImageConverter(Node):
             QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT)
         )
         self.publisher_ = self.create_publisher(Image, '/deteccion/detecta_caja', 10)
+        self.admin_publisher_ = self.create_publisher(String, '/mensajes_admin', 10)
+
+        self.code_to_name = {
+            "ABC123": "Jordan",
+            "DEF456": "Alex",
+            "GHI789": "Diego",
+            "JKL012": "Endika",
+            "MNO345": "Jaime",
+            "PQR678": "Hao"
+        }
 
         self.box_count = 0  
         self.last_box_time = 0 
@@ -31,8 +42,8 @@ class Ros2OpenCVImageConverter(Node):
         self.distancia_umbral = 250
 
         # Cargar clasificadores Haar correctamente
-        self.face_cascade = cv2.CascadeClassifier('/home/asun/Robotica/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega_capture_image/clasificadores/haarcascade_frontalface_default.xml')
-        self.body_cascade = cv2.CascadeClassifier('/home/asun/Robotica/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega_capture_image/clasificadores/haarcascade_fullbody.xml')
+        self.face_cascade = cv2.CascadeClassifier('/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega_capture_image/clasificadores/haarcascade_frontalface_default.xml')
+        self.body_cascade = cv2.CascadeClassifier('/home/robotica/proyectoRoboentrega/ProyectoRobotica_RoboEntrega/robot/src/robo_entrega/robo_entrega_capture_image/clasificadores/haarcascade_fullbody.xml')
 
     def camera_callback(self, data):
         try:
@@ -100,6 +111,22 @@ class Ros2OpenCVImageConverter(Node):
         for (x, y, w, h) in bodies:
             cv2.rectangle(cv_image, (x, y), (x+w, y+h), (255, 255, 0), 2)
             cv2.putText(cv_image, "Persona", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
+
+        # Deteccion de etiquetas/qr
+        decoded_objects = pyzbar.decode(cv_image)
+        for obj in decoded_objects:
+            code_data = obj.data.decode('utf-8')
+            self.get_logger().info(f"Detected data: {code_data}")
+            try:
+                name_part, code_part = code_data.split(' - ')
+                name = self.code_to_name.get(code_part, "Unknown")
+                if name == name_part:
+                    msg = String()
+                    msg.data = f"He entrado a {name}"
+                    self.admin_publisher_.publish(msg)
+                    
+            except ValueError:
+                self.get_logger().warn("Invalid QR format detected.")
 
         cv2.imshow("Imagen capturada por el robot", cv_image)
         cv2.waitKey(1)
