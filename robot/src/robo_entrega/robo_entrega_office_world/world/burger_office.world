@@ -38684,6 +38684,12 @@
     <uri>model://tv_stand</uri>
   </include>
 
+  <include>
+  <uri>model://standing_person</uri>
+  <pose>-24.5 6 0 0 0 0</pose>
+  </include>
+
+
 </model>
 
     <!-- GUI -->
@@ -38704,6 +38710,8 @@
         <pose>0.0 20.0 0.0 0.0 0.0 -1.5</pose>
         <uri>model://turtlebot3_burger_pi</uri>
     </include>
+
+
   </world>
   
 </sdf>
