@@ -3,6 +3,7 @@ from rclpy.node import Node
 import requests
 from std_msgs.msg import String
 from nav_msgs.msg import Odometry
+import math
 
 class ApiClientNode(Node):
 
@@ -38,16 +39,25 @@ class ApiClientNode(Node):
             
             # calculamos la distancia desde el robot a todas las entregas
             # Aqui va la IA que decide el mejor a donde ir (teoria de grafos?)
-            #for i in range(data['count']):
-            #    self.get_logger().info(f"me {i}")
+            distancia_menor = 9999
+            pos_entrega_objetivo = 0
+            for i in range(data['count']):
+                # longitud == x || latitud == y
+                distancia_origen = math.sqrt((data['data'][i]['origen']['longitud'] - self.posicion_actual_x)**2 + (data['data'][i]['origen']['latitud'] - self.posicion_actual_y)**2)
+                distancia_destino = math.sqrt((data['data'][i]['destino']['longitud'] - data['data'][i]['origen']['longitud'])**2 + (data['data'][i]['destino']['latitud'] - data['data'][i]['origen']['latitud'])**2)
+                distancia_total = distancia_origen + distancia_destino
 
-            id_entrega = data['data'][0]['id_entrega']
+                if distancia_menor > distancia_total:
+                    distancia_menor = distancia_total
+                    pos_entrega_objetivo = 0
 
-            ubi_destino = data['data'][0]['destino'] #comprobar si origen es null
-            ubi_origen = data['data'][0]['origen']
+            id_entrega = data['data'][pos_entrega_objetivo]['id_entrega']
+
+            ubi_destino = data['data'][pos_entrega_objetivo]['destino'] #comprobar si origen es null
+            ubi_origen = data['data'][pos_entrega_objetivo]['origen']
 
             msg = String()
-            msg.data = "Voy a hacer una entrega de {ubi_origen} a {ubi_destino}"
+            msg.data = f"Voy a hacer una entrega de {ubi_origen} a {ubi_destino} \n"
             self.publisher_.publish(msg)
             self.get_logger().info(f"mensaje enviado")
             
@@ -55,7 +65,7 @@ class ApiClientNode(Node):
 
             response_confirm = requests.put(url_confirm + str(id_entrega))
             msg = String()
-            msg.data = "He terminado la entrega"
+            msg.data = "He terminado la entrega \n"
             self.publisher_.publish(msg)
             self.get_logger().info(f"mensaje enviado")
             # hacer comprobacion de confirmacion
