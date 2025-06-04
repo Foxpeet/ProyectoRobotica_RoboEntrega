@@ -30,30 +30,27 @@ Como tenemos la norma de no subir al git los archivos de compilado, primero comp
 colcon build --symlink-install
 source install/setup.bash
 ```
-Abrimos gazebo para la simulación
+Se recomienda, en vez de copiar y pegar los comandos, usar la linea **source install/setup.bash** al iniciar cada nuevo terminal y escribir los comandos usando el tabulador para asegurar que esta bien escrito el comando, siempre puede haber algun error ortográfico
+Abrimos gazebo para la simulación en caso de que se vaya a trabajar en la simulación y no con el robot real
 ```
 [Terminal1]
 ros2 launch robo_entrega_office_world office_world.launch.py
 ```
-Luego abrimos el nodo de la acción de navegación
+Despues abrimos al rviz y la detección de objetos donde ya se inicia el mapa, el modelo del robot y permite que comience la navegación y la deteccion de cajas y personas
+Puede tardar varios segundos en abrirlo todo y poder empezar a usar la navegación.
 ```
 [Terminal2]
-ros2 launch robo_entrega_nav_to_pose nav_to_pose_subscriber.launch.py
+ros2 launch robo_entrega_nodes_launcher project_launcher.launch.py
 ```
-Despues abrimos al rviz sonde ya se inicia el mapa, el modelo del robot y permite que comience la navegación
-```
-[Terminal3]
-ros2 launch robo_entrega_nav2_system tb3_sim_nav2.launch.py
-```
-Puede tardar varios segundos en abrirlo todo y poder empezar a usar la navegación.
-A continuacion  ejecutaremos el script que nos detecta las cajas en el punto de vista del robot
-```
-[Terminal4]
-ros2 run robo_entrega_capture_image detectar_caja
-```
+> [!TIP]
+> Si en vez de ejecutar la lina anterior solo se quiere ejecutar una parte, podeis ejecutar los nodos por separado usando estos comandos en terminales diferentes:
+> ```
+> ros2 launch robo_entrega_nav2_system tb3_sim_nav2.launch.py
+> ros2 run robo_entrega_capture_image detectar_caja
+> ```
 Y por último en este apartado haremos que el robot comience la ruta por la oficina
 ```
-[Terminal5]
+[Terminal3]
 ros2 run robo_entrega_nav2_system my_waypoint_follower
 ```
 #### WEB
@@ -67,35 +64,33 @@ ros2 run robo_entrega_nav2_system my_waypoint_follower
 \
 Primero lanzamos el puente entre web y ros
 ```
-[Terminal6]
+[Terminal4]
 [~/web]
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 ```
 Despues lanzaremos el servidor de video para la funcionalidad de la cámara
 ```
-[Terminal7]
+[Terminal5]
 [~/robot]
 ros2 run robo_entrega_web_video_server robo_entrega_video_server
 ```
 Ahora abrimos el servidor en el puerto 8000 para poder ver la web
 ```
-[Terminal8]
+[Terminal6]
 [~/web]
 python3 -m http.server 8000
 ```
-Y para finalizar ejecutamos el backend para poder usar sus funcionalidades con la base de datos
+Despues ejecutamos el backend para poder usar sus funcionalidades con la base de datos
 ```
-[Terminal9]
+[Terminal7]
 [~/web/backend]
 python3 app.py
 ```
-> [!CAUTION]
-> Sabemos que os hacemos abrir muchos terminales, en el proximo sprint minimizaremos el numero de comandos necesarios para ejecutar este proyecto de robotica
-\
-### probar manualmente el nav_to_pose
+Por último ejecutamos un último nodo de ros2 para que el robot pueda hacer el recorrido de las entregas al conectarse a la base de datos
 ```
-[Terminal nuevo]
-ros2 topic pub --once /navigate_goal std_msgs/msg/Float32MultiArray "{data: [0.5, -5.5, 230.0]}"
+[Terminal8]
+[~/robot]
+ros2 launch robo_entrega_web_requester web_requester.launch.py
 ```
 > [!TIP]
 > Asegurate de que tienes estos paquetes actualizados para poder ejecutar correctamente el apartado de WEB.
