@@ -90,12 +90,6 @@ class Ros2OpenCVImageConverter(Node):
                 cv2.rectangle(cv_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 cv2.putText(cv_image, f"Caja {self.box_count}", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
-            elif 10 < area < 10.2:
-                if 0.9 < relacionDeAspecto < 1.1:
-                    self.get_logger().info(f'Mancha detectada - Área: {area}')
-                    cv2.rectangle(cv_image, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                    cv2.putText(cv_image, "Mancha", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
-
         if not any(cv2.contourArea(c) > 700 and float(cv2.boundingRect(c)[2]) / cv2.boundingRect(c)[3] > 1.5 for c in contornos):
             self.box_detected_last_frame = False
 
@@ -128,8 +122,8 @@ class Ros2OpenCVImageConverter(Node):
             except ValueError:
                 self.get_logger().warn("Invalid QR format detected.")
 
-        cv2.imshow("Imagen capturada por el robot", cv_image)
-        cv2.waitKey(1)
+        # cv2.imshow("Imagen capturada por el robot", cv_image)
+        # cv2.waitKey(1)
 
         if time() - self.last_box_time > self.detection_timeout:
             self.cajas_previas = []
