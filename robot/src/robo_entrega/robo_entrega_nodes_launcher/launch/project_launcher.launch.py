@@ -130,4 +130,12 @@ def generate_launch_description():
                 on_start=[launch_capture_image]
             )
         ),
+
+        # --- waypoint_follower ---
+        RegisterEventHandler(
+            OnProcessStart(
+                target_action=launch_capture_image,
+                on_start=[launch_waypoints]
+            )
+        ),
     ])
