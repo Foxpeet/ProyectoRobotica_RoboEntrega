@@ -15,7 +15,7 @@ Para inicializar el robot se debe usar
 ros2 launch turtlebot3_bringup robot.launch.py
 ```
 > [!IMPORTANT]
-> Aunque varias perosnas se conecten a la vez, solo UNA debera hacer esta última linea, de hacerla varios el robot crasheará, se reiniciará y habrá que iniciarlo todo de nuevo
+> Aunque varias personas se conecten a la vez, solo UNA debera hacer esta última linea, de hacerla varios el robot crasheará, se reiniciará y habrá que iniciarlo todo de nuevo
 > 
 Tambien hay que asegurarse de que la id del robot sea el 1, ya que somos el equipo 1
 ```
@@ -47,12 +47,9 @@ ros2 launch robo_entrega_nodes_launcher project_launcher.launch.py
 > ```
 > ros2 launch robo_entrega_nav2_system tb3_sim_nav2.launch.py
 > ros2 run robo_entrega_capture_image detectar_caja
+> ros2 run robo_entrega_nav2_system my_waypoint_follower
 > ```
-Y por último en este apartado haremos que el robot comience la ruta por la oficina
-```
-[Terminal3]
-ros2 run robo_entrega_nav2_system my_waypoint_follower
-```
+
 #### WEB
 > [!IMPORTANT]
 > Es necesario ejecutar estos comandos al menos una vez en un terminal para asegurar que puedas ejecutar el servidor
@@ -106,9 +103,11 @@ ros2 launch robo_entrega_web_requester web_requester.launch.py
 > ```
 
 > [!IMPORTANT]
+> --Datos importantes sobre el estado final del proyecto:
 > Hay un usuario admin ya creado; \
 > correo: admin@gmail.com \
 > Contraseña: admin
+> -- Para poder ver los resultados de la deteccion se debe descomentar una linea en el script detectar_caja dentro del nodo capture_imagen
 
 ## Nuestro proyecto
 ### Como vamos a organizar el git?
