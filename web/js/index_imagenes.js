@@ -17,7 +17,7 @@ let posiciones = [
 function cambiarFondo() {
     div.style.backgroundImage = imagenes[indice];
     div.style.backgroundPosition = posiciones[indice];
-    indice = (indice + 1) % imagenes.length; // Cicla entre las imágenes
+    indice = (indice + 1) % imagenes.length;
 }
 
 document.addEventListener('DOMContentLoaded', event => {

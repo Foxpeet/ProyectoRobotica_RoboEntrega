@@ -1,4 +1,4 @@
-
+/*estilo-comun.css*/
 main{
     min-height: 75vh;
     padding: 25px;
@@ -49,7 +49,7 @@ nav ul li {
     display: inline;
 }
 
-nav ul li a {
+nav ul li a, .logout-link {
     text-decoration: none;
     color: rgb(0, 0, 0);
     padding: 10px 15px;

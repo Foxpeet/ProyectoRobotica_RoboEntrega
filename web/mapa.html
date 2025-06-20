@@ -44,26 +44,39 @@
                 </tbody>
             </table>
         </div>
-      
-          <div class="columna columna-camara">
-            <img id="cameraFeed" src="http://localhost:8080/stream?topic=/turtlebot3/deteccion/detecta_caja" alt="Cámara del robot" />
-          </div>
+               
+          <div class="columna columna-camara"> 
+            <!-- <img id="cameraFeed" src="http://0.0.0.0:8080/stream?topic=/deteccion/detecta_caja" alt="Cámara del robot" /> -->
+             <a href="ttp://0.0.0.0:8080/stream?topic=/deteccion/detecta_caja" class="volver">Ver vista del robot</a>
+          </div> 
+
       
           <div class="columna columna-control">
-            <canvas id="mapCanvas" class="mapa" width="800" height="600" style="border:1px solid #000000;"></canvas> 
-      
-            <!-- <div class="controles">
-              <button class="flecha arriba">▲</button>
-              <div class="fila">
-                <button class="flecha izquierda">◄</button>
-                <button class="flecha derecha">►</button>
-              </div>
-              <button class="flecha abajo">▼</button>
-            </div> -->
+            <canvas id="mapCanvas" class="mapa" width="800" height="600" style="border:1px solid #000000;"></canvas>
           </div>
         </section>
       </main>
-      
+        
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+          <p id="pregunta-modal">¿Deseas enviar un documento a <span id="nombre-trabajador-modal"></span> <span id="apellido-trabajador-modal"></span>?</p>
+          <div>
+              <button id="btn-sí" class="btn-modal">Sí</button>
+              <button id="btn-no" class="btn-modal">No</button>
+          </div>
+      </div>
+    </div>
+    
+    <!-- Modal de confirmación de entrega enviada -->
+    <div id="modal-entrega-enviada" class="modal">
+      <div class="modal-content">
+          <span class="close" id="close-modal-entrega">&#10006;</span>
+          <h2>¡Entrega Enviada!</h2>
+          <p>La entrega ha sido enviada exitosamente.</p>
+      </div>
+    </div>
+
 
     <footer id="home-footer">
         <div id="footer-content">

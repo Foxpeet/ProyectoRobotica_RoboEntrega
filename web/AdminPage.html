@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel Administración - RoboEntrega</title>
+
+  <link rel="stylesheet" href="css/estilo-comun.css" />
+  <link rel="stylesheet" href="css/estilo-landing.css" />
+  <link rel="stylesheet" href="css/estilo-admin.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header id="main-header">
+    <a href="index.html" id="home-link">
+      <img src="img/logo.png" alt="Logo de RoboEntrega" class="logo" id="header-logo" />
+    </a>
+    <nav id="header-nav">
+      <ul id="header-nav-list">
+        <li><a href="index.html" id="header-logout-link">Cerrar Sesión</a></li>
+        <li><a href="contacto.html" id="header-contact-link">Contáctanos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <h1 class="titulo-principal">Panel de Administración</h1>
+
+    <h1 id="bievenida_admin"></h1> 
+
+    <!-- ROBOTS -->
+    <section class="admin-card">
+      <h2>Robots</h2>
+      <form id="robotForm" class="admin-form">
+        <input type="text" id="robotModel" placeholder="Modelo" required />
+        <input type="text" id="robotSerial" placeholder="Número de serie" required />
+        <button type="submit" class="btn-azul">Añadir Robot</button>
+      </form>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Modelo</th>
+            <th>N° Serie</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="robotTable"></tbody>
+      </table>
+    </section>
+
+    <!-- TRABAJADORES -->
+    <section class="admin-card">
+      <h2>Trabajadores</h2>
+      <form id="workerForm" class="admin-form">
+        <input type="text" id="workerDNI" placeholder="DNI" required />
+        <input type="text" id="workerName" placeholder="Nombre" required />
+        <input type="text" id="workerLastName" placeholder="Apellido" required />
+        <input type="email" id="workerEmail" placeholder="Correo electrónico" required />
+        <input type="password" id="workerPassword" placeholder="Contraseña" required />
+        <select id="deskSelect" style="width: 100%; padding: 6px; font-size: 14px;">
+          <option value="" disabled selected>Elige una mesa</option>
+        </select>
+        <button type="submit" class="btn-azul">Añadir Trabajador</button>
+        
+      </form>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Mesa</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="workerTable"></tbody>
+      </table>
+    </section>
+
+    <!-- CABINAS -->
+    <section class="admin-card">
+      <h2>Cabinas</h2>
+      <form id="deskForm" class="admin-form">
+        <input type="number" step="any" id="deskLongitude" placeholder="Longitud" required />
+        <input type="number" scontenidotep="any" id="deskLatitude" placeholder="Latitud" required />
+        <button type="submit" class="btn-azul">Añadir Cabina</button>
+      </form>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Longitud</th>
+            <th>Latitud</th>
+          </tr>
+        </thead>
+        <tbody id="deskTable"></tbody>
+      </table>
+    </section>
+
+    <!-- CONSOLA -->
+    <section class="admin-card">
+      <h2>Actividad</h2>
+      <pre id="console"></pre>
+    </section>
+  </main>
+
+<!-- MODAL EDITAR TRABAJADOR -->
+<div id="editWorkerModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <form id="editWorkerForm">
+      <span id="closeEditWorkerModal" class="close">&times;</span>
+      
+      <div class="worker-info-field">
+        <label>DNI:</label>
+        <span id="displayWorkerDNI"></span>
+      </div>
+      
+      <div class="worker-info-field">
+        <label>Nombre:</label>
+        <span id="displayWorkerName"></span>
+      </div>
+      
+      <div class="worker-info-field">
+        <label>Apellido:</label>
+        <span id="displayWorkerLastName"></span>
+      </div>
+    
+      <input type="email" id="editWorkerEmail" placeholder="Correo electrónico" required />
+      <input type="password" id="editWorkerPassword" placeholder="Nueva contraseña (dejar en blanco para no cambiar)" />
+      
+      <button type="submit" class="btn-azul">Guardar Cambios</button>
+    </form>
+  </div>
+</div>
+
+  <!-- MODAL CAMBIAR CABINA -->
+  <div id="changeDeskModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="closeChangeDeskModal" class="close">&times;</span>
+      <h3 id="changeDeskName"></h3>
+      <select id="deskChange" style="width: 100%; padding: 6px; font-size: 14px;">
+        <option value="" disabled selected>Elige una nueva mesa</option>
+      </select>
+      <button id="confirmChangeDeskBtn" class="btn-azul">Asignar</button>
+    </div>
+  </div>
+
+<!-- MODAL ELIMINAR ROBOT -->
+<div id="deleteRobotModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span id="closeDeleteRobotModal" class="close">&times;</span>
+    <h3>¿Seguro que deseas eliminar este robot?</h3>
+    <p id="deleteRobotMessage"></p>
+    <button id="confirmDeleteRobotBtn" class="btn-rojo">Eliminar</button>
+    <button id="cancelDeleteRobotBtn" class="btn-gris">Cancelar</button>
+  </div>
+</div>
+
+  <!-- MODAL Mensaje exito -->
+  <div id="modal-exito" class="modal">
+    <div class="modal-contenido exito">
+      <button class="modal-close" onclick="cerrarModal('modal-exito')">&times;</button>
+      <h2>¡Éxito!</h2>
+      <p>La operación se completó correctamente.</p>
+    </div>
+  </div>
+
+    <!-- MODAL Mensaje error-->
+  <div id="modal-error" class="modal">
+    <div class="modal-contenido error">
+      <button class="modal-close" onclick="cerrarModal('modal-error')">&times;</button>
+      <h2>Error</h2>
+      <p>Ocurrió un problema al procesar la solicitud.</p>
+    </div>
+  </div>
+  
+  
+  <!-- FOOTER -->
+  <footer id="home-footer">
+    <div id="footer-content">
+      <div id="footer-copyright">
+        <img src="img/logo.png" alt="Logo RoboEntrega" />
+        <p>© Copyright RoboEntrega</p>
+      </div>
+      <article id="redessociales">
+        <a href="http://www.facebook.com/"><img src="img/facebook.png" alt="Facebook" id="img-redsocial" /></a>
+        <a href="http://www.instagram.com/"><img src="img/instagram.png" alt="Instagram" id="img-redsocial" /></a>
+        <a href="http://www.x.com/"><img src="img/twitter_X.png" alt="Twitter_X" id="img-redsocial" /></a>
+      </article>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+  <script src="js/AdminPage.js"></script>
+</body>
+</html>

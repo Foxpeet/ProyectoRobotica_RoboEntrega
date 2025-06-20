@@ -16,7 +16,6 @@ class InitialPosePublisher(Node):
         msg.pose.pose.position.y = 0.0
         msg.pose.pose.orientation.w = 1.0
 
-        # Covarianza (matriz 6x6, se deja mínima incertidumbre en la posición inicial)
         msg.pose.covariance = [0.1, 0.0, 0.0, 0.0, 0.0, 0.0,
                                0.0, 0.1, 0.0, 0.0, 0.0, 0.0,
                                0.0, 0.0, 0.1, 0.0, 0.0, 0.0,
